@@ -1,22 +1,27 @@
-import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import Navbar from './components/Navbar';
-import Home from './views/Home/Home';
+import { useState } from 'react'
+import style from "./App.module.css"
+import Home from "./Components/Home/Home"
+import NavBar from "./Components/NavBar/NavBar"
+import {useLocation, Routes, Route} from 'react-router-dom'
+
+
 
 function App() {
-	return (
-		<>
-			<Navbar />
-			<Routes>
 
-				<Route
-					path="/"
-					element={<Home />}
-				/>
+  const location = useLocation()
+  const route = location.pathname.slice(1);
+
+  return (
+      <div className={`${style.App} ${style[route]}`}>
+        {location.pathname !== "/login" && location.pathname !== "/register" && < NavBar />}
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<NavBar/>}/>
+
+        </Routes>
         
-			</Routes>
-		</>
-	);
+      </div>
+  )
 }
 
-export default App;
+export default App
