@@ -1,10 +1,11 @@
-const {Router} = require('express')
-const {getProductsHandler} = require('../handlers/ProductHandler');
+const {Router} = require("express");
+const {createProductHandler, getProductsHandler} = require("../handlers/ProductHanldler");
 
-const productsRouter = Router();
 
-//Rutas de Products
+const productRouter = Router();
 
-productsRouter.get('/', getProductsHandler) //LLama al handler 
+productRouter.post("/", createProductHandler)
 
-module.exports = productsRouter
+productRouter.get("/", getProductsHandler)
+
+module.exports = productRouter;
