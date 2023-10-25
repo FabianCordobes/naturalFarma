@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import Slider from 'react-slick';
 import style from './Home.module.css';
 import 'slick-carousel/slick/slick.css';
