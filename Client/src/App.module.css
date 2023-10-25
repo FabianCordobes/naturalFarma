@@ -1,0 +1,36 @@
+
+
+:root {
+  /* ------------- COLORES ---------- */
+  --color-celeste1: #93cdde;
+  --color-celeste2: #2083a1ea;
+  --color-azul: #3da4cd;
+  --color-azul-oscuro: #29597a;
+  --color-verde: #8fc872;
+  --color-verde2:rgb(63, 156, 91);
+  --color-verde3: #039c00;
+  --color-texto: #515858;
+  --color-borde: #8799a8;
+  --color-body: #f3f4fb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* body {
+  overflow-x: hidden;
+} */
+.App {
+  text-align: center;
+  width: 100vw;
+  background-color: var(--color-body);
+
+}
+
+.flex {
+  display: flex;
+}
+
+
