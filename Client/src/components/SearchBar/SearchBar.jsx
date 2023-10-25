@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import style from './SearchBar.module.css';
-import App from '../../App';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { searchProducts } from '../../redux/actions/searchActions';
 
-export default function SearchBar(props) {
-	const { searchByName } = props;
+export default function SearchBar() {
 	const [inputValue, setInputValue] = useState(''); // Estado local para el valor del input
+	const dispatch = useDispatch();
 
 	const handleInputChange = (e) => {
 		setInputValue(e.target.value); // Actualiza el estado con el valor del input
+	};
+
+	const handleSearch = () => {
+		dispatch(searchProducts(inputValue));
 	};
 
 	return (
@@ -23,10 +28,9 @@ export default function SearchBar(props) {
 					onChange={handleInputChange} // Maneja el cambio en el input
 				/>
 				<button
-					onClick={() => searchByName(inputValue)}
-					className={style.bn3}
-					type="submit">
-					<AiOutlineSearch/>
+					onClick={handleSearch}
+					className={style.bn3}>
+					<AiOutlineSearch />
 				</button>
 			</div>
 		</div>
