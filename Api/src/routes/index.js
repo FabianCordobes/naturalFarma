@@ -12,7 +12,7 @@ router.put('/:id', (req, res) => {
     const productUpdated = updateProduct({id, history, login, product, user})
 
     if(!productUpdated) return res.status(403).json({
-        error: "No esxiste productos con el ID indicado"
+        error: "No existe productos con el ID indicado"
     })
     return res.status(200).json(productUpdated)
 })
