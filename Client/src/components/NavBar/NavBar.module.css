@@ -194,12 +194,12 @@ a::visited {
 
 .userIcon {
 	font-size: 40px;
-	color: var(--color-texto);
+	color: var(--color-verde3);
 	margin-right: 2rem;
 }
 
 .userIcon:hover {
- color: var(--color-azul-oscuro);
+ color: var(--color-azul);
 }
 
 .navToggle {
