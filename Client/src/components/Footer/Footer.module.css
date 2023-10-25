@@ -1,0 +1,11 @@
+.datos {
+	border-top: solid black;
+	height: 10%;
+	color: aliceblue;
+	width: 100%;
+	background-color: rgb(84, 84, 84);
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	gap: 5%;
+}

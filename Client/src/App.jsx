@@ -1,9 +1,8 @@
-import { useState } from 'react'
 import style from "./App.module.css"
-import Home from "./Components/Home/Home"
+import Home from "./views/Home/Home"
 import NavBar from "./Components/NavBar/NavBar"
 import {useLocation, Routes, Route} from 'react-router-dom'
-
+import Footer from "./components/Footer/Footer"
 
 
 function App() {
@@ -19,6 +18,8 @@ function App() {
           <Route path="/" element={<NavBar/>}/>
 
         </Routes>
+        {location.pathname !== "/login" && location.pathname !== "/register" && < Footer />}
+
         
       </div>
   )
