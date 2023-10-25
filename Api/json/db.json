@@ -1,0 +1,14 @@
+{
+    "products":[
+        {
+            "id": "1",
+            "brand": "Pzifer",
+            "category": "Alergia",
+            "therapeuticAction":"Prueba texto de prueba prueba texto de prueba texto de prueba",
+            "presentation":"comprimido",
+            "stocks": 5,
+            "price": 10,
+            "url": "url"
+        }
+    ]
+}
