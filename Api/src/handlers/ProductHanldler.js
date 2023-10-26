@@ -1,4 +1,4 @@
-const {createProductController, getProductsByName, getAllProducts} = require ("../controllers/ProductController")
+const {createProductController, getProductsByName, getAllProducts, deleteProducts} = require ("../controllers/ProductController")
 
 const createProductHandler = async (req , res) => {
     try {
@@ -49,7 +49,23 @@ const getProductsHandler = async (req, res) => {
     };
 };
 
+const deleteProductHandler = async (req , res) => {
+    const { id } = req.params;
+
+    try {
+        if(!id){
+            throw Error(`${id} no existe para borrar.`)
+        }else{
+            const deleteProduct = await deleteProducts(id)
+            res.status(200).json(deleteProduct)
+        }
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+}
+
 module.exports = {
     createProductHandler,
-    getProductsHandler
-}
+    getProductsHandler,
+    deleteProductHandler
+};

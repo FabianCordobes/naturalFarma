@@ -1,4 +1,4 @@
-const { post } = require("../routes");
+//const { post } = require("../routes");
 const axios = require ("axios");
 const {Product} = require ("../db");
 
@@ -34,9 +34,12 @@ const getAllProducts = async () => {
     return allProductsDb;
 };
 
+const deleteProducts = async(id) => await Product.destroy({where: {id}});
+
 
 module.exports = {
     createProductController,
     getAllProducts,
-    getProductsByName
-}
+    getProductsByName,
+    deleteProducts
+};
