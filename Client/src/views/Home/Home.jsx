@@ -1,4 +1,5 @@
 import  { useState } from 'react';
+import FilterCategory from '../../components/Filters/filterCategory';
 import Slider from 'react-slick';
 import style from './Home.module.css';
 import 'slick-carousel/slick/slick.css';
@@ -71,6 +72,10 @@ export default function Home() {
 					})}
 				</div>
 			</div>
+
+			<FilterCategory />
+				
+			
 
 			<div className={style.slider}>
 				<Slider {...settings}>
