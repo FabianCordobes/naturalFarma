@@ -8,6 +8,8 @@ const Detail = () => {
 
     const dispatch = useDispatch();
 
+    const detailProducts = useSelector((state) => state.detail)
+
     useEffect(() => {
         dispatch(getDetail(id))
         return () => {
@@ -18,7 +20,7 @@ const Detail = () => {
         }
     }, [dispatch, id])
 
-    const detailProducts = useSelector((state) => state.detail)
+    
 
     if (!detailProducts) {
         return <p>Loading...</p>
