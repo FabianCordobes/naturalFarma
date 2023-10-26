@@ -2,6 +2,27 @@ import { useState } from 'react';
 import style from './StockForm.module.css';
 import axios from 'axios';
 
+
+const categoryOptions = [
+	{ value: 'Alergias' },
+	{ value: 'Digestivos' },
+	{ value: 'Antiácido' },
+	{ value: 'Laxante' },
+	{ value: 'Vitaminas' },
+	// Agrega otras opciones según tus valores numéricos
+];
+
+const presentationOptions = [
+	{ value: 'Tableta' },
+	{ value: 'Cápsula Blanda' },
+	{ value: 'Líquido' },
+	{ value: 'Gel' },
+	{ value: 'Sobre' },
+	{ value: 'Pote' },
+	{ value: 'Caramelo' },
+	// Agrega otras opciones según tus valores numéricos
+];
+
 export default function StockForm() {
 	const [form, setForm] = useState({
 		brand: '',
@@ -40,11 +61,11 @@ export default function StockForm() {
 					price: '',
 					image: '',
 				});
-				console.log('producto creado');
+				alert('producto creado');
 			})
 			.catch((error) => {
 				// Maneja errores en la solicitud
-				console.log(error);
+				throw new Error(error.message);
 			});
 	};
 
@@ -56,19 +77,22 @@ export default function StockForm() {
 				<label>Categoria</label>
 				<select
 					className={style.input}
+					name="category"
 					value={form.category}
 					onChange={changeHandler}>
-					<option value="1">Alergias</option>
-					<option value="2">Digestivos</option>
-					<option value="3">Antiacido</option>
-					<option value="4">Laxante</option>
-					<option value="5">Vitaminas</option>
+					{categoryOptions.map((option) => (
+						<option
+							key={option.value}
+							value={option.value}>
+							{option.value}
+						</option>
+					))}
 				</select>
 
 				<label>Marca</label>
 				<input
 					type="text"
-					name='brand'
+					name="brand"
 					className={style.input}
 					value={form.brand}
 					onChange={changeHandler}
@@ -77,7 +101,7 @@ export default function StockForm() {
 				<label>Accion terapeutica</label>
 				<input
 					type="text"
-					name='therapeuticAction'
+					name="therapeuticAction"
 					className={style.input}
 					value={form.therapeuticAction}
 					onChange={changeHandler}
@@ -86,22 +110,22 @@ export default function StockForm() {
 				<label>Presentacion</label>
 				<select
 					className={style.input}
+					name="presentation"
 					value={form.presentation}
 					onChange={changeHandler}>
-					<option value="1">Tableta</option>
-					<option value="2">Capsula Blanda</option>
-					<option value="3">Liquido</option>
-					<option value="4">Gel</option>
-					<option value="5">Sobre</option>
-					<option value="6">Comprimido</option>
-					<option value="7">Pote</option>
-					<option value="8">Caramelo</option>
+					{presentationOptions.map((option) => (
+						<option
+							key={option.value}
+							value={option.value}>
+							{option.value}
+						</option>
+					))}
 				</select>
 
 				<label>Stock</label>
 				<input
 					type="text"
-					name='stocks'
+					name="stocks"
 					className={style.input}
 					value={form.stocks}
 					onChange={changeHandler}
@@ -110,7 +134,7 @@ export default function StockForm() {
 				<label>Precio</label>
 				<input
 					type="text"
-					name='price'
+					name="price"
 					className={style.input}
 					value={form.price}
 					onChange={changeHandler}
@@ -119,7 +143,7 @@ export default function StockForm() {
 				<label>Imagen</label>
 				<input
 					type="text"
-					name='image'
+					name="image"
 					className={style.input}
 					value={form.image}
 					onChange={changeHandler}
