@@ -66,14 +66,14 @@ const getProductByIdHandler = async ( req, res) => {
 const putProductsHandler = async (req, res) => {
 
     const { id } = req.params;
+    console.log("holaaa"+id)
     const { brand, category, therapeuticAction, presentation, stocks, price, image } = req.body;
-     console.log(id)
     try {
         if (!brand ||  !category ||  !therapeuticAction || !presentation ||  !stocks ||  !price ||  !image) {
             throw new Error('Falta información para modificar el producto.');
         }
 
-        const editProduct = await putProducts({ id, brand, category, therapeuticAction, presentation, stocks, price, image });
+        const editProduct = await putProducts(id, brand, category, therapeuticAction, presentation, stocks, price, image);
         return res.status(201).json(editProduct);
     } catch (error) {
         res.status(400).json({ error: error.message });
