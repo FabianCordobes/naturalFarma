@@ -1,0 +1,14 @@
+.product {
+   border: 2px solid var(--color-azul);
+   padding: 10px;
+}
+
+.product span {
+   font-weight: 600;
+}
+
+.product img {
+   /* object-fit: cover; */
+   width: 90%;
+   
+}
