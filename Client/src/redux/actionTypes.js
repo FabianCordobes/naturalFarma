@@ -3,3 +3,4 @@ export const SEARCH_PRODUCTS_FAILURE = 'SEARCH_PRODUCTS_FAILURE';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
 export const ORDER_BY_STOCK = 'ORDER_BY_STOCK';
+export const GET_DETAIL = "GET_DETAIL";
