@@ -1,4 +1,4 @@
-const {createProductController, getProductsByName, getAllProducts, deleteProducts} = require ("../controllers/ProductController")
+const {createProductController, getProductsByName, getAllProducts, deleteProducts, getProductById, putProducts} = require ("../controllers/ProductController")
 
 const createProductHandler = async (req , res) => {
     try {
@@ -28,26 +28,57 @@ const createProductHandler = async (req , res) => {
 
 const getProductsHandler = async (req, res) => {
   
-    const {brand} = req.query;
-  
-    if (brand) {
-          
-        // Llama al controlador que trae el producto por nombre
-        const ProductsByName = await getProductsByName(brand);
-  
-        // Responde con un mensaje de éxito
-        res.status(200).json(ProductsByName);
-  
-    } else {
-  
-        // Llama al controlador que trae todas las actividades
-        const allProducts = await getAllProducts();
-  
-         // Responde con un mensaje de éxito
-        res.status(200).json(allProducts); 
-  
-    };
+  const {brand} = req.query;
+
+  try {
+       if (brand) {
+            const productsByName = await getProductsByName(brand);
+            if (!productsByName.length ) {
+                 throw Error(`${brand} no se encuentró.`);
+            }else {
+                return res.status(200).json(productsByName);
+            }
+        } else {
+           const allProducts = await getAllProducts();
+           return res.status(200).json(allProducts); 
+        }
+  } catch (error) {
+        res.status(500).json({error:error.message});
+  }
 };
+
+const getProductByIdHandler = async ( req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        if ( id ) {
+            const productId = await getProductById( id );
+            if ( !productId.length ) throw Error(`El producto ${id} no existe.`);
+            else return res.status(200).json(productId);
+        }
+    } catch (error) {
+        res.status(500).json({error:error.message});
+    }
+
+}
+
+const putProductsHandler = async (req, res) => {
+
+    const { id } = req.params;
+    const { brand, category, therapeuticAction, presentation, stocks, price, image } = req.body;
+     console.log(id)
+    try {
+        if (!brand ||  !category ||  !therapeuticAction || !presentation ||  !stocks ||  !price ||  !image) {
+            throw new Error('Falta información para modificar el producto.');
+        }
+
+        const editProduct = await putProducts({ id, brand, category, therapeuticAction, presentation, stocks, price, image });
+        return res.status(201).json(editProduct);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
 
 const deleteProductHandler = async (req , res) => {
     const { id } = req.params;
@@ -67,5 +98,7 @@ const deleteProductHandler = async (req , res) => {
 module.exports = {
     createProductHandler,
     getProductsHandler,
-    deleteProductHandler
+    deleteProductHandler,
+    putProductsHandler,
+    getProductByIdHandler
 };
