@@ -2,7 +2,6 @@ import { useState } from 'react';
 import style from './StockForm.module.css';
 import axios from 'axios';
 
-
 const categoryOptions = [
 	{ value: 'Alergias' },
 	{ value: 'Digestivos' },
@@ -80,6 +79,11 @@ export default function StockForm() {
 					name="category"
 					value={form.category}
 					onChange={changeHandler}>
+					<option
+						value="Seleccionar Categoria"
+						hidden>
+						Seleccionar Categoria
+					</option>
 					{categoryOptions.map((option) => (
 						<option
 							key={option.value}
@@ -113,6 +117,12 @@ export default function StockForm() {
 					name="presentation"
 					value={form.presentation}
 					onChange={changeHandler}>
+					<option
+						value="Seleccionar Presentación"
+						hidden>
+						Seleccionar Presentación
+					</option>
+
 					{presentationOptions.map((option) => (
 						<option
 							key={option.value}

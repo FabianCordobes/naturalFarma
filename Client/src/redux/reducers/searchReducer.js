@@ -1,7 +1,7 @@
 import { SEARCH_PRODUCTS_SUCCESS, SEARCH_PRODUCTS_FAILURE } from '../actionTypes';
 
 const initialState = {
-   results: [],
+   products: [],
    error: null,
 }
 
@@ -10,13 +10,13 @@ const searchReducer = (state = initialState, action) => {
       case SEARCH_PRODUCTS_SUCCESS:
          return {
             ...state,
-            results: action.payload,
+            products: action.payload,
             error: null,
          };
       case SEARCH_PRODUCTS_FAILURE:
          return {
             ...state,
-            results: [],
+            products: [],
             error: action.payload
          };
       default:

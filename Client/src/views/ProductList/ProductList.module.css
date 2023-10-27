@@ -1,0 +1,17 @@
+.productListContainer {
+   display: flex;
+   flex-direction: column;
+}
+
+.products {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 16px;
+   margin: 16px;
+   list-style: none;
+
+}
+
+.productContainer {
+ /* max-width: 25%; */
+}
