@@ -51,20 +51,27 @@ const getProductById = async ( id ) => {
     return productFilter;
 }
 
-const putProducts = async ( id, brand, category, therapeuticAction, presentation, stocks, price, image ) => {
-    console.log(id)
-    const productEdit = await getProductById(id);
-    console.log(productEdit);
-    productEdit.update({
-        brand: brand,
-        category: category,
-        therapeuticAction: therapeuticAction,
-        presentation: presentation,
-        stocks: stocks,
-        price: price,
-        image: image
-    })
-    return productEdit;
+const putProducts = async (id, brand, category, therapeuticAction, presentation, stocks, price, image) => {
+    try {
+        const product = await Product.findByPk(id);
+
+        if (!product) {
+            throw new Error('El producto no se encontró.');
+        }
+        product.brand = brand;
+        product.category = category;
+        product.therapeuticAction = therapeuticAction;
+        product.presentation = presentation;
+        product.stocks = stocks;
+        product.price = price;
+        product.image = image;
+
+        await product.save();
+
+        return product;
+    } catch (error) {
+        throw new Error(`Error al actualizar el producto: ${error.message}`);
+    }
 }
 
 const deleteProducts = async(id) => await Product.destroy({where: {id}});
