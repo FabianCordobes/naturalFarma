@@ -14,11 +14,11 @@ const Product = ({ product }) => {
 		// Aquí puedes manejar la lógica para agregar el producto al carrito
 		const productToAdd = { ...product, quantity }; // Incluye la cantidad
 		dispatch(addToCart(productToAdd));
-		console.log(items);
+				
 	};
 
-	const maxQuantity = 10;
-	const quantityOptions = Array.from({ length: maxQuantity }, (_, i) => i + 1);
+	// const maxQuantity = 10;
+	// const quantityOptions = Array.from({ length: maxQuantity }, (_, i) => i + 1);
 
 	return (
 		<div className={style.product}>
@@ -48,15 +48,18 @@ const Product = ({ product }) => {
 			<div>
 				<label>Cantidad:</label>
 				<select
-					value={quantity}
+					// value={quantity}
 					onChange={(e) => setQuantity(parseInt(e.target.value))}>
-					{quantityOptions.map((option) => (
-						<option
-							key={option}
-							value={option}>
-							{option}
-						</option>
-					))}
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
 				</select>
 				<button onClick={handleAddToCart}>Agregar al carrito</button>
 			</div>
