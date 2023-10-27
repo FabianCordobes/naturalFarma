@@ -1,4 +1,5 @@
 import style from './App.module.css';
+import Detail from './views/Detail/Detail';
 import Home from './views/Home/Home';
 import NavBar from './Components/NavBar/NavBar';
 import StockForm from './views/Admin/StockForm/StockForm';
@@ -18,6 +19,9 @@ function App() {
 					path="/"
 					element={<Home />}
 				/>
+				<Route 
+				path="/product/:id" 
+				element={<Detail/>} />
 				<Route
 					path="/"
 					element={<NavBar />}

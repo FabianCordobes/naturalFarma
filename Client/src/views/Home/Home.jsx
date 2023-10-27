@@ -72,11 +72,7 @@ export default function Home() {
 					})}
 				</div>
 			</div>
-
-			<FilterCategory />
-				
 			
-
 			<div className={style.slider}>
 				<Slider {...settings}>
 					<div>
