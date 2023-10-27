@@ -1,6 +1,13 @@
 .product {
-   border: 2px solid var(--color-azul);
-   padding: 10px;
+   border: 2px solid var(--color-borde);
+   border-radius: 10px;
+   padding: 0px 0px 20px 0px;
+   /* width: 90%; */
+   height: 100%;
+   display:flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
 }
 
 .product span {
@@ -9,6 +16,42 @@
 
 .product img {
    /* object-fit: cover; */
+   width: 100%;
+   /* position: relative; */
+   /* bottom: 4rem; */
+   border-radius: 10px;
+}
+
+.product:hover {
+   border-color: var(--color-azul-oscuro);
+}
+
+.buttons {
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+   position: absolute;
+   margin-top: 10px;
+   z-index: 2;
+}
+
+.buttons button {
+   font-size: 16px;
+   padding: 5px 10px 5px 10px;
+}
+
+.cantidad {
+   display: flex;
+   flex-direction: column;
+}
+
+.info {
+   display: flex;
+   flex-direction: column;
    width: 90%;
    
+}
+
+.info h2 {
+   align-self: flex-start;
 }

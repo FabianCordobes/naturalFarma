@@ -6,6 +6,7 @@ import StockForm from './views/Admin/StockForm/StockForm';
 import { useLocation, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import ProductList from './views/ProductList/ProductList';
+import Cart from './views/Cart/Cart';
 
 function App() {
 	const location = useLocation();
@@ -19,9 +20,10 @@ function App() {
 					path="/"
 					element={<Home />}
 				/>
-				<Route 
-				path="/product/:id" 
-				element={<Detail/>} />
+				<Route
+					path="/product/:id"
+					element={<Detail />}
+				/>
 				<Route
 					path="/"
 					element={<NavBar />}
@@ -30,9 +32,13 @@ function App() {
 					path="/stockform"
 					element={<StockForm />}
 				/>
-					<Route
+				<Route
 					path="/productList"
 					element={<ProductList />}
+				/>
+				<Route
+					path="/cart"
+					element={<Cart />}
 				/>
 			</Routes>
 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}

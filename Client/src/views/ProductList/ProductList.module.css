@@ -6,12 +6,12 @@
 .products {
    display: grid;
    grid-template-columns: repeat(4, 1fr);
-   gap: 16px;
-   margin: 16px;
+   gap: 26px;
+   margin: 16px 35px 16px 20px;
    list-style: none;
-
 }
 
 .productContainer {
- /* max-width: 25%; */
+   max-width: 100%;
+   height: 25rem;
 }

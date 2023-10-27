@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { getDetail } from '../../redux/actions/detailActions';
+import { GET_DETAIL } from '../../redux/actionTypes';
 
 
 const Detail = () => {
@@ -8,13 +10,13 @@ const Detail = () => {
 
     const dispatch = useDispatch();
 
-    const detailProducts = useSelector((state) => state.detail)
+    const detailProducts = useSelector((state) => state.detail.detail)
 
     useEffect(() => {
         dispatch(getDetail(id))
         return () => {
             dispatch({
-                type: "GET_DETAIL",
+                type: GET_DETAIL,
                 payload: {}
             })
         }
@@ -37,18 +39,17 @@ const Detail = () => {
                         <div>
                             <img
                                 src={detailProducts[0].image}
-                                alt={detailProducts[0].name}
+                                alt={detailProducts[0].brand}
                             />
                         </div>
 
                         <div>
-                            <p><span>BRAND:</span> {detailProducts[0]?.hp}</p>
-                            <p><span>CATEGORY:</span> {detailProducts[0]?.hp}</p>
-                            <p><span>THERAPEUTICACTION:</span> {detailProducts[0]?.hp}</p>
-                            <p><span>PRESENTATION:</span> {detailProducts[0]?.hp}</p>
-                            <p><span>STOCK:</span> {detailProducts[0]?.hp}</p>
-                            <p><span>PRICE:</span> {detailProducts[0]?.hp}</p>
-                            <p><span>IMAGE:</span> {detailProducts[0]?.hp}</p>
+                            <p><span>BRAND:</span> {detailProducts[0]?.brand}</p>
+                            <p><span>CATEGORY:</span> {detailProducts[0]?.category}</p>
+                            <p><span>THERAPEUTICACTION:</span> {detailProducts[0]?.therapeuticAction}</p>
+                            <p><span>PRESENTATION:</span> {detailProducts[0]?.presentation}</p>
+                            <p><span>STOCK:</span> {detailProducts[0]?.stocks}</p>
+                            <p><span>PRICE:</span> {detailProducts[0]?.price}</p>
                         </div>
                     </div>
                 ) : (

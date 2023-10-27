@@ -35,11 +35,12 @@ export default function NavBar(props) {
 
 			<div className={style.rightSide}>
 				<div className={style.iconsContainer}>
+					<Link to={'/stockForm'}>Create Product</Link>
 					<Link to={'/favorites'}>
 						<AiOutlineHeart className={style.userIcon} />
 					</Link>
 
-					<Link to={'/'}>
+					<Link to={'/cart'}>
 						<FaShoppingCart className={style.userIcon} />
 					</Link>
 
