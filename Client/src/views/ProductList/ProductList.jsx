@@ -11,7 +11,7 @@ const ProductList = () => {
 
 	const [currentPage, setCurrentPage] = useState(1); // Define el estado local para la página actual.
 
-	const productsPerPage = 3; // Define la cantidad de perros a mostrar por página.
+	const productsPerPage = 4; // Define la cantidad de perros a mostrar por página.
 
 	const lastProductOfPage = currentPage * productsPerPage; // Calcula el último perro de la página actual.
 
