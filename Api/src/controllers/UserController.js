@@ -16,6 +16,7 @@ const newUser = await User.create({
             birthdate,
             review,
             nationality
+            
 });          
 
 return newUser;
