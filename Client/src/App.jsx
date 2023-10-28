@@ -37,8 +37,6 @@ function App() {
 					element={<ProductList />}
 				/>
 				<Route path="/cart" element={<Cart />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
 			</Routes>
 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
 		</div>
