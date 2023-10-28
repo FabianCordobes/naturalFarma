@@ -1,4 +1,3 @@
-import { SEARCH_PRODUCTS_SUCCESS, SEARCH_PRODUCTS_FAILURE } from '../actionTypes';
 import {
 	SEARCH_PRODUCTS_SUCCESS,
 	SEARCH_PRODUCTS_FAILURE,
@@ -26,9 +25,8 @@ export const searchProductFailure = (error) => {
 // action para realizar la busqueda
 
 export const searchProducts = (brand) => {
-	const endpoint = `http://localhost:3001/product?brand=${brand}`; 
+	const endpoint = `http://localhost:3001/product?brand=${brand}`;
 	return async (dispatch) => {
-
 		try {
 			const response = await axios.get(endpoint);
 			// const data = await response.json();
@@ -39,15 +37,12 @@ export const searchProducts = (brand) => {
 			} else {
 				dispatch(searchProductFailure('No se pudieron encontrar resultados'));
 			}
-         
 		} catch (error) {
 			dispatch(searchProductFailure('Ocurrió un error en la búsqueda'));
 			console.error(error);
 		}
 	};
 };
-<<<<<<< HEAD
-=======
 
 export const deleteProduct = (payload) => {
 	return async function (dispatch) {
@@ -119,4 +114,3 @@ export const orderByStock = (payload) => {
 		payload,
 	};
 };
->>>>>>> e995e6098514d8ad8b62dea7cfaa452e6b03dbb2

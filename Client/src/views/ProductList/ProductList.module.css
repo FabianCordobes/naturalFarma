@@ -13,15 +13,5 @@
 }
 
 .productContainer {
-<<<<<<< HEAD
- /* max-width: 25%; */
-=======
-   max-width: 100%;
-   height: 25rem;
-}
-
-.productLink {
-   /* min-width: 100%; */
-   
->>>>>>> e995e6098514d8ad8b62dea7cfaa452e6b03dbb2
+ max-width: 25%;
 }

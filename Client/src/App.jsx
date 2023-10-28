@@ -5,6 +5,7 @@ import NavBar from './Components/NavBar/NavBar';
 import StockForm from './views/Admin/StockForm/StockForm';
 import Login  from './views/Login/Login';
 import Register from './views/Register/Register';
+import Cart from './views/Cart/Cart';
 import { useLocation, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import ProductList from './views/ProductList/ProductList';
