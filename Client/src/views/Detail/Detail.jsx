@@ -28,7 +28,7 @@ const Detail = () => {
 
     return (
         <div>
-            <Link to="/home">
+            <Link to="/">
                 <button><span>Volver</span></button>
             </Link>
             {

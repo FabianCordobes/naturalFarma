@@ -10,6 +10,7 @@ export default function SearchBar() {
 	const dispatch = useDispatch();
 
 
+
 	const navigate = useNavigate(); // Inicializa Navigate
 
 	const handleInputChange = (e) => {
@@ -20,7 +21,7 @@ export default function SearchBar() {
 	const handleSearch = (event) => {
 		event.preventDefault();
 		dispatch(searchProducts(inputValue))
-			.then(() => {
+		.then(() => {
 				navigate('/productList'); // Redirige a la vista ProductList después de la búsqueda exitosa
 				setInputValue('')
 			})
