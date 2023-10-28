@@ -1,9 +1,14 @@
-.datos {
+.container{height: 20%;
 	border-top: solid black;
-	height: 10%;
-	color: aliceblue;
 	width: 100%;
-	background-color: rgb(84, 84, 84);
+	background-color: rgb(84, 84, 84);}
+
+.datos {
+	
+	height: 100%;
+	color: aliceblue;
+	
+	
 	justify-content: center;
 	display: flex;
 	flex-direction: column;

@@ -15,3 +15,4 @@ export const getDetail = (id) => {
     }
 }
 
+export default getDetail;
