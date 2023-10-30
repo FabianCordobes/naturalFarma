@@ -3,10 +3,10 @@ import style from './Product.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux/actions/cartActions';
-import { deleteProduct, editProduct } from '../../redux/actions/searchActions';
+// import { deleteProduct, editProduct } from '../../redux/actions/searchActions';
 import { Link } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai';
-import {FiShoppingCart} from 'react-icons/fi';
+import { FiShoppingCart } from 'react-icons/fi';
 
 const Product = ({ product }) => {
 	const [quantity, setQuantity] = useState(1);
@@ -18,7 +18,6 @@ const Product = ({ product }) => {
 		// Aquí puedes manejar la lógica para agregar el producto al carrito
 		const productToAdd = { ...product, quantity }; // Incluye la cantidad
 		dispatch(addToCart(productToAdd));
-				
 	};
 
 	// const maxQuantity = 10;
@@ -26,73 +25,56 @@ const Product = ({ product }) => {
 
 	return (
 		<>
-			{isEditing ? (
-				<div>
-					<div className={style.editForm}>
-						<button
-							onClick={handleCancelEdit}
-							className={style.closeButton}>
-							X
-						</button>
-						<label>Nombre:</label>
-						<input
-							type="text"
-							value={editedProduct.brand}
-							onChange={(e) =>
-								setEditedProduct({ ...editedProduct, brand: e.target.value })
-							}
-						/>
-						{/* Agrega más campos de edición aquí según tus necesidades */}
-						<button
-							onClick={handleSaveEdit}
-							className={style.saveButton}>
-							Guardar
-						</button>
-					</div>
+			<div className={style.product}>
+				<div className={style.favIcon}>
+					<AiOutlineHeart />
 				</div>
-			) : (
-				<div className={style.product}>
-					<div className={style.favIcon}>
-						<AiOutlineHeart />
+				<Link
+					className={style.productLink}
+					to={`/product/${product.id}`}>
+					<div>
+						<img
+							src={product?.image}
+							alt={product?.brand}
+						/>
 					</div>
+				</Link>
+
+				<span className={style.lineSpan}></span>
+
+				<div className={style.info}>
 					<Link
 						className={style.productLink}
 						to={`/product/${product.id}`}>
-						<div>
-							<img
-								src={product?.image}
-								alt={product?.brand}
-							/>
-						</div>
+						<h2 className={style.title}>{product?.brand}</h2>
+
+						<p className={style.price}>
+							<span>${product?.price}</span>
+						</p>
+						<p className={style.stock}>
+							Stock: <span>{product?.stocks}</span>
+						</p>
 					</Link>
 
-					<span className={style.lineSpan}></span>
-
-					<div className={style.info}>
-						<Link
-							className={style.productLink}
-							to={`/product/${product.id}`}>
-							<h2 className={style.title}>{product?.brand}</h2>
-
-							<p className={style.price}>
-								<span>${product?.price}</span>
-							</p>
-							<p className={style.stock}>
-								Stock: <span>{product?.stocks}</span>
-							</p>
-						</Link>
-
-						<div className={style.botonCarrito}>
-							<button onClick={handleAddToCart}>Agregar al carrito <span><FiShoppingCart/></span></button>
-						</div>
-					</div>
-
-					<div className={style.buttons}>
-						<button onClick={handleErase}>delete</button>
-						<button onClick={handleEdit}>edit</button>
+					<div className={style.botonCarrito}>
+						<button onClick={handleAddToCart}>
+							Agregar al carrito{' '}
+							<span>
+								<FiShoppingCart />
+							</span>
+						</button>
 					</div>
 				</div>
-			)}
+
+				<div className={style.buttons}>
+					<button 
+					// onClick={handleErase}
+					>delete</button>
+					<button 
+					// onClick={handleEdit}
+					>edit</button>
+				</div>
+			</div>
 		</>
 	);
 };
