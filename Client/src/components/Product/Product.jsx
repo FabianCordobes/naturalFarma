@@ -10,43 +10,19 @@ import {FiShoppingCart} from 'react-icons/fi';
 
 const Product = ({ product }) => {
 	const [quantity, setQuantity] = useState(1);
-	const [isEditing, setIsEditing] = useState(false);
-	const [editedProduct, setEditedProduct] = useState({ ...product });
 
 	const dispatch = useDispatch();
 	const items = useSelector((state) => state.cart.items);
 
 	const handleAddToCart = () => {
-		// Convierte la cantidad a un número antes de usarla
-		const quantityNumber = parseInt(quantity);
-
-		// Comprueba si quantityNumber es un número válido
-		if (!isNaN(quantityNumber) && quantityNumber > 0) {
-			const productToAdd = { ...product, quantity: quantityNumber }; // Incluye la cantidad
-			dispatch(addToCart(productToAdd));
-		} else {
-			// Maneja el caso en que la cantidad no sea válida (puede mostrar un mensaje de error, por ejemplo)
-			console.log('La cantidad no es válida');
-		}
+		// Aquí puedes manejar la lógica para agregar el producto al carrito
+		const productToAdd = { ...product, quantity }; // Incluye la cantidad
+		dispatch(addToCart(productToAdd));
+				
 	};
 
-	const handleErase = () => {
-		dispatch(deleteProduct(product?.id));
-	};
-
-	const handleEdit = () => {
-		setIsEditing(true);
-	};
-
-	const handleCancelEdit = () => {
-		setIsEditing(false);
-	};
-
-	const handleSaveEdit = () => {
-		// ... Lógica para guardar los cambios ...
-		dispatch(editProduct(product.id));
-		setIsEditing(false);
-	};
+	// const maxQuantity = 10;
+	// const quantityOptions = Array.from({ length: maxQuantity }, (_, i) => i + 1);
 
 	return (
 		<>

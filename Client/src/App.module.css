@@ -10,7 +10,7 @@
   --color-verde2:rgb(63, 156, 91);
   --color-verde3: #039c00;
   --color-texto: #515858;
-  --color-borde: #939ca3e3;
+  --color-borde: #8799a8;
   --color-body: #f3f4fb;
 }
 
@@ -19,16 +19,16 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
+/* body {
   overflow-x: hidden;
-}
+} */
+
 .App {
   text-align: center;
   width: 100vw;
+  height: 100vh;
   background-color: var(--color-body);
   font-family: 'Public Sans', sans-serif;
-
-
 }
 
 .flex {

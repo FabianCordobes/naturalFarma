@@ -24,7 +24,7 @@
     position: relative;
     color: rgb(0, 0, 0);
     outline: 0;
-    /* overflow: hidden; */
+    overflow: hidden;
   }
   
   .boxInput::after,
