@@ -13,13 +13,24 @@ const Product = ({ product }) => {
 
 	const dispatch = useDispatch();
 	const items = useSelector((state) => state.cart.items);
+	const [isEditing, setIsEditing] = useState(false);
 
 	const handleAddToCart = () => {
 		// Aquí puedes manejar la lógica para agregar el producto al carrito
 		const productToAdd = { ...product, quantity }; // Incluye la cantidad
 		dispatch(addToCart(productToAdd));
-				
 	};
+
+	const handleErase = () => {
+		// Aquí puedes manejar la lógica para eliminar el producto
+		dispatch(deleteProduct(product.id)); // Puedes pasar el ID del producto a eliminar
+	 };
+
+	const handleEdit = () => {
+		// Aquí puedes manejar la lógica para activar el modo de edición
+		setIsEditing(true);
+		setEditedProduct({ brand: product.brand }); // Copia los datos del producto para la edición
+	 };
 
 	// const maxQuantity = 10;
 	// const quantityOptions = Array.from({ length: maxQuantity }, (_, i) => i + 1);

@@ -165,8 +165,7 @@ export default function StockForm() {
 						!form.brand ||
 						!form.therapeuticAction ||
 						!form.stocks ||
-						!form.price ||
-						!form.image
+						!form.price
 					}>
 					Guardar
 				</button>
