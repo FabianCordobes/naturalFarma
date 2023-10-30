@@ -3,6 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import getDetail from '../../redux/actions/detailActions';
 import { GET_DETAIL } from '../../redux/actionTypes';
+import style from './Detail.module.css';
+import { addToCart } from '../../redux/actions/cartActions';
+import { FiShoppingCart } from 'react-icons/fi';
 
 const Detail = () => {
 	let { id } = useParams();
@@ -13,7 +16,7 @@ const Detail = () => {
 
 	useEffect(() => {
 		dispatch(getDetail(id));
-        console.log(detailProducts);
+		console.log(detailProducts[0]);
 		return () => {
 			dispatch({
 				type: GET_DETAIL,
@@ -27,43 +30,44 @@ const Detail = () => {
 	}
 
 	return (
-		<div>
+		<div className={style.detailContainer}>
 			<Link to="/">
 				<button>
 					<span>Volver</span>
 				</button>
 			</Link>
 			{detailProducts.length > 0 ? (
-				<div>
-					<div>
+				<div className={style.details}>
+					<div className={style.detailImage}>
 						<img
 							src={detailProducts[0].image}
 							alt={detailProducts[0].name}
 						/>
 					</div>
 
-					<div>
+					<div className={style.detailInfo}>
+						<h3>{detailProducts[0]?.brand}</h3>
+						<p>${detailProducts[0]?.price}</p>
 						<p>
-							<span>BRAND:</span> {detailProducts[0]?.hp}
+							Categoría <span>{detailProducts[0]?.category}</span>
 						</p>
 						<p>
-							<span>CATEGORY:</span> {detailProducts[0]?.hp}
+							Acción Terapéutica <span>{detailProducts[0]?.therapeuticAction}</span>
 						</p>
 						<p>
-							<span>THERAPEUTICACTION:</span> {detailProducts[0]?.hp}
+							Presentación <span>{detailProducts[0]?.presentation}</span>
 						</p>
 						<p>
-							<span>PRESENTATION:</span> {detailProducts[0]?.hp}
+							Stock <span>{detailProducts[0]?.stocks}</span>
 						</p>
-						<p>
-							<span>STOCK:</span> {detailProducts[0]?.hp}
-						</p>
-						<p>
-							<span>PRICE:</span> {detailProducts[0]?.hp}
-						</p>
-						<p>
-							<span>IMAGE:</span> {detailProducts[0]?.hp}
-						</p>
+					</div>
+					<div className={style.botonCarrito}>
+						<button>
+							Agregar al carrito{' '}
+							<span>
+								<FiShoppingCart />
+							</span>
+						</button>
 					</div>
 				</div>
 			) : (
