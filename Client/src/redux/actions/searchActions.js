@@ -5,6 +5,8 @@ import {
 	ORDER_BY_NAME,
 	ORDER_BY_PRICE,
 	ORDER_BY_STOCK,
+	PRODUCTS_EDIT_SUCCESS,
+	PRODUCTS_EDIT_FAILURE,
 } from '../actionTypes';
 import axios from 'axios';
 
@@ -62,12 +64,12 @@ export const deleteProduct = (payload) => {
 };
 
 export const editProductSuccess = (product) => ({
-	type: PRODUCT_EDIT_SUCCESS,
+	type: PRODUCTS_EDIT_SUCCESS,
 	payload: product,
 });
 
 export const editProductFailure = (error) => ({
-	type: PRODUCT_EDIT_FAILURE,
+	type: PRODUCTS_EDIT_FAILURE,
 	payload: error,
 });
 

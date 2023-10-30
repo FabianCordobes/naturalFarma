@@ -4,6 +4,9 @@ import style from './Product.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux/actions/cartActions';
 import { deleteProduct, editProduct } from '../../redux/actions/searchActions';
+import { Link } from 'react-router-dom';
+import { AiOutlineHeart } from 'react-icons/ai';
+import {FiShoppingCart} from 'react-icons/fi';
 
 const Product = ({ product }) => {
 	const [quantity, setQuantity] = useState(1);
@@ -73,49 +76,44 @@ const Product = ({ product }) => {
 				</div>
 			) : (
 				<div className={style.product}>
-					<div>
-						<img
-							src={product?.image}
-							alt={product?.brand}
-							// width={300}
-							// height={200}
-						/>
+					<div className={style.favIcon}>
+						<AiOutlineHeart />
 					</div>
+					<Link
+						className={style.productLink}
+						to={`/product/${product.id}`}>
+						<div>
+							<img
+								src={product?.image}
+								alt={product?.brand}
+							/>
+						</div>
+					</Link>
+
+					<span className={style.lineSpan}></span>
+
+					<div className={style.info}>
+						<Link
+							className={style.productLink}
+							to={`/product/${product.id}`}>
+							<h2 className={style.title}>{product?.brand}</h2>
+
+							<p className={style.price}>
+								<span>${product?.price}</span>
+							</p>
+							<p className={style.stock}>
+								Stock: <span>{product?.stocks}</span>
+							</p>
+						</Link>
+
+						<div className={style.botonCarrito}>
+							<button onClick={handleAddToCart}>Agregar al carrito <span><FiShoppingCart/></span></button>
+						</div>
+					</div>
+
 					<div className={style.buttons}>
 						<button onClick={handleErase}>delete</button>
 						<button onClick={handleEdit}>edit</button>
-						<button>Agregar a fav</button>
-					</div>
-					<div className={style.info}>
-						<h2>{product?.brand}</h2>
-
-						<p>
-							Stock: <span>{product?.stocks}</span>
-						</p>
-						<p>
-							Precio: <span>${product?.price}</span>
-						</p>
-
-						<div className={style.cantidad}>
-							<label>Cantidad:</label>
-							<div>
-								<select
-									value={quantity}
-									onChange={(e) => setQuantity(parseInt(e.target.value, 10))}>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-								<button onClick={handleAddToCart}>Agregar al carrito</button>
-							</div>
-						</div>
 					</div>
 				</div>
 			)}

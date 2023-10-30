@@ -5,8 +5,8 @@
   --color-celeste1: #93cdde;
   --color-celeste2: #2083a1ea;
   --color-azul: #3da4cd;
-  --color-azul-oscuro: #29597a;
-  --color-verde: #8fc872;
+  --color-azul-oscuro: #214863;
+  --color-verde: #60b137;
   --color-verde2:rgb(63, 156, 91);
   --color-verde3: #039c00;
   --color-texto: #515858;
@@ -34,5 +34,8 @@ body {
 .flex {
   display: flex;
 }
+
+
+
 
 
