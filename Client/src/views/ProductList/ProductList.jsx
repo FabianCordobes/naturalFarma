@@ -1,12 +1,13 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Product from '../../components/Product/Product'; // Asegúrate de importar el componente Product
 import style from './ProductList.module.css';
 import SortComponent from '../../components/Sorts/SortComponent';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Pagination from '../../components/Pagination/Pagination';
+import { Link } from 'react-router-dom';
+import { searchProducts } from '../../redux/actions/searchActions';
 
 const ProductList = () => {
-
 	const allProducts = useSelector((state) => state.search.products); // Accede a la lista de perros desde el estado global de Redux.
 
 	const [currentPage, setCurrentPage] = useState(1); // Define el estado local para la página actual.
@@ -24,6 +25,12 @@ const ProductList = () => {
 		setCurrentPage(pageNumber);
 	};
 
+	// const dispatch = useDispatch();
+
+	// useEffect(() => {
+	// 	dispatch(searchProducts());
+	// }, [dispatch]);
+
 	return (
 		<div className={style.productListContainer}>
 			<SortComponent />
@@ -40,7 +47,7 @@ const ProductList = () => {
 							<li
 								className={style.productContainer}
 								key={product.id}>
-								<Product product={product} />
+									<Product product={product} />
 								{/* Renderiza el componente Product con el producto */}
 							</li>
 						);

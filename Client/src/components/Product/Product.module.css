@@ -1,57 +1,115 @@
 .product {
-   border: 2px solid var(--color-borde);
-   border-radius: 10px;
-   padding: 0px 0px 20px 0px;
-   /* width: 90%; */
-   height: 100%;
-   display:flex;
-   flex-direction: column;
-   justify-content: space-between;
-   align-items: center;
+	border: 2px solid var(--color-borde);
+	border-radius: 10px;
+	padding: 0px 0px 20px 0px;
+	width: 90%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--color-texto);
 }
 
-.product span {
-   font-weight: 600;
+.productLink {
+	color: var(--color-texto);
+	text-decoration: none;
 }
 
 .product img {
-   /* object-fit: cover; */
-   width: 100%;
-   /* position: relative; */
-   /* bottom: 4rem; */
-   border-radius: 10px;
+	width: 100%;
+	border-radius: 10px;
+}
+
+.title {
+	font-weight: 700;
+	text-align: start;
+	margin-bottom: 10px;
+}
+
+.price {
+	font-size: 32px;
+	text-align: start;
+	margin-bottom: 10px;
+}
+
+.stock {
+	text-align: start;
+	font-size: 20px;
+   margin-bottom: 20px;
+}
+
+.stock span {
+   font-weight: 700;
+}
+
+.lineSpan {
+	height: 1px;
+	width: 80%;
+	background-color: var(--color-borde);
 }
 
 .product:hover {
-   border-color: var(--color-azul-oscuro);
+	border-color: var(--color-azul-oscuro);
 }
 
 .buttons {
-   display: flex;
-   align-items: center;
-   justify-content: space-evenly;
-   position: absolute;
-   margin-top: 10px;
-   z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	z-index: 2;
 }
 
 .buttons button {
-   font-size: 16px;
-   padding: 5px 10px 5px 10px;
+	font-size: 16px;
+	padding: 5px 10px 5px 10px;
 }
 
-.cantidad {
-   display: flex;
-   flex-direction: column;
+.botonCarrito {
+	display: flex;
+	flex-direction: column;
+}
+
+.botonCarrito button {
+   text-align: start;
+   padding: 10px 0px 10px 20px;
+   border-bottom-left-radius: 10px ;
+   border-bottom-right-radius: 10px ;
+   background-color: var(--color-verde);
+   color: var(--color-body);
+   font-size: 18px;
+   border: none;
+   transition: all 0.6s ease;
+}
+
+
+
+.botonCarrito span {
+   margin-left: 4rem;
+}
+
+.botonCarrito:hover {
+   transform: translateY(-2px);
 }
 
 .info {
-   display: flex;
-   flex-direction: column;
-   width: 90%;
-   
+	display: flex;
+	flex-direction: column;
+	width: 90%;
 }
 
 .info h2 {
-   align-self: flex-start;
+	align-self: flex-start;
+}
+
+.favIcon {
+	font-size: 32px;
+	position: absolute;
+	margin-left: 16rem;
+	margin-top: 0.5rem;
+	color: var(--color-verde3);
+	cursor: pointer;
+}
+.favIcon:hover {
+	color: var(--color-azul);
 }

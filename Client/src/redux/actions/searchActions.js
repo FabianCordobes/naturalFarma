@@ -2,6 +2,11 @@ import {
 	SEARCH_PRODUCTS_SUCCESS,
 	SEARCH_PRODUCTS_FAILURE,
 	DELETE_PRODUCT,
+	ORDER_BY_NAME,
+	ORDER_BY_PRICE,
+	ORDER_BY_STOCK,
+	PRODUCTS_EDIT_SUCCESS,
+	PRODUCTS_EDIT_FAILURE,
 } from '../actionTypes';
 import axios from 'axios';
 
@@ -40,6 +45,7 @@ export const searchProducts = (brand) => {
 		}
 	};
 };
+
 export const deleteProduct = (payload) => {
 	return async function (dispatch) {
 		try {
@@ -58,12 +64,12 @@ export const deleteProduct = (payload) => {
 };
 
 export const editProductSuccess = (product) => ({
-	type: PRODUCT_EDIT_SUCCESS,
+	type: PRODUCTS_EDIT_SUCCESS,
 	payload: product,
 });
 
 export const editProductFailure = (error) => ({
-	type: PRODUCT_EDIT_FAILURE,
+	type: PRODUCTS_EDIT_FAILURE,
 	payload: error,
 });
 
@@ -84,5 +90,29 @@ export const editProduct = (productId, updatedProductData) => {
 		} catch (error) {
 			dispatch(editProductFailure('Ocurrió un error al editar el producto'));
 		}
+	};
+};
+
+//ORDENAMIENTO POR NOMBRE ALFABETICO
+export const orderByName = (payload) => {
+	return {
+		type: ORDER_BY_NAME,
+		payload,
+	};
+};
+
+//ORDENAMIENTO POR PRECIO DE MAYOR A MENOS Y VISCEVERSA
+export const orderByPrice = (payload) => {
+	return {
+		type: ORDER_BY_PRICE,
+		payload,
+	};
+};
+
+//ORDENAMIENTO POR STOCK SEGUN MENOR A MAYOY VISCEVERSA
+export const orderByStock = (payload) => {
+	return {
+		type: ORDER_BY_STOCK,
+		payload,
 	};
 };

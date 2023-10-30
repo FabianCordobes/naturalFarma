@@ -1,19 +1,22 @@
 // import { useState } from 'react';
-import { orderByName, orderByPrice, orderByStock } from '../../redux/actions/sortActions';
+import { useEffect } from 'react';
+import {  orderByName, orderByPrice, orderByStock } from '../../redux/actions/searchActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const SortComponent = () => {
 	// const [sortingOrder, setSortingOrder] = useState('asc');
 	const dispatch = useDispatch();
 
-	const products = useSelector((state) => state.sort.products);
+	const productsSort = useSelector((state) => state.search.products);
+
+
 
 	const handleSortChange = (event) => {
 		event.preventDefault();
 		dispatch(orderByName(event.target.value));
 		// setCurrentPage(1) //cuando hago el ordenamiento que me setee en la pag 1
 		// setSortingOrder(`Ordenado ${event.target.value}`);
-        console.log(products);
+        console.log(productsSort);
 	};
 	const handleSortPrice = (event) => {
 		event.preventDefault();

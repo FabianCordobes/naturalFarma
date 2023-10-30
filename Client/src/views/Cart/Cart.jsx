@@ -3,11 +3,10 @@ import { useSelector } from 'react-redux';
 const Cart = () => {
   // Obtén los productos y la cantidad del estado
   const items = useSelector((state) => state.cart.items);
-   console.log(items);
 
   return (
     <div>
-      <h1>Carrito de Compras</h1>
+      <h2>Carrito de Compras</h2>
       <ul>
         {items.map((item, index) => (
           <li key={index}>
