@@ -28,7 +28,9 @@ const ProductList = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(searchProducts(''));
+		if (allProducts.length === 0) {
+			dispatch(searchProducts(''));
+		}
 		return () => {
 			dispatch(clearProducts());
 		};
