@@ -1,15 +1,14 @@
-import { useState } from 'react';
-// import FilterCategory from '../../components/Filters/filterCategory';
-import Slider from 'react-slick';
+import { useState, useEffect } from 'react';
 import style from './Home.module.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
+import Swiper from 'swiper';
+import 'swiper/swiper-bundle.css';
 import img1 from '../../assets/oferta1.webp';
 import img2 from '../../assets/oferta2.webp';
 import { FaTruck, FaWhatsapp } from 'react-icons/fa';
 import { BiSolidCreditCardFront } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+
+// 
 
 const subcategorias = {
 	Medicinales: ['Subcat1', 'Subcat2', 'Subcat3'],
@@ -20,30 +19,29 @@ const subcategorias = {
 
 export default function Home() {
 	const [activeCategory, setActiveCategory] = useState(null);
-
-	const settings = {
-		dots: true,
-		infinite: true,
-		speed: 2000,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		autoplay: true,
-		autoplaySpeed: 3000,
-		arrows: true,
-	};
-
 	const handleCategoryHover = (category) => {
 		setActiveCategory(category);
 	};
-
 	const handleCategoryLeave = () => {
 		setActiveCategory(null);
 	};
 
+	useEffect(() => {
+		const swiper = new Swiper('.swiper-container', {
+			slidesPerView: 1, // Show only one slide per view
+			loop: true,
+			// autoplay: {
+				// delay: 3000, // Change slide every 3 seconds
+			// },
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+		});
+	}, []);
 
 	return (
-		<div
-			className={style.container}>
+		<div className={style.container}>
 			<div className={style.cuerpo}>
 				<div className={style.botones}>
 					{['Medicinales', 'Perfumería', 'Accesorios', 'Estética'].map((category) => {
@@ -75,38 +73,37 @@ export default function Home() {
 					})}
 				</div>
 			</div>
-
 			<div className={style.slider}>
-				<Slider {...settings}>
-					<div>
-						<img
-							src={img1}
-							alt="oferta 1"
-							className={style.imagenOferta}
-						/>
+				<div className="swiper-container">
+					<div className="swiper-wrapper">
+						<div className="swiper-slide">
+							<img
+								src={img1}
+								alt="Oferta 1"
+								width={'100%'}
+							/>
+						</div>
+						<div className="swiper-slide">
+							<img
+								src={img2}
+								alt="Oferta 2"
+								width={'100%'}
+							/>
+						</div>
 					</div>
-					<div>
-						<img
-							src={img2}
-							alt="oferta 2"
-							className={style.imagenOferta}
-						/>
-					</div>
-				</Slider>
+					<div className="swiper-pagination"></div>
+				</div>
 			</div>
-
 			<ul className={style.servicios}>
 				<li className={style.servicioItem}>
 					<BiSolidCreditCardFront className={style.icon} />{' '}
-					<span>Hasta 12 cuotas sin interes</span>
+					<span>Hasta 12 cuotas sin interés</span>
 				</li>
 				<li className={style.servicioItem}>
-					<FaWhatsapp className={style.icon} />
-					<span>Atención personalizada</span>
+					<FaWhatsapp className={style.icon} /> <span>Atención personalizada</span>
 				</li>
 				<li className={style.servicioItem}>
-					<FaTruck className={style.icon} />
-					<span>Calculá el costo de tu envío</span>
+					<FaTruck className={style.icon} /> <span>Calculá el costo de tu envío</span>
 				</li>
 			</ul>
 		</div>
