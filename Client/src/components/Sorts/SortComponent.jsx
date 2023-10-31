@@ -16,10 +16,10 @@ const SortComponent = () => {
 		dispatch(orderByName(event.target.value));
 		// setCurrentPage(1) //cuando hago el ordenamiento que me setee en la pag 1
 		// setSortingOrder(`Ordenado ${event.target.value}`);
-        console.log(productsSort);
 	};
 	const handleSortPrice = (event) => {
 		event.preventDefault();
+		console.log(event.target.value);
 		dispatch(orderByPrice(event.target.value));
 		// setCurrentPage(1)
 		// setSortingOrder(`Ordenado ${event.target.value}`);

@@ -10,6 +10,8 @@ import { searchProducts } from '../../redux/actions/searchActions';
 const ProductList = () => {
 	const allProducts = useSelector((state) => state.search.products); // Accede a la lista de perros desde el estado global de Redux.
 
+	console.log(allProducts)
+
 	const [currentPage, setCurrentPage] = useState(1); // Define el estado local para la página actual.
 
 	const productsPerPage = 4; // Define la cantidad de perros a mostrar por página.

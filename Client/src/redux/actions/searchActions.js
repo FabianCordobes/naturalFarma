@@ -35,7 +35,6 @@ export const searchProducts = (brand) => {
 
 			if (response.status === 200) {
 				dispatch(searchProductSuccess(response.data));
-				console.log('Todo salio joya');
 			} else {
 				dispatch(searchProductFailure('No se pudieron encontrar resultados'));
 			}
@@ -94,25 +93,25 @@ export const editProduct = (productId, updatedProductData) => {
 };
 
 //ORDENAMIENTO POR NOMBRE ALFABETICO
-export const orderByName = (payload) => {
+export const orderByName = (order) => {
 	return {
 		type: ORDER_BY_NAME,
-		payload,
+		payload: order,
 	};
 };
 
 //ORDENAMIENTO POR PRECIO DE MAYOR A MENOS Y VISCEVERSA
-export const orderByPrice = (payload) => {
+export const orderByPrice = (price) => {
 	return {
 		type: ORDER_BY_PRICE,
-		payload,
+		payload: price,
 	};
 };
 
 //ORDENAMIENTO POR STOCK SEGUN MENOR A MAYOY VISCEVERSA
-export const orderByStock = (payload) => {
+export const orderByStock = (stock) => {
 	return {
 		type: ORDER_BY_STOCK,
-		payload,
+		payload: stock,
 	};
 };
