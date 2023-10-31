@@ -1,5 +1,5 @@
-import  { useState } from 'react';
-import FilterCategory from '../../components/Filters/filterCategory';
+import { useState } from 'react';
+// import FilterCategory from '../../components/Filters/filterCategory';
 import Slider from 'react-slick';
 import style from './Home.module.css';
 import 'slick-carousel/slick/slick.css';
@@ -40,20 +40,23 @@ export default function Home() {
 		setActiveCategory(null);
 	};
 
+
 	return (
-		<div className={style.container}>
+		<div
+			className={style.container}>
 			<div className={style.cuerpo}>
 				<div className={style.botones}>
 					{['Medicinales', 'Perfumería', 'Accesorios', 'Estética'].map((category) => {
 						return (
 							<div
 								key={category}
-								onMouseEnter={() => handleCategoryHover(category)}
-								>
+								onMouseEnter={() => handleCategoryHover(category)}>
 								<button className={style.btn}>{category}</button>
 								<div className={style.subcategoriasCont}>
 									{activeCategory === category && (
-										<div className={style.subcategorias} onMouseLeave={handleCategoryLeave}>
+										<div
+											className={style.subcategorias}
+											onMouseLeave={handleCategoryLeave}>
 											{subcategorias[category]?.map((subCat) => {
 												return (
 													<Link
@@ -72,7 +75,7 @@ export default function Home() {
 					})}
 				</div>
 			</div>
-			
+
 			<div className={style.slider}>
 				<Slider {...settings}>
 					<div>
