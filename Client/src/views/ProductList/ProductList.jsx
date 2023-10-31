@@ -29,14 +29,13 @@ const ProductList = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		// Limpia los productos antes de realizar una nueva búsqueda
-		dispatch(clearProducts());
-	
-		// Evita el ciclo infinito de búsquedas al usar una matriz de dependencias vacía.
-		if (searchQuery) {
-			dispatch(searchProducts(searchQuery));
+		if (allProducts.length === 0) {
+			dispatch(searchProducts(''));
 		}
-	}, [searchQuery]);
+		return () => {
+			dispatch(clearProducts());
+		};
+	}, []);
 
 	return (
 		<div className={style.productListContainer}>
