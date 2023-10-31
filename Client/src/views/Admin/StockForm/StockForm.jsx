@@ -2,6 +2,7 @@ import { useState } from 'react';
 import style from './StockForm.module.css';
 import axios from 'axios';
 import ImageUploader from '../../../components/ImageUploader/ImageUploader';
+import validate from '../../../utils/validators/validators';
 
 const categoryOptions = [
 	{ value: 'Alergias' },
@@ -34,10 +35,13 @@ export default function StockForm() {
 		image: '',
 	});
 
+	const [errors, setErrors] = useState({});
+
 	const changeHandler = (event) => {
 		// Manejador para los cambios en los campos de entrada
 		const newState = { ...form }; // Crea una copia del objeto 'form'
 		setForm({ ...newState, [event.target.name]: event.target.value }); // Actualiza el objeto 'form'
+		setErrors(validate({ ...newState, [event.target.name]: event.target.value }));
 	};
 
 	const submitHandler = (event) => {
@@ -62,6 +66,7 @@ export default function StockForm() {
 					image: '',
 				});
 				alert('producto creado');
+				window.location.reload();
 			})
 			.catch((error) => {
 				// Maneja errores en la solicitud
@@ -78,82 +83,109 @@ export default function StockForm() {
 			<form
 				className={style.form}
 				onSubmit={submitHandler}>
-				<label>Categoria</label>
-				<select
-					className={style.input}
-					name="category"
-					value={form.category}
-					onChange={changeHandler}>
-					<option
-						value="Seleccionar Categoria"
-						hidden>
-						Seleccionar Categoria
-					</option>
-					{categoryOptions.map((option) => (
+					
+				<div>
+					<label>Categoria</label>
+					<select
+						className={style.input}
+						name="category"
+						value={form.category}
+						onChange={changeHandler}>
 						<option
-							key={option.value}
-							value={option.value}>
-							{option.value}
+							value="Seleccionar Categoria"
+							hidden>
+							Seleccionar Categoria
 						</option>
-					))}
-				</select>
-				<label>Marca</label>
-				<input
-					type="text"
-					name="brand"
-					className={style.input}
-					value={form.brand}
-					onChange={changeHandler}
-				/>
-				<label>Accion terapeutica</label>
-				<input
-					type="text"
-					name="therapeuticAction"
-					className={style.input}
-					value={form.therapeuticAction}
-					onChange={changeHandler}
-				/>
-				<label>Presentacion</label>
-				<select
-					className={style.input}
-					name="presentation"
-					value={form.presentation}
-					onChange={changeHandler}>
-					<option
-						value="Seleccionar Presentación"
-						hidden>
-						Seleccionar Presentación
-					</option>
+						{categoryOptions.map((option) => (
+							<option
+								key={option.value}
+								value={option.value}>
+								{option.value}
+							</option>
+						))}
+					</select>
+					{errors.category && <p className={style.errors}>{errors.category}</p>}
+				</div>
 
-					{presentationOptions.map((option) => (
+				<div>
+					<label>Marca</label>
+					<input
+						type="text"
+						name="brand"
+						className={style.input}
+						value={form.brand}
+						onChange={changeHandler}
+					/>
+					{errors.brand && <p className={style.errors}>{errors.brand}</p>}
+
+				</div>
+
+				<div>
+					<label>Accion terapeutica</label>
+					<input
+						type="text"
+						name="therapeuticAction"
+						className={style.input}
+						value={form.therapeuticAction}
+						onChange={changeHandler}
+					/>
+					{errors.therapeuticAction && <p className={style.errors}>{errors.therapeuticAction}</p>}
+				</div>
+
+				<div>
+					<label>Presentacion</label>
+					<select
+						className={style.input}
+						name="presentation"
+						value={form.presentation}
+						onChange={changeHandler}>
 						<option
-							key={option.value}
-							value={option.value}>
-							{option.value}
+							value="Seleccionar Presentación"
+							hidden>
+							Seleccionar Presentación
 						</option>
-					))}
-				</select>
-				<label>Stock</label>
-				<input
-					type="text"
-					name="stocks"
-					className={style.input}
-					value={form.stocks}
-					onChange={changeHandler}
-				/>
-				<label>Precio</label>
-				<input
-					type="text"
-					name="price"
-					className={style.input}
-					value={form.price}
-					onChange={changeHandler}
-				/>
-				<ImageUploader handleImageUpload={handleImageUpload} /> {/* Integra ImageUploader aquí */}
+
+						{presentationOptions.map((option) => (
+							<option
+								key={option.value}
+								value={option.value}>
+								{option.value}
+							</option>
+						))}
+					</select>
+					{errors.presentation && <p className={style.errors}>{errors.presentation}</p>}
+				</div>
+
+				<div>
+					<label>Stock</label>
+					<input
+						type="text"
+						name="stocks"
+						className={style.input}
+						value={form.stocks}
+						onChange={changeHandler}
+					/>
+					{errors.stocks && <p className={style.errors}>{errors.stocks}</p>}
+				</div>
+
+				<div>
+					<label>Precio</label>
+					<input
+						type="text"
+						name="price"
+						className={style.input}
+						value={form.price}
+						onChange={changeHandler}
+					/>
+					{errors.price && <p className={style.errors}>{errors.price}</p>}
+				</div>
+
+				<ImageUploader handleImageUpload={handleImageUpload} />{' '}
+				{/* Integra ImageUploader aquí */}
 				<button
 					type="submit"
 					disabled={
-						!form.brand || !form.therapeuticAction || !form.stocks || !form.price
+						!form.brand || !form.therapeuticAction || !form.stocks || !form.price || !form.image
 					}>
 					Guardar
 				</button>
