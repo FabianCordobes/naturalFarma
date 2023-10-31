@@ -1,6 +1,7 @@
 import {
 	SEARCH_PRODUCTS_SUCCESS,
 	SEARCH_PRODUCTS_FAILURE,
+	UPDATE_SEARCH_QUERY,
 	DELETE_PRODUCT,
 	ORDER_BY_NAME,
 	ORDER_BY_PRICE,
@@ -25,17 +26,29 @@ export const searchProductFailure = (error) => {
 	};
 };
 
+export const updateSearchQuery = (searchQuery) => {
+    return {
+        type: UPDATE_SEARCH_QUERY,
+        payload: searchQuery,
+    };
+};
+
 // action para realizar la busqueda
 
 export const searchProducts = (brand) => {
+	console.log("esto es el brand" + brand)
 	const endpoint = `http://localhost:3001/product?brand=${brand}`;
 	return async (dispatch) => {
 		try {
 			const response = await axios.get(endpoint);
 			// const data = await response.json();
+			console.log("este es el response" + JSON.stringify(response.data))
 
 			if (response.status === 200) {
+				// En lugar de reemplazar los productos, actualiza la búsqueda en el estado
+				dispatch(updateSearchQuery(brand)); // Agregar esta acción para actualizar la búsqueda en el estado
 				dispatch(searchProductSuccess(response.data));
+				console.log('Todo salió bien');
 			} else {
 				dispatch(searchProductFailure('No se pudieron encontrar resultados'));
 			}
@@ -94,18 +107,18 @@ export const editProduct = (productId, updatedProductData) => {
 };
 
 //ORDENAMIENTO POR NOMBRE ALFABETICO
-export const orderByName = (order) => {
+export const orderByName = (payload) => {
 	return {
 		type: ORDER_BY_NAME,
-		payload: order,
+		payload,
 	};
 };
 
 //ORDENAMIENTO POR PRECIO DE MAYOR A MENOS Y VISCEVERSA
-export const orderByPrice = (price) => {
+export const orderByPrice = (payload) => {
 	return {
 		type: ORDER_BY_PRICE,
-		payload: price,
+		payload,
 	};
 };
 export const clearProducts = () => {
@@ -115,9 +128,9 @@ export const clearProducts = () => {
 };
 
 //ORDENAMIENTO POR STOCK SEGUN MENOR A MAYOY VISCEVERSA
-export const orderByStock = (stock) => {
+export const orderByStock = (payload) => {
 	return {
 		type: ORDER_BY_STOCK,
-		payload: stock,
+		payload,
 	};
 };

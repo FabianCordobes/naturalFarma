@@ -9,8 +9,7 @@ import { clearProducts, searchProducts } from '../../redux/actions/searchActions
 
 const ProductList = () => {
 	const allProducts = useSelector((state) => state.search.products); // Accede a la lista de perros desde el estado global de Redux.
-
-	console.log(allProducts)
+	const searchQuery = useSelector((state) => state.search.searchQuery);
 
 	const [currentPage, setCurrentPage] = useState(1); // Define el estado local para la página actual.
 
@@ -30,11 +29,14 @@ const ProductList = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(searchProducts(''));
-		return () => {
-			dispatch(clearProducts());
-		};
-	}, []);
+		// Limpia los productos antes de realizar una nueva búsqueda
+		dispatch(clearProducts());
+	
+		// Evita el ciclo infinito de búsquedas al usar una matriz de dependencias vacía.
+		if (searchQuery) {
+			dispatch(searchProducts(searchQuery));
+		}
+	}, [searchQuery]);
 
 	return (
 		<div className={style.productListContainer}>
