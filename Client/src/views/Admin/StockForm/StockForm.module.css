@@ -25,3 +25,10 @@
 .input:target {
 	border-color: green;
 }
+
+.img {
+	max-width: 100%;
+	max-height: 200px; /* Personaliza el tamaño máximo de la vista previa */
+	margin-top: 10px;
+	display: block;
+ }

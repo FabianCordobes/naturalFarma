@@ -2,6 +2,7 @@
 	border: 2px solid var(--color-borde);
 	border-radius: 10px;
 	padding: 0px 0px 20px 0px;
+	margin-top: 25px;
 	width: 90%;
 	height: 100%;
 	display: flex;
@@ -9,11 +10,15 @@
 	justify-content: space-between;
 	align-items: center;
 	color: var(--color-texto);
+	box-shadow: 0px 0px 0.8px rgba(0, 0, 0, 0.082), 0px 0px 1.9px rgba(0, 0, 0, 0.117),
+		0px 0px 3.6px rgba(0, 0, 0, 0.145), 0px 0px 6.5px rgba(0, 0, 0, 0.173),
+		0px 0px 12.1px rgba(0, 0, 0, 0.208), 0px 0px 29px rgba(0, 0, 0, 0.29);
 }
 
 .productLink {
 	color: var(--color-texto);
 	text-decoration: none;
+	/* margin-top: 10px;	 */
 }
 
 .product img {
@@ -36,14 +41,15 @@
 .stock {
 	text-align: start;
 	font-size: 20px;
-   margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .stock span {
-   font-weight: 700;
+	font-weight: 700;
 }
 
 .lineSpan {
+	margin-top: 5px;
 	height: 1px;
 	width: 80%;
 	background-color: var(--color-borde);
@@ -71,31 +77,30 @@
 }
 
 .botonCarrito button {
-   text-align: start;
-   padding: 10px 0px 10px 20px;
-   border-bottom-left-radius: 10px ;
-   border-bottom-right-radius: 10px ;
-   background-color: var(--color-verde);
-   color: var(--color-body);
-   font-size: 18px;
-   border: none;
-   transition: all 0.6s ease;
+	text-align: start;
+	padding: 10px 0px 10px 20px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: var(--color-verde);
+	color: var(--color-body);
+	font-size: 18px;
+	border: none;
+	transition: all 0.6s ease;
 }
 
-
-
 .botonCarrito span {
-   margin-left: 4rem;
+	margin-left: 4rem;
 }
 
 .botonCarrito:hover {
-   transform: translateY(-2px);
+	transform: translateY(-2px);
 }
 
 .info {
 	display: flex;
 	flex-direction: column;
 	width: 90%;
+	margin-top: 10px;
 }
 
 .info h2 {
@@ -105,7 +110,7 @@
 .favIcon {
 	font-size: 32px;
 	position: absolute;
-	margin-left: 16rem;
+	margin-left: 15rem;
 	margin-top: 0.5rem;
 	color: var(--color-verde3);
 	cursor: pointer;

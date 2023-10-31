@@ -12,24 +12,22 @@ import {handleLogout } from '../../components/UserAuthentications/UserAuthentica
 export default function NavBar(props) {
 	const { searchByName } = props;
 	const navigate = useNavigate();
-	
+
 	useEffect(() => {
-        isAuthenticated(); // Llama a la función para verificar la autenticación
-    }, []); 
+		isAuthenticated(); // Llama a la función para verificar la autenticación
+	}, []);
 
 	const [showMenu, setShowMenu] = useState(false);
 	const [showUserMenu, setShowUserMenu] = useState(false);
 
 	const toLogin = () => {
 		navigate('/login');
-	  };
+	};
 
 	const toRegister = () => {
 		navigate('/register');
-	  }
+	};
 
-	
-	  
 	const isAuthenticated = () => {
 		const token = localStorage.getItem('token');
 	
@@ -55,8 +53,8 @@ export default function NavBar(props) {
 			setShowUserMenu(false);
 		  }
 		} else {
-		  // No se encontró un token, muestra el menú por defecto
-		  setShowUserMenu(false);
+			// No se encontró un token, muestra el menú por defecto
+			setShowUserMenu(false);
 		}
 	  };
 
@@ -68,7 +66,9 @@ export default function NavBar(props) {
 	return (
 		<nav className={style.navBar}>
 			<div className={style.leftSide}>
-				<Link to={'/'} className={style.logoContainer}>
+				<Link
+					to={'/'}
+					className={style.logoContainer}>
 					<img
 						src={Logo}
 						alt="Logo"
@@ -84,6 +84,10 @@ export default function NavBar(props) {
 
 			<div className={style.rightSide}>
 				<div className={style.iconsContainer}>
+					<Link to={'/stockForm'}>
+						<p className={style.userIcon} style={{textDecoration:'none', fontSize:'20px' }}>Crear Producto</p>
+					</Link>
+
 					<Link to={'/favorites'}>
 						<AiOutlineHeart className={style.userIcon} />
 					</Link>

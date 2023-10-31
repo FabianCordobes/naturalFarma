@@ -1,0 +1,24 @@
+/* En tu archivo de estilos CSS (por ejemplo, App.css) */
+.imageUploader {
+   text-align: center;
+   margin: 20px 0;
+ }
+ 
+ .dropzone {
+   border: 2px dashed #cccccc;
+   padding: 20px;
+   cursor: pointer;
+ }
+ 
+ .dropzone p {
+   font-size: 14px;
+   color: #777777;
+ }
+ 
+ /* Estilos para la vista previa de la imagen en StockForm.js */
+ img {
+   max-width: 100%;
+   max-height: 200px; /* Personaliza el tamaño máximo de la vista previa */
+   margin-top: 10px;
+   display: block;
+ }

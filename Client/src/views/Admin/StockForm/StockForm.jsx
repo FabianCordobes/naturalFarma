@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import style from './StockForm.module.css';
 import axios from 'axios';
+import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 
 const categoryOptions = [
 	{ value: 'Alergias' },
@@ -68,6 +69,10 @@ export default function StockForm() {
 			});
 	};
 
+	const handleImageUpload = (imageUrl) => {
+		setForm({ ...form, image: imageUrl });
+	};
+
 	return (
 		<div className={style.container}>
 			<form
@@ -92,7 +97,6 @@ export default function StockForm() {
 						</option>
 					))}
 				</select>
-
 				<label>Marca</label>
 				<input
 					type="text"
@@ -101,7 +105,6 @@ export default function StockForm() {
 					value={form.brand}
 					onChange={changeHandler}
 				/>
-
 				<label>Accion terapeutica</label>
 				<input
 					type="text"
@@ -110,7 +113,6 @@ export default function StockForm() {
 					value={form.therapeuticAction}
 					onChange={changeHandler}
 				/>
-
 				<label>Presentacion</label>
 				<select
 					className={style.input}
@@ -131,7 +133,6 @@ export default function StockForm() {
 						</option>
 					))}
 				</select>
-
 				<label>Stock</label>
 				<input
 					type="text"
@@ -140,7 +141,6 @@ export default function StockForm() {
 					value={form.stocks}
 					onChange={changeHandler}
 				/>
-
 				<label>Precio</label>
 				<input
 					type="text"
@@ -149,16 +149,7 @@ export default function StockForm() {
 					value={form.price}
 					onChange={changeHandler}
 				/>
-
-				<label>Imagen</label>
-				<input
-					type="text"
-					name="image"
-					className={style.input}
-					value={form.image}
-					onChange={changeHandler}
-				/>
-
+				<ImageUploader handleImageUpload={handleImageUpload} /> {/* Integra ImageUploader aquí */}
 				<button
 					type="submit"
 					disabled={

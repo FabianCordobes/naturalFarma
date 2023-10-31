@@ -9,6 +9,8 @@ const initialState = {
 
 const searchReducer = (state = initialState, action) => {
    switch (action.type) {
+      case CLEAR_PRODUCTS:
+         return initialState;
       case SEARCH_PRODUCTS_SUCCESS:
          return {
             

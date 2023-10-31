@@ -4,7 +4,9 @@ footer {
 	align-items: center;
 	justify-content: space-around;
 	padding: 1rem;
+	margin-top: 2rem;
 }
+
 
 
 .container {
@@ -22,6 +24,10 @@ footer {
 	flex-direction: column;
 	gap: 10px;
 	font-size: 16px;
+}
+
+.container div p:hover {
+	text-decoration:underline;
 }
 
 
