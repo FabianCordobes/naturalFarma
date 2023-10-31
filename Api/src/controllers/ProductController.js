@@ -5,7 +5,6 @@ const { Op, where } = require('sequelize');
 
 const createProductController = async (
             brand,
-            category,
             therapeuticAction,
             presentation,
             stocks,
@@ -14,7 +13,6 @@ const createProductController = async (
             )=>{
         const newProduct = await Product.create({
             brand,
-            category,
             therapeuticAction,
             presentation,
             stocks,
@@ -51,7 +49,7 @@ const getProductById = async ( id ) => {
     return productFilter;
 }
 
-const putProducts = async (id, brand, category, therapeuticAction, presentation, stocks, price, image) => {
+const putProducts = async (id, brand, therapeuticAction, presentation, stocks, price, image) => {
     try {
         const product = await Product.findByPk(id);
 
@@ -59,7 +57,6 @@ const putProducts = async (id, brand, category, therapeuticAction, presentation,
             throw new Error('El producto no se encontró.');
         }
         product.brand = brand;
-        product.category = category;
         product.therapeuticAction = therapeuticAction;
         product.presentation = presentation;
         product.stocks = stocks;

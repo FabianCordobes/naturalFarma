@@ -1,6 +1,6 @@
 const {User} = require ("../db");
 const {createUserController, deleteUserController,
-     getUserDeleteController, getAllUserControllers, restoreUserController} = require ("../controllers/UserController")
+     getUserDeleteController, getAllUserControllers, restoreUserController,putUserController} = require ("../controllers/UserController")
 
 
 const createUserHandler = async (req , res) => {
@@ -9,14 +9,12 @@ const createUserHandler = async (req , res) => {
             name,
             lastName,
             birthdate,
-            review,
             nationality
       } = req.body
         const response = await createUserController(
             name,
             lastName,
             birthdate,
-            review,
             nationality
             );
             res.status(200).json(response);
@@ -74,11 +72,25 @@ const deleteUserHandler = async (req , res) => {
         }
     }  
 
+    const putUserHandler = async (req, res) => {
+        const { id } = req.params;
+    const {name,lastName,birthdate,nationality } = req.body;
+    try {
+        if (!name ||  !lastName ||  !birthdate || !nationality) {
+            throw new Error('Falta información para modificar el Usuario.');
+        }
 
+        const editUser = await putUserController(id,name,lastName,birthdate,nationality);
+        return res.status(201).json(editUser);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+    }
 module.exports = {
     createUserHandler,
     deleteUserHandler,
     getUserDeleteHandler,
     getAllUserHandler,
     restoreUserHandler,
+    putUserHandler,
 }
