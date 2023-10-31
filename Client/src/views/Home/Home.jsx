@@ -40,41 +40,37 @@ export default function Home() {
 		setActiveCategory(null);
 	};
 
+	const categories = [
+		{ name: 'Medicinales', path: '/medicinal' },
+		{ name: 'Perfumería', path: '/perfumery' },
+		{ name: 'Accesorios', path: '/accesories' },
+		{ name: 'Estética', path: '/esthetic' },
+	  ];
 
 	return (
-		<div
-			className={style.container}>
+		<div className={style.container}>
 			<div className={style.cuerpo}>
-				<div className={style.botones}>
-					{['Medicinales', 'Perfumería', 'Accesorios', 'Estética'].map((category) => {
-						return (
-							<div
-								key={category}
-								onMouseEnter={() => handleCategoryHover(category)}>
-								<button className={style.btn}>{category}</button>
-								<div className={style.subcategoriasCont}>
-									{activeCategory === category && (
-										<div
-											className={style.subcategorias}
-											onMouseLeave={handleCategoryLeave}>
-											{subcategorias[category]?.map((subCat) => {
-												return (
-													<Link
-														to={'/'}
-														key={subCat}
-														className={style.subcategoria}>
-														{subCat}
-													</Link>
-												);
-											})}
-										</div>
-									)}
-								</div>
-							</div>
-						);
-					})}
-				</div>
-			</div>
+        		<div className={style.botones}>
+          			{categories.map((category) => (
+            			<div key={category.name} onMouseEnter={() => handleCategoryHover(category.name)}>
+              				<Link to={category.path} className={style.link}>
+                		<button className={style.btn}>{category.name}</button>
+              				</Link>
+              			<div className={style.subcategoriasCont}>
+                			{activeCategory === category.name && (
+                  		<div className={style.subcategorias} onMouseLeave={handleCategoryLeave}>
+                    		{subcategorias[category.name].map((subCat) => (
+						<span key={subCat} className={style.subcategoria}>
+                        	{subCat}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
 			<div className={style.slider}>
 				<Slider {...settings}>

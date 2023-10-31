@@ -1,5 +1,6 @@
 import style from './Footer.module.css';
 import logo from '../../assets/OIG.png';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
 	return (
@@ -29,18 +30,10 @@ const Footer = () => {
 			<div className={`${style.container} ${style.margin}`}>
 				<h3>CATEGORIAS</h3>
 				<div>
-					<p>
-						Medicinales
-					</p>
-					<p>
-						Perfumería
-					</p>
-					<p>
-						Accesorios
-					</p>
-					<p>
-						Estética
-					</p>
+					<Link to="/medicinal">Medicinales</Link>
+					<Link to="/perfumery">Perfumeria</Link>
+					<Link to="/accesories">Accesorios</Link>
+					<Link to="/esthetic">Estética</Link>
 				</div>
 			</div>
 
@@ -48,13 +41,13 @@ const Footer = () => {
 				<h3>CONTACTANOS</h3>
 				<div>
 					<p>
-						Correo: <span>aeroxxdsg@gmail.com</span>
+  						Correo: <a href="mailto:aeroxxdsg@gmail.com" target="_blank">aeroxxdsg@gmail.com</a>
 					</p>
 					<p>
-						Celular: <span> +54-261-6603249</span>
+  						Celular: <a href="https://wa.me/542616603249" target="_blank">+54-261-6603249</a>
 					</p>
 					<p>
-						Direccion: <span> San Luis 244 - Las Heras, Mendoza</span>
+  						Direccion: <a href="https://www.google.com/maps/dir/Current+Location/-31.546963250745424,-69.08838526730734/" target="_blank">San Luis 244 - Las Heras, Mendoza</a>
 					</p>
 				</div>
 			</div>
