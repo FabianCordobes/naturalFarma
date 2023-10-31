@@ -34,22 +34,13 @@
 }
 
 .slider {
-	max-width: 95%;
-	align-self: center;
+	width: 100%;
+
+	/* align-self: center; */
+	overflow-x: hidden;
+
 }
 
-.slider button {
-	background: var(--color-verde3);
-	border-radius: 50%;
-}
-
-.slider button:hover {
-	background: var(--color-azul);
-}
-
-.slider button:focus {
-	background: var(--color-verde3);
-}
 
 .imagenOferta {
 	width: 100%;
@@ -163,3 +154,9 @@
 .icon {
 	font-size: 40px;
 }
+
+
+
+.swiper-slide:not(.swiper-slide-active) {
+	display: none;
+ }
