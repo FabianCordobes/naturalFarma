@@ -11,80 +11,77 @@ import Logo from '../../assets/OIG.jpeg';
 export default function NavBar(props) {
 	const { searchByName } = props;
 	const navigate = useNavigate();
-	
+
 	useEffect(() => {
-        isAuthenticated(); // Llama a la función para verificar la autenticación
-    }, []); 
+		isAuthenticated(); // Llama a la función para verificar la autenticación
+	}, []);
 
 	const [showMenu, setShowMenu] = useState(false);
 	const [showUserMenu, setShowUserMenu] = useState(false);
-	
+
 	const toHome = () => {
 		navigate('/home');
 	};
 
-	
-
 	const toLogin = () => {
 		navigate('/login');
-	  };
+	};
 
 	const toRegister = () => {
 		navigate('/register');
-	  }
+	};
 
-	
-	  
 	const isAuthenticated = () => {
 		const token = localStorage.getItem('token');
 
-		console.log("este es el token:" + token);
-	
-		if (token && token != null) {
+		console.log('este es el token:' + token);
 
-			console.log("que entrada papu gomez !");
-		  // Reemplaza 'clave_secreta' con tu clave secreta real
-		  const secret = '123456';
-	
-		  try {
-			const isValid = KJUR.jws.JWS.verifyJWT(token, secret, {
-			  alg: ['HS256']
-			});
-	
-			if (isValid) {
-				console.log("como a estamos remando!")
-				// El usuario está autenticado, muestra el menú correspondiente
-				setShowUserMenu(true);
-			} else {
-				console.log("oh! no coleguilla! esto no entro !")
-			  // El token no es válido, muestra el menú por defecto
-			  setShowUserMenu(false);
+		if (token && token != null) {
+			console.log('que entrada papu gomez !');
+			// Reemplaza 'clave_secreta' con tu clave secreta real
+			const secret = '123456';
+
+			try {
+				const isValid = KJUR.jws.JWS.verifyJWT(token, secret, {
+					alg: ['HS256'],
+				});
+
+				if (isValid) {
+					console.log('como a estamos remando!');
+					// El usuario está autenticado, muestra el menú correspondiente
+					setShowUserMenu(true);
+				} else {
+					console.log('oh! no coleguilla! esto no entro !');
+					// El token no es válido, muestra el menú por defecto
+					setShowUserMenu(false);
+				}
+			} catch (error) {
+				console.log('que vergas daniel !');
+				console.error('Error al verificar el token');
+				setShowUserMenu(false);
 			}
-		  } catch (error) {
-			console.log("que vergas daniel !")
-			console.error('Error al verificar el token');
-			setShowUserMenu(false);
-		  }
 		} else {
-		  // No se encontró un token, muestra el menú por defecto
-		  setShowUserMenu(false);
+			// No se encontró un token, muestra el menú por defecto
+			setShowUserMenu(false);
 		}
-	  };
-	  
-	  const handleLogout = () => {
-	// Borra el token del localStorage
+	};
+
+	const handleLogout = () => {
+		// Borra el token del localStorage
 		localStorage.removeItem('token');
 		setShowUserMenu(false);
-		isAuthenticated()
-		window.alert("Sesión cerrada con éxito");
+		isAuthenticated();
+		window.alert('Sesión cerrada con éxito');
 		// Redirige al usuario a la página de inicio o a donde desees
 		navigate('/');
-	  }
+	};
 
 	return (
 		<nav className={style.navBar}>
 			<div className={style.leftSide}>
-				<Link to={'/'} className={style.logoContainer}>
+				<Link
+					to={'/'}
+					className={style.logoContainer}>
 					<img
 						src={Logo}
 						alt="Logo"
@@ -100,6 +97,10 @@ export default function NavBar(props) {
 
 			<div className={style.rightSide}>
 				<div className={style.iconsContainer}>
+					<Link to={'/stockForm'}>
+						<p className={style.userIcon} style={{textDecoration:'none', fontSize:'20px' }}>Crear Producto</p>
+					</Link>
+
 					<Link to={'/favorites'}>
 						<AiOutlineHeart className={style.userIcon} />
 					</Link>
@@ -116,23 +117,35 @@ export default function NavBar(props) {
 				</div>
 
 				{showMenu && (
-				<div className={`${style.sideMenu} ${showMenu ? 'active' : ''}`}>
-					<ul className={style.itemList}>
-						{showUserMenu ? (
-							<>
-								<button className={style.item}>Historial</button>
-								<button className={style.item}>Ajustes de cuenta</button>
-								<button className={style.item} onClick={handleLogout}>Cerrar sesión</button>
-							</>
-						) : (
-							<>
-								<button className={style.item} onClick={toLogin}>Iniciar sesión</button>
-								<button className={style.item} onClick={toRegister}>Registrarse</button>
-							</>
-						)}
-					</ul>
-				</div>
-			)}
+					<div className={`${style.sideMenu} ${showMenu ? 'active' : ''}`}>
+						<ul className={style.itemList}>
+							{showUserMenu ? (
+								<>
+									<button className={style.item}>Historial</button>
+									<button className={style.item}>Ajustes de cuenta</button>
+									<button
+										className={style.item}
+										onClick={handleLogout}>
+										Cerrar sesión
+									</button>
+								</>
+							) : (
+								<>
+									<button
+										className={style.item}
+										onClick={toLogin}>
+										Iniciar sesión
+									</button>
+									<button
+										className={style.item}
+										onClick={toRegister}>
+										Registrarse
+									</button>
+								</>
+							)}
+						</ul>
+					</div>
+				)}
 			</div>
 
 			{/* <div

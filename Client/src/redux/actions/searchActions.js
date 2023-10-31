@@ -7,6 +7,7 @@ import {
 	ORDER_BY_STOCK,
 	PRODUCTS_EDIT_SUCCESS,
 	PRODUCTS_EDIT_FAILURE,
+	CLEAR_PRODUCTS,
 } from '../actionTypes';
 import axios from 'axios';
 
@@ -106,6 +107,11 @@ export const orderByPrice = (payload) => {
 	return {
 		type: ORDER_BY_PRICE,
 		payload,
+	};
+};
+export const clearProducts = () => {
+	return {
+		type: CLEAR_PRODUCTS,
 	};
 };
 

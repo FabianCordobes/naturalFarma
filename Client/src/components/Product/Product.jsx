@@ -3,7 +3,8 @@ import style from './Product.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux/actions/cartActions';
-// import { deleteProduct, editProduct } from '../../redux/actions/searchActions';
+import { deleteProduct } from '../../redux/actions/searchActions';
+// import { deleteProduct, editProducty } from '../../redux/actions/searchActions';
 import { Link } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -19,6 +20,11 @@ const Product = ({ product }) => {
 		const productToAdd = { ...product, quantity }; // Incluye la cantidad
 		dispatch(addToCart(productToAdd));
 	};
+
+	const handleErase = (e) => {
+		dispatch(deleteProduct(product.id))
+		e.preventDefault
+	}
 
 	// const maxQuantity = 10;
 	// const quantityOptions = Array.from({ length: maxQuantity }, (_, i) => i + 1);
@@ -68,7 +74,7 @@ const Product = ({ product }) => {
 
 				<div className={style.buttons}>
 					<button 
-					// onClick={handleErase}
+					onClick={handleErase}
 					>delete</button>
 					<button 
 					// onClick={handleEdit}

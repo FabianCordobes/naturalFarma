@@ -1,4 +1,4 @@
-import { SEARCH_PRODUCTS_SUCCESS, SEARCH_PRODUCTS_FAILURE } from '../actionTypes';
+import { SEARCH_PRODUCTS_SUCCESS, SEARCH_PRODUCTS_FAILURE , CLEAR_PRODUCTS} from '../actionTypes';
 
 const initialState = {
    products: [],
@@ -7,6 +7,8 @@ const initialState = {
 
 const searchReducer = (state = initialState, action) => {
    switch (action.type) {
+      case CLEAR_PRODUCTS:
+         return initialState;
       case SEARCH_PRODUCTS_SUCCESS:
          return {
             ...state,
