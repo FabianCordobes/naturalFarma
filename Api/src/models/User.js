@@ -23,10 +23,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    review: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: sequelize.literal('NOW()'), // Hola gente estatira la fecha de creación automáticamente

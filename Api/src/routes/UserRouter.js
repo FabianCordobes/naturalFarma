@@ -1,10 +1,11 @@
 const {Router} = require("express");
 const {createUserHandler, getUserDeleteHandler, deleteUserHandler, restoreUserHandler,
-     getAllUserHandler} = require("../handlers/UserHandler");
+     getAllUserHandler, putUserHandler} = require("../handlers/UserHandler");
 
 
 const userRouter = Router();
 
+// Crea una usario
 userRouter.post("/", createUserHandler);
 
 // Esta ruta te trae todo los User creados 
@@ -19,6 +20,8 @@ userRouter.delete("/:id", deleteUserHandler);
 // Esta ruta busca el User por ID y restaura el User eliminado osea que restaura Usuario Oculto
 userRouter.patch("/:id", restoreUserHandler);
 
+// Esta ruta actualiza el Usuario
+userRouter.put("/:id", putUserHandler);
 
 
 module.exports = userRouter;

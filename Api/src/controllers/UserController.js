@@ -7,14 +7,12 @@ const createUserController = async (
             name,
             lastName,
             birthdate,
-            review,
             nationality
     )=>{
 const newUser = await User.create({
             name,
             lastName,
             birthdate,
-            review,
             nationality
 });          
 
@@ -54,10 +52,31 @@ const getUserDeleteController = async (id) => {
         }
  }
 
+
+ const putUserController = async (id,name,lastName,birthdate,nationality) => {
+  try {
+      const user = await User.findByPk(id);
+
+      if (!user) {
+          throw new Error('El Usuario no se encontró.');
+      }
+      user.name = name;
+      user.lastName = lastName;
+      user.birthdate = birthdate;
+      user.nationality = nationality;
+ 
+      await user.save();
+
+      return user;
+  } catch (error) {
+      throw new Error(`Error al actualizar el Usuario: ${error.message}`);
+  }
+}
 module.exports = {
     createUserController,
     deleteUserController,
     getUserDeleteController,
     getAllUserControllers,
     restoreUserController,
+    putUserController,
 }
