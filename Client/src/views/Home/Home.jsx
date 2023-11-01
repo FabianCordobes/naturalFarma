@@ -25,6 +25,11 @@ export default function Home() {
     setActiveCategory(null);
   };
 
+  // Obtener el rol del usuario desde el estado o el contexto global
+  const userType = 'admin'; // Reemplaza con la lógica real para obtener el tipo de usuario
+
+  const isAdministrator = userType === 'admin';
+
   const categories = [
     { name: 'Medicinales', path: '/medicinal' },
     { name: 'Perfumería', path: '/perfumery' },
@@ -49,9 +54,14 @@ export default function Home() {
         <div className={style.botones}>
           {categories.map((category) => (
             <div key={category.name} onMouseEnter={() => handleCategoryHover(category.name)}>
-              <Link to={category.path} className={style.link}>
-                <button className={style.btn}>{category.name}</button>
-              </Link>
+				{isAdministrator || category.name !== 'Editar Stock' ? (
+                <Link to={category.path} className={style.link}>
+                  <button className={style.btn}>{category.name}</button>
+                </Link>
+              ) : (
+                // Oculta el botón "Editar Stock" para los clientes comunes
+                null
+              )}
               <div className={style.subcategoriasCont}>
                 {activeCategory != 'Editar Stock' && activeCategory === category.name && (
                   <div className={style.subcategorias} onMouseLeave={handleCategoryLeave}>
