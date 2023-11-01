@@ -30,6 +30,7 @@ export default function Home() {
     { name: 'Perfumería', path: '/perfumery' },
     { name: 'Accesorios', path: '/accesories' },
     { name: 'Estética', path: '/esthetic' },
+	{ name: 'Editar Stock', path: "/stockform" },
   ];
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function Home() {
                 <button className={style.btn}>{category.name}</button>
               </Link>
               <div className={style.subcategoriasCont}>
-                {activeCategory === category.name && (
+                {activeCategory != 'Editar Stock' && activeCategory === category.name && (
                   <div className={style.subcategorias} onMouseLeave={handleCategoryLeave}>
                     {subcategorias[category.name].map((subCat) => (
                       <span key={subCat} className={style.subcategoria}>
