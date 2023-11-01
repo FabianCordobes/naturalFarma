@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import style from './Product.module.css';
+import remedio from "../../assets/remedio.jpg"
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux/actions/cartActions';
@@ -37,7 +38,6 @@ const Product = ({ product }) => {
 	// const quantityOptions = Array.from({ length: maxQuantity }, (_, i) => i + 1);
 
 	return (
-		<>
 			<div className={style.product}>
 				<div className={style.favIcon}>
 					<AiOutlineHeart />
@@ -47,7 +47,7 @@ const Product = ({ product }) => {
 					to={`/product/${product.id}`}>
 					<div>
 						<img
-							src={product?.image}
+							src={remedio}
 							alt={product?.brand}
 						/>
 					</div>
@@ -69,26 +69,26 @@ const Product = ({ product }) => {
 						</p>
 					</Link>
 
-					<div className={style.botonCarrito}>
-						<button onClick={handleAddToCart}>
-							Agregar al carrito{' '}
-							<span>
-								<FiShoppingCart />
-							</span>
-						</button>
+					<div className={style.btn}>
+						<Link onClick={handleAddToCart} className={style.links}>
+							Agregar{' '}
+							
+						</Link>
+						<span>
+							<FiShoppingCart />
+						</span>
 					</div>
 				</div>
 
 				<div className={style.buttons}>
 					<button 
-					onClick={handleErase}
-					>delete</button>
+					onClick={handleErase} className={style.botoncitos}
+					>Delete</button>
 					<button 
 					// onClick={handleEdit}
-					>edit</button>
+					className={style.botoncitos}>Edit</button>
 				</div>
 			</div>
-		</>
 	);
 };
 

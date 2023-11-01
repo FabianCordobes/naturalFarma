@@ -1,7 +1,9 @@
 // import { useState } from 'react';
 import { useEffect } from 'react';
-import {  orderByName, orderByPrice, orderByStock } from '../../redux/actions/searchActions';
+import {  orderByName, orderByPrice, orderByStock, filterByCategory } from '../../redux/actions/searchActions';
+import { categoryOptions } from '../Categories/Categories';
 import { useDispatch, useSelector } from 'react-redux';
+import style from "./SortComponent.module.css"
 
 const SortComponent = () => {
 	// const [sortingOrder, setSortingOrder] = useState('asc');
@@ -9,7 +11,13 @@ const SortComponent = () => {
 
 	const productsSort = useSelector((state) => state.search.products);
 
-
+	const handleFilterCategory = (event) => {
+		console.log("este es el" + event.target.value);
+		event.preventDefault();
+		dispatch(filterByCategory(event.target.value));
+		// setCurrentPage(1) //cuando hago el ordenamiento que me setee en la pag 1
+		// setSortingOrder(`Ordenado ${event.target.value}`);
+	};
 
 	const handleSortChange = (event) => {
 		event.preventDefault();
@@ -32,32 +40,56 @@ const SortComponent = () => {
 		// setSortingOrder(`Ordenado ${event.target.value}`);
 	};
 	return (
-		<div>
-			<label>Ordenar por Nombre:</label>
-			<select onChange={handleSortChange}>
-				<option value="asc">A-Z</option>
-				<option value="desc">Z-A</option>
-			</select>
+		<div className={style.sort}>
+			
+			<div className={style.division}>
+				<label className={style.tag}>Ordenar por:</label>
+				<div className={style.order}>
+					<div className={style.pasteButton} >
+						<button className={style.button}>Nombre &nbsp; ▼</button>
+						<div className={style.dropdownContent} onClick={(event) => handleSortChange(event)}>
+							<option value="asc">A-Z</option>
+							<option value="desc">Z-A</option>
+						</div>
+					</div>
 
-			<select onChange={(event) => handleSortPrice(event)}>
-				<option
-					value="price"
-					hidden>
-					Precio
-				</option>
-				<option value="min">Menor precio - Mayor precio</option>
-				<option value="max">Mayor precio - Menor precio</option>
-			</select>
+					<div className={style.pasteButton} >
+						<button className={style.button}>Precio &nbsp; ▼</button>
+						<div className={style.dropdownContent} onClick={(event) => handleSortPrice(event)}>
+							<option value="min">Menor a Mayor precio</option>
+							<option value="max">Mayor a Menor precio</option>
+						</div>
+					</div>
 
-			<select onChange={(event) => handleSortStock(event)}>
-				<option
-					value="stock"
-					hidden>
-					Stock
-				</option>
-				<option value="min">Menor Stock</option>
-				<option value="max">Mayor Stock</option>
-			</select>
+					<div className={style.pasteButton} >
+						<button className={style.button}>Stock &nbsp; ▼</button>
+						<div className={style.dropdownContent} onClick={(event) => handleSortStock(event)}>
+							<option value="min">Menor Stock</option>
+							<option value="max">Mayor Stock</option>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className={style.division}>
+				<label className={style.tag2}>Filtrar por:</label>
+				<div className={style.filter}>
+					<div className={style.pasteButton} >
+						<button className={style.button}>Categoria &nbsp; ▼</button>
+						<div className={style.dropdownContent} onClick={(event) => handleFilterCategory(event)}>
+							<option
+							value="all">
+							Todas las categorias
+							</option>
+							{categoryOptions.map((option) => (
+								<option key={option.value}
+									value={option.value}>
+									
+									{option.value}</option>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };

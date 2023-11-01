@@ -5,6 +5,7 @@ footer {
 	justify-content: space-around;
 	padding: 1rem;
 	margin-top: 2rem;
+	min-height: 20vh;
 }
 
 

@@ -46,14 +46,14 @@ export default function Home() {
 			className={style.container}>
 			<div className={style.cuerpo}>
 				<div className={style.botones}>
-					{['Medicinales', 'Perfumería', 'Accesorios', 'Estética'].map((category) => {
+					{['Medicinales', 'Perfumería', 'Accesorios', 'Estética', "Editar Stock"].map((category) => {
 						return (
 							<div
 								key={category}
 								onMouseEnter={() => handleCategoryHover(category)}>
 								<button className={style.btn}>{category}</button>
 								<div className={style.subcategoriasCont}>
-									{activeCategory === category && (
+									{activeCategory != "Editar Stock" && activeCategory === category && (
 										<div
 											className={style.subcategorias}
 											onMouseLeave={handleCategoryLeave}>

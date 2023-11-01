@@ -4,6 +4,7 @@ export const UPDATE_SEARCH_QUERY = 'UPDATE_SEARCH_QUERY';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
 export const ORDER_BY_STOCK = 'ORDER_BY_STOCK';
+export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const GET_DETAIL = 'GET_DETAIL';
 export const DELETE_PRODUCT = 'DELETE PRODUCT';

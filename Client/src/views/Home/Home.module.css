@@ -5,6 +5,7 @@
 	height: 60%;
 	gap: 1.2rem;
 	font-family: 'Public Sans', sans-serif;
+	min-height: 53vh;
 }
 
 .cuerpo {

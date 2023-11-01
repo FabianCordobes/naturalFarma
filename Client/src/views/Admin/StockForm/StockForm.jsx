@@ -2,26 +2,7 @@ import { useState } from 'react';
 import style from './StockForm.module.css';
 import axios from 'axios';
 import ImageUploader from '../../../components/ImageUploader/ImageUploader';
-
-const categoryOptions = [
-	{ value: 'Alergias' },
-	{ value: 'Digestivos' },
-	{ value: 'Antiácido' },
-	{ value: 'Laxante' },
-	{ value: 'Vitaminas' },
-	// Agrega otras opciones según tus valores numéricos
-];
-
-const presentationOptions = [
-	{ value: 'Tableta' },
-	{ value: 'Cápsula Blanda' },
-	{ value: 'Líquido' },
-	{ value: 'Gel' },
-	{ value: 'Sobre' },
-	{ value: 'Pote' },
-	{ value: 'Caramelo' },
-	// Agrega otras opciones según tus valores numéricos
-];
+import {categoryOptions} from '../../../components/Categories/Categories';
 
 export default function StockForm() {
 	const [form, setForm] = useState({
@@ -33,6 +14,17 @@ export default function StockForm() {
 		price: '',
 		image: '',
 	});
+
+	const presentationOptions = [
+		{ value: 'Tableta' },
+		{ value: 'Cápsula Blanda' },
+		{ value: 'Líquido' },
+		{ value: 'Gel' },
+		{ value: 'Sobre' },
+		{ value: 'Pote' },
+		{ value: 'Caramelo' },
+		// Agrega otras opciones según tus valores numéricos
+	];
 
 	const changeHandler = (event) => {
 		// Manejador para los cambios en los campos de entrada

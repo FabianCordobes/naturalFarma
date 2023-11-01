@@ -39,7 +39,10 @@ const ProductList = () => {
 
 	return (
 		<div className={style.productListContainer}>
+			<div className={style.sort}>
 			<SortComponent />
+			</div>
+			<div className={style.content}>
 			<Pagination
 				productsPerPage={productsPerPage}
 				allProducts={allProducts.length}
@@ -59,6 +62,7 @@ const ProductList = () => {
 						);
 					})}
 			</ul>
+			</div>
 		</div>
 	);
 };
