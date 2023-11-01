@@ -16,8 +16,13 @@
 	margin-bottom: 20px
 }
 
+.form div {
+ width: 40%;
+ 
+}
+
 .input {
-	width: 40%;
+	width: 100%;
 	height: 2rem;
 	border-radius: 8px;
 }
@@ -31,4 +36,8 @@
 	max-height: 200px; /* Personaliza el tamaño máximo de la vista previa */
 	margin-top: 10px;
 	display: block;
+ }
+
+ .errors {
+	color: red;
  }
