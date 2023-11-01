@@ -91,6 +91,9 @@ export default function NavBar(props) {
 					</Link>
 				</div>
 				<div className={style.iconsContainer}>
+					<Link to={'/stockForm'}>
+						<p className={style.userIcon} style={{textDecoration:'none', fontSize:'20px' }}>Crear Producto</p>
+					</Link>
 					<Link to={'/favorites'}>
 						<AiOutlineHeart className={style.userIcon} />
 					</Link>
