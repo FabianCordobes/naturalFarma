@@ -105,7 +105,7 @@ export default function NavBar(props) {
 						<AiOutlineHeart className={style.userIcon} />
 					</Link>
 
-					<Link to={'/'}>
+					<Link to={'/cart'}>
 						<FaShoppingCart className={style.userIcon} />
 					</Link>
 
