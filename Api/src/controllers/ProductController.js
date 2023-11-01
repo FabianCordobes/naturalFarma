@@ -1,20 +1,19 @@
 //const { post } = require("../routes");
 const axios = require ("axios");
-const {Product} = require ("../db");
+const {Product, Category} = require ("../db");
 const { Op, where } = require('sequelize');
 
 const createProductController = async (
             brand,
-            category,
             therapeuticAction,
             presentation,
             stocks,
             price,
             image,
+            category
             )=>{
         const newProduct = await Product.create({
             brand,
-            category,
             therapeuticAction,
             presentation,
             stocks,
@@ -22,6 +21,21 @@ const createProductController = async (
             image, 
         });          
         console.log(newProduct);
+
+        const findCategory = await Category.findAll({where: {description: category}})
+    
+        await newProduct.addCategory(findCategory)
+    
+      const produc = await Product.findAll({include: {
+        model: Category,
+        attributes: ["description"],
+        through: {
+          attributes: []
+        }
+      } })
+    
+
+
         return newProduct;
     };
 
@@ -51,7 +65,7 @@ const getProductById = async ( id ) => {
     return productFilter;
 }
 
-const putProducts = async (id, brand, category, therapeuticAction, presentation, stocks, price, image) => {
+const putProducts = async (id, brand, therapeuticAction, presentation, stocks, price, image) => {
     try {
         const product = await Product.findByPk(id);
 
@@ -59,7 +73,6 @@ const putProducts = async (id, brand, category, therapeuticAction, presentation,
             throw new Error('El producto no se encontró.');
         }
         product.brand = brand;
-        product.category = category;
         product.therapeuticAction = therapeuticAction;
         product.presentation = presentation;
         product.stocks = stocks;
