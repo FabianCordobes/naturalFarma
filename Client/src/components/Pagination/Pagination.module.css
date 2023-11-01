@@ -59,12 +59,14 @@
 	cursor: default;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 	.divPagination {
-		display: grid;
+		display: flex;
+		flex-direction: row;
 		grid-template-columns: repeat(6, 1fr);
 		margin-bottom: 0.5rem;
 		max-width: 100;
+		align-items: center;
 	}
 
 	.pageItem {

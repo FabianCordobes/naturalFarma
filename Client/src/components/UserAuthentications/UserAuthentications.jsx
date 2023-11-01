@@ -1,11 +1,11 @@
 import axios  from "axios";
 import KJUR from 'jsrsasign';
 
-// export async function handleLogout(data) {
-//     response = await axios.get("http://localhost:8080/logout");
-//     data = response.data
-//     return data
-// }
+export async function handleLogout() {
+    // Borra el token del localStorage
+    localStorage.removeItem('token');
+    window.alert("Sesión cerrada con éxito");
+}
 
 const usuarioParaPrueba = {
     user: '123',

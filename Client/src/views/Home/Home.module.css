@@ -5,6 +5,7 @@
 	height: 60%;
 	gap: 1.2rem;
 	font-family: 'Public Sans', sans-serif;
+	min-height: 53vh;
 }
 
 .cuerpo {
@@ -32,15 +33,6 @@
 	justify-content: center;
 	font-family: 'Open Sans', sans-serif;
 }
-
-.slider {
-	width: 100%;
-
-	/* align-self: center; */
-	overflow-x: hidden;
-
-}
-
 
 .imagenOferta {
 	width: 100%;
@@ -155,8 +147,37 @@
 	font-size: 40px;
 }
 
-
-
-.swiper-slide:not(.swiper-slide-active) {
-	display: none;
- }
+/* Slideshow */
+.slideshow {
+	margin: 0 auto;
+	overflow: hidden;
+	max-width: 500px;
+  }
+  
+  .slideshowSlider {
+	display: flex; 
+	transition: ease 1000ms;
+  }
+  
+  .slide {
+	flex: 0 0 100%; 
+	border-radius: 40px;
+  }
+  
+  .slideshowDots {
+	text-align: center;
+  }
+  
+  .slideshowDot {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	cursor: pointer;
+	margin: 15px 7px 0px;
+	background-color: #c4c4c4;
+  }
+  
+  .slideshowDot.active {
+	background-color: #6a0dad;
+  }

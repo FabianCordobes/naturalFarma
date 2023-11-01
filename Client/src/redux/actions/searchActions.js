@@ -5,6 +5,7 @@ import {
 	ORDER_BY_NAME,
 	ORDER_BY_PRICE,
 	ORDER_BY_STOCK,
+	FILTER_BY_CATEGORY,
 	PRODUCTS_EDIT_SUCCESS,
 	PRODUCTS_EDIT_FAILURE,
 	CLEAR_PRODUCTS,
@@ -99,18 +100,18 @@ export const editProduct = (productId, updatedProductData) => {
 };
 
 //ORDENAMIENTO POR NOMBRE ALFABETICO
-export const orderByName = (payload) => {
+export const orderByName = (brand) => {
 	return {
 		type: ORDER_BY_NAME,
-		payload,
+		payload: brand,
 	};
 };
 
 //ORDENAMIENTO POR PRECIO DE MAYOR A MENOS Y VISCEVERSA
-export const orderByPrice = (payload) => {
+export const orderByPrice = (price) => {
 	return {
 		type: ORDER_BY_PRICE,
-		payload,
+		payload: price,
 	};
 };
 
@@ -121,10 +122,17 @@ export const clearProducts = () => {
 };
 
 //ORDENAMIENTO POR STOCK SEGUN MENOR A MAYOY VISCEVERSA
-export const orderByStock = (payload) => {
+export const orderByStock = (stock) => {
 	return {
 		type: ORDER_BY_STOCK,
-		payload,
+		payload: stock,
+	};
+};
+
+export const filterByCategory = (category) => {
+	return {
+		type: FILTER_BY_CATEGORY,
+		payload: category,
 	};
 };
 

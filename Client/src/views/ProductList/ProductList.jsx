@@ -9,6 +9,7 @@ import { clearProducts, searchProducts } from '../../redux/actions/searchActions
 
 const ProductList = () => {
 	const allProducts = useSelector((state) => state.search.products); // Accede a la lista de perros desde el estado global de Redux.
+	const searchQuery = useSelector((state) => state.search.searchQuery);
 
 	const [currentPage, setCurrentPage] = useState(1); // Define el estado local para la página actual.
 
@@ -38,7 +39,10 @@ const ProductList = () => {
 
 	return (
 		<div className={style.productListContainer}>
+			<div className={style.sort}>
 			<SortComponent />
+			</div>
+			<div className={style.content}>
 			<Pagination
 				productsPerPage={productsPerPage}
 				allProducts={allProducts.length}
@@ -58,6 +62,7 @@ const ProductList = () => {
 						);
 					})}
 			</ul>
+			</div>
 		</div>
 	);
 };

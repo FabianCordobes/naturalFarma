@@ -2,16 +2,8 @@ import { useState } from 'react';
 import style from './StockForm.module.css';
 import axios from 'axios';
 import ImageUploader from '../../../components/ImageUploader/ImageUploader';
+import {categoryOptions} from '../../../components/Categories/Categories';
 import validate from '../../../utils/validators/validators';
-
-const categoryOptions = [
-	{ value: 'Alergias' },
-	{ value: 'Digestivos' },
-	{ value: 'Antiácido' },
-	{ value: 'Laxante' },
-	{ value: 'Vitaminas' },
-	// Agrega otras opciones según tus valores numéricos
-];
 
 const presentationOptions = [
 	{ value: 'Tableta' },
@@ -185,7 +177,10 @@ export default function StockForm() {
 				<button
 					type="submit"
 					disabled={
-						!form.brand || !form.therapeuticAction || !form.stocks || !form.price || !form.image
+						!form.brand ||
+						!form.therapeuticAction ||
+						!form.stocks ||
+						!form.price
 					}>
 					Guardar
 				</button>

@@ -23,7 +23,6 @@ export default function Login() {
         e.preventDefault();
 
         if (handleLogin(dataUser)) {
-            console.log("entramos papu");
 			window.alert("Bienvenido");
             navigate('/');
         } else {
