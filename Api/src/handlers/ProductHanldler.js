@@ -8,6 +8,7 @@ const createProductHandler = async (req , res) => {
             stocks,
             price,
             image,
+            category
       } = req.body
         const response = await createProductController(
             brand,
@@ -16,6 +17,7 @@ const createProductHandler = async (req , res) => {
             stocks,
             price,
             image,
+            category
             );
             res.status(200).json(response);
     } catch (error) {

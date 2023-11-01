@@ -1,6 +1,6 @@
 //const { post } = require("../routes");
 const axios = require ("axios");
-const {Product} = require ("../db");
+const {Product, Category} = require ("../db");
 const { Op, where } = require('sequelize');
 
 const createProductController = async (
@@ -10,6 +10,7 @@ const createProductController = async (
             stocks,
             price,
             image,
+            category
             )=>{
         const newProduct = await Product.create({
             brand,
@@ -20,6 +21,21 @@ const createProductController = async (
             image, 
         });          
         console.log(newProduct);
+
+        const findCategory = await Category.findAll({where: {description: category}})
+    
+        await newProduct.addCategory(findCategory)
+    
+      const produc = await Product.findAll({include: {
+        model: Category,
+        attributes: ["description"],
+        through: {
+          attributes: []
+        }
+      } })
+    
+
+
         return newProduct;
     };
 

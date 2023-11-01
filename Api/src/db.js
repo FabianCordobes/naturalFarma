@@ -29,7 +29,7 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Login, Admin, User, Product, History } = sequelize.models;
+const { Login, Admin, User, Product, History, Category } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -37,6 +37,10 @@ const { Login, Admin, User, Product, History } = sequelize.models;
 // M/M
 User.belongsToMany(Product, { through: "FavoriteUser_Product", timestamps:false});
 Product.belongsToMany(User, { through: "FavoriteUser_Product", timestamps:false});
+
+// M/M
+Product.belongsToMany(Category, { through: "Product_Category", timestamps: false});
+Category.belongsToMany(Product, { through: "Product_Category", timestamps: false});
 
 // 1:M
 Admin.hasMany(Product);
