@@ -5,6 +5,7 @@ import img2 from '../../assets/oferta2.webp';
 import { FaTruck, FaWhatsapp } from 'react-icons/fa';
 import { BiSolidCreditCardFront } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import Swiper from 'swiper/bundle';
 
 //
 
@@ -27,12 +28,12 @@ export default function Home() {
     setActiveCategory(null);
   };
 
-	const categories = [
+	/*const categories = [
 		{ name: 'Medicinales', path: '/medicinal' },
 		{ name: 'Perfumería', path: '/perfumery' },
 		{ name: 'Accesorios', path: '/accesories' },
 		{ name: 'Estética', path: '/esthetic' },
-	];
+	];*/
 
 	useEffect(() => {
 		const swiper = new Swiper('.swiper-container', {
