@@ -5,6 +5,9 @@ import img2 from '../../assets/oferta2.webp';
 import { FaTruck, FaWhatsapp } from 'react-icons/fa';
 import { BiSolidCreditCardFront } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import Swiper from 'swiper/bundle';
+
+//
 
 const subcategorias = {
   Medicinales: ['Subcat1', 'Subcat2', 'Subcat3'],
@@ -25,6 +28,26 @@ export default function Home() {
     setActiveCategory(null);
   };
 
+	/*const categories = [
+		{ name: 'Medicinales', path: '/medicinal' },
+		{ name: 'Perfumería', path: '/perfumery' },
+		{ name: 'Accesorios', path: '/accesories' },
+		{ name: 'Estética', path: '/esthetic' },
+	];*/
+
+	useEffect(() => {
+		const swiper = new Swiper('.swiper-container', {
+			slidesPerView: 1, // Show only one slide per view
+			loop: true,
+			// autoplay: {
+			// delay: 3000, // Change slide every 3 seconds
+			// },
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+		});
+	}, []);
   const categories = [
     { name: 'Medicinales', path: '/medicinal' },
     { name: 'Perfumería', path: '/perfumery' },
@@ -46,27 +69,35 @@ export default function Home() {
   return (
     <div className={style.container}>
       <div className={style.cuerpo}>
-        <div className={style.botones}>
-          {categories.map((category) => (
-            <div key={category.name} onMouseEnter={() => handleCategoryHover(category.name)}>
-              <Link to={category.path} className={style.link}>
-                <button className={style.btn}>{category.name}</button>
-              </Link>
-              <div className={style.subcategoriasCont}>
-                {activeCategory != 'Editar Stock' && activeCategory === category.name && (
-                  <div className={style.subcategorias} onMouseLeave={handleCategoryLeave}>
-                    {subcategorias[category.name].map((subCat) => (
-                      <span key={subCat} className={style.subcategoria}>
-                        {subCat}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+		<div className={style.botones}>
+		{categories.map((category) => (
+			<div
+							key={category.name}
+							onMouseEnter={() => handleCategoryHover(category.name)}>
+			<Link
+								to={category.path}
+								className={style.link}>
+						<button className={style.btn}>{category.name}</button>
+			</Link>
+				<div className={style.subcategoriasCont}>
+					{activeCategory != 'Editar Stock' && activeCategory === category.name && (
+							<div
+										className={style.subcategorias}
+										onMouseLeave={handleCategoryLeave}>
+								{subcategorias[category.name].map((subCat) => (
+					                      <span
+												key={subCat}
+												className={style.subcategoria}>
+											{subCat}
+											</span>
+										))}
+									</div>
+								)}
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
       <div className={style.slider}>
         <div className="slideshow">
           <div className="slideshowSlider">
