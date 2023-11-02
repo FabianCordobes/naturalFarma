@@ -1,0 +1,76 @@
+/* Contenedor que contiene al contenedor de slides y a las Slides */
+.slideshowAbout {
+    margin: 100px auto;
+    overflow: hidden;
+    max-width: 100%;
+    border-radius: 10px;
+    background-color: black;
+}
+
+/* Contenedor de Slides */
+.slideshowSliderAbout {
+    display: flex;
+    transition: ease 1000ms;
+    height: 600px;
+}
+
+/* Slide Individual*/
+.slideAbout {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Imagen del desarrollador */
+.images {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    max-width: 50%;
+    max-height: 100%;
+    border: 10px solid black;
+}
+
+/* Contenedor de información del desarrollador */
+.developerInfo {
+    width: 50%;
+    padding: 20px;
+    color: white; /* Cambiar el color del texto a blanco */
+}
+
+/* Estilos para la información del desarrollador */
+.developerInfo p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* Iconos */
+.developerInfo a {
+    font-size: 24px;
+    text-decoration: none;
+    color: white !important; /* Cambiar el color del texto a blanco */
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Botones del carrusel */
+.slideshowDots {
+    text-align: center;
+}
+
+.slideshowDot {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 15px 10px 0px;
+    background-color:white;
+}
+
+.slideshowDot.active {
+    background-color: #40ac0f;
+}

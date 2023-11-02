@@ -1,7 +1,7 @@
 import style from './App.module.css';
 import Detail from './views/Detail/Detail';
 import Home from './views/Home/Home';
-import NavBar from './Components/NavBar/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import StockForm from './views/Admin/StockForm/StockForm';
 import Login  from './views/Login/Login';
 import Register from './views/Register/Register';
@@ -13,6 +13,7 @@ import Medicinal from './views/Categories/Medicinal/Medicinal';
 import Perfumery from './views/Categories/Perfumery/Perfumery';
 import Accessories from './views/Categories/Accessories/Accessories';
 import Esthetic from './views/Categories/Esthetic/Esthetic';
+import About from './views/About/About';
 
 function App() {
 	const location = useLocation();
@@ -69,6 +70,10 @@ function App() {
 				<Route 
 					path='/esthetic' 
 					element={<Esthetic />} 
+					/>
+				<Route
+					path='/about'
+					element={<About />}
 					/>
 			</Routes>
 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
