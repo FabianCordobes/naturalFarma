@@ -147,3 +147,10 @@ export const delFromCart = (id, all = false) =>
     : { type: REMOVE_ONE_FROM_CART, payload: id };
 
 export const clearCart = () => ({ type: CLEAR_CART });
+
+export const setCart = (id) => {
+	return {
+	  type: 'SET_CART',
+	  payload: id
+	};
+  };
