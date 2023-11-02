@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./Login.module.css";
 import {handleLogin}    from "../../components/UserAuthentications/UserAuthentications";
@@ -23,7 +23,6 @@ export default function Login() {
         e.preventDefault();
 
         if (handleLogin(dataUser)) {
-            console.log("entramos papu");
 			window.alert("Bienvenido");
             navigate('/');
         } else {

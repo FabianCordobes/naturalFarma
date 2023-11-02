@@ -5,6 +5,14 @@ import {
 	ORDER_BY_NAME,
 	ORDER_BY_PRICE,
 	ORDER_BY_STOCK,
+	FILTER_BY_CATEGORY,
+	PRODUCTS_EDIT_SUCCESS,
+	PRODUCTS_EDIT_FAILURE,
+	CLEAR_PRODUCTS,
+	ADD_TO_CART,
+	REMOVE_ALL_FROM_CART,
+	REMOVE_ONE_FROM_CART,
+	CLEAR_CART,
 } from '../actionTypes';
 import axios from 'axios';
 
@@ -62,12 +70,12 @@ export const deleteProduct = (payload) => {
 };
 
 export const editProductSuccess = (product) => ({
-	type: PRODUCT_EDIT_SUCCESS,
+	type: PRODUCTS_EDIT_SUCCESS,
 	payload: product,
 });
 
 export const editProductFailure = (error) => ({
-	type: PRODUCT_EDIT_FAILURE,
+	type: PRODUCTS_EDIT_FAILURE,
 	payload: error,
 });
 
@@ -92,25 +100,50 @@ export const editProduct = (productId, updatedProductData) => {
 };
 
 //ORDENAMIENTO POR NOMBRE ALFABETICO
-export const orderByName = (payload) => {
+export const orderByName = (brand) => {
 	return {
 		type: ORDER_BY_NAME,
-		payload,
+		payload: brand,
 	};
 };
 
 //ORDENAMIENTO POR PRECIO DE MAYOR A MENOS Y VISCEVERSA
-export const orderByPrice = (payload) => {
+export const orderByPrice = (price) => {
 	return {
 		type: ORDER_BY_PRICE,
-		payload,
+		payload: price,
+	};
+};
+
+export const clearProducts = () => {
+	return {
+		type: CLEAR_PRODUCTS,
 	};
 };
 
 //ORDENAMIENTO POR STOCK SEGUN MENOR A MAYOY VISCEVERSA
-export const orderByStock = (payload) => {
+export const orderByStock = (stock) => {
 	return {
 		type: ORDER_BY_STOCK,
-		payload,
+		payload: stock,
 	};
 };
+
+export const filterByCategory = (category) => {
+	return {
+		type: FILTER_BY_CATEGORY,
+		payload: category,
+	};
+};
+
+
+
+// CARRITO
+export const addToCart = (id) => ({ type: ADD_TO_CART, payload: id });
+
+export const delFromCart = (id, all = false) =>
+  all
+    ? { type: REMOVE_ALL_FROM_CART, payload: id }
+    : { type: REMOVE_ONE_FROM_CART, payload: id };
+
+export const clearCart = () => ({ type: CLEAR_CART });

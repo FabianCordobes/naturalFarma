@@ -6,8 +6,48 @@
             "category": "Alergia",
             "therapeuticAction":"Prueba texto de prueba prueba texto de prueba texto de prueba",
             "presentation":"comprimido",
+            "stocks": 1,
+            "price": 1,
+            "url": "url"
+        },
+        {
+            "id": "2",
+            "brand": "Pzifer",
+            "category": "Digestivo",
+            "therapeuticAction":"Prueba texto de prueba prueba texto de prueba texto de prueba",
+            "presentation":"comprimido",
+            "stocks": 2,
+            "price": 28,
+            "url": "url"
+        },
+        {
+            "id": "3",
+            "brand": "Pzifer",
+            "category": "Digestivo",
+            "therapeuticAction":"Prueba texto de prueba prueba texto de prueba texto de prueba",
+            "presentation":"comprimido",
+            "stocks": 3,
+            "price": 7,
+            "url": "url"
+        },
+        {
+            "id": "4",
+            "brand": "Pzifer",
+            "category": "Alergia",
+            "therapeuticAction":"Prueba texto de prueba prueba texto de prueba texto de prueba",
+            "presentation":"comprimido",
+            "stocks": 4,
+            "price": 6,
+            "url": "url"
+        },
+        {
+            "id": "5",
+            "brand": "Pzifer",
+            "category": "Alergia",
+            "therapeuticAction":"Prueba texto de prueba prueba texto de prueba texto de prueba",
+            "presentation":"comprimido",
             "stocks": 5,
-            "price": 10,
+            "price": 6,
             "url": "url"
         }
     ]

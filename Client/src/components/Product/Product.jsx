@@ -1,69 +1,94 @@
 import { useState } from 'react';
 import style from './Product.module.css';
+import remedio from "../../assets/remedio.jpg"
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../../redux/actions/cartActions';
+import { addToCart } from '../../redux/actions/searchActions';
+import { deleteProduct } from '../../redux/actions/searchActions';
+// import { deleteProduct, editProducty } from '../../redux/actions/searchActions';
+import { Link } from 'react-router-dom';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { FiShoppingCart } from 'react-icons/fi';
 
 const Product = ({ product }) => {
 	const [quantity, setQuantity] = useState(1);
 
 	const dispatch = useDispatch();
-	const items = useSelector((state) => state.cart.items);
+	//const items = useSelector((state) => state.cart.items);
+	const [isEditing, setIsEditing] = useState(false);
 
 	const handleAddToCart = () => {
 		// Aquí puedes manejar la lógica para agregar el producto al carrito
 		const productToAdd = { ...product, quantity }; // Incluye la cantidad
 		dispatch(addToCart(productToAdd));
-				
+	};
+
+	const handleErase = () => {
+		// Aquí puedes manejar la lógica para eliminar el producto
+		dispatch(deleteProduct(product.id)); // Puedes pasar el ID del producto a eliminar
+	};
+
+	const handleEdit = () => {
+		// Aquí puedes manejar la lógica para activar el modo de edición
+		setIsEditing(true);
+		setEditedProduct({ brand: product.brand }); // Copia los datos del producto para la edición
 	};
 
 	// const maxQuantity = 10;
 	// const quantityOptions = Array.from({ length: maxQuantity }, (_, i) => i + 1);
 
 	return (
-		<div className={style.product}>
-			<h2>{product?.brand}</h2>
-			<p>
-				Categoría: <span>{product?.category}</span>
-			</p>
-			<p>
-				Acción Terapéutica: <span>{product?.therapeuticAction}</span>
-			</p>
-			<p>
-				Presentación: <span>{product?.presentation}</span>
-			</p>
-			<p>
-				Stock: <span>{product?.stocks}</span>
-			</p>
-			<p>
-				Precio: <span>${product?.price}</span>
-			</p>
-			<img
-				src={product?.image}
-				alt={product?.brand}
-				// width={300}
-				// height={200}
-			/>
+			<div className={style.product}>
+				<div className={style.favIcon}>
+					<AiOutlineHeart />
+				</div>
+				<Link
+					className={style.productLink}
+					to={`/product/${product.id}`}>
+					<div>
+						<img
+							src={remedio}
+							alt={product?.brand}
+						/>
+					</div>
+				</Link>
 
-			<div>
-				<label>Cantidad:</label>
-				<select
-					// value={quantity}
-					onChange={(e) => setQuantity(parseInt(e.target.value))}>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-				</select>
-				<button onClick={handleAddToCart}>Agregar al carrito</button>
+				<span className={style.lineSpan}></span>
+
+				<div className={style.info}>
+					<Link
+						className={style.productLink}
+						to={`/product/${product.id}`}>
+						<h2 className={style.title}>{product?.brand}</h2>
+
+						<p className={style.price}>
+							<span>${product?.price}</span>
+						</p>
+						<p className={style.stock}>
+							Stock: <span>{product?.stocks}</span>
+						</p>
+					</Link>
+
+					<div className={style.btn}>
+						<Link onClick={() => dispatch(addToCart(product.id))} className={style.links}>
+							Agregar{' '}
+							
+						</Link>
+						<span>
+							<FiShoppingCart />
+						</span>
+					</div>
+				</div>
+
+				<div className={style.buttons}>
+					<button 
+					onClick={handleErase} className={style.botoncitos}
+					>Delete</button>
+					<button 
+					// onClick={handleEdit}
+					className={style.botoncitos}>Edit</button>
+				</div>
 			</div>
-		</div>
 	);
 };
 

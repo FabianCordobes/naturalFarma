@@ -1,11 +1,12 @@
 .navBar {
 	display: flex;
 	flex-direction: row;
-	height: 20%;
+	flex-wrap: wrap;
+	min-height: 20vh;
 	align-items: center;
 	justify-content: space-between;
-	width: 97vw;
-	padding: 20px 5px 5px 5px;
+	width: 95vw;
+	padding: 0px 5px 5px 5px;
 }
 
 .leftSide {
@@ -26,7 +27,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 2rem;
 }
 
 .logoContainer img {
@@ -242,4 +242,10 @@ a::visited {
 
 .item {
 	font-size: 16px;
+}
+
+.about {
+	font-size: 25px;
+	color: var(--color-verde3);
+	margin-right: 2rem;
 }

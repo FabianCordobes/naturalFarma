@@ -1,16 +1,48 @@
-.container{height: 20%;
-	border-top: solid black;
-	width: 100%;
-	background-color: rgb(84, 84, 84);}
+footer {
+	background-color: var(--color-azul-oscuro);
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 1rem;
+	margin-top: 2rem;
+	min-height: 20vh;
+}
 
-.datos {
-	
-	height: 100%;
-	color: aliceblue;
-	
-	
-	justify-content: center;
+
+
+.container {
+	color: var(--color-body);
+	text-align: start;
+
+}
+
+.container h3 {
+	margin-bottom: 20px;
+}
+
+.container div {
 	display: flex;
 	flex-direction: column;
-	gap: 5%;
+	gap: 10px;
+	font-size: 16px;
+}
+
+.container div p:hover {
+	text-decoration:underline;
+}
+
+
+.margin {
+	margin-top: 25px;
+}
+
+
+.logoContainer {
+	background-color: var(--color-body);
+	border-radius: 50%;
+	padding: 10px;
+}
+
+.logoContainer img {
+	width: 8rem;
 }
