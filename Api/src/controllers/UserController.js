@@ -72,6 +72,15 @@ const getUserDeleteController = async (id) => {
       throw new Error(`Error al actualizar el Usuario: ${error.message}`);
   }
 }
+
+
+const getUserByIdController = async ( id ) => {
+
+  const USerFilter = await User.findAll({ where:{ id } } );
+
+
+  return USerFilter;
+}
 module.exports = {
     createUserController,
     deleteUserController,
@@ -79,4 +88,5 @@ module.exports = {
     getAllUserControllers,
     restoreUserController,
     putUserController,
+    getUserByIdController
 }
