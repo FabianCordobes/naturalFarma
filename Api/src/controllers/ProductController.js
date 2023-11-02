@@ -24,7 +24,7 @@ const createProductController = async (
 
         const findCategory = await Category.findAll({where: {description: category}})
     
-        await newProduct.addCategory(findCategory)
+        await newProduct.addCategories(findCategory);
     
       const produc = await Product.findAll({include: {
         model: Category,
@@ -36,7 +36,7 @@ const createProductController = async (
     
 
 
-        return newProduct;
+        return produc;
     };
 
 const getProductsByName = async (brand) => {
