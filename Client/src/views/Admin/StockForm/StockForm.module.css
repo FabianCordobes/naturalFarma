@@ -41,3 +41,13 @@
  .errors {
 	color: red;
  }
+
+ .form1 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	height: 100%;
+	width: 100%;
+	margin-bottom: 20px
+}

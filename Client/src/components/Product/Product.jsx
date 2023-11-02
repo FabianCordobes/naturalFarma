@@ -3,7 +3,7 @@ import style from './Product.module.css';
 import remedio from "../../assets/remedio.jpg"
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../../redux/actions/cartActions';
+import { addToCart } from '../../redux/actions/searchActions';
 import { deleteProduct } from '../../redux/actions/searchActions';
 // import { deleteProduct, editProducty } from '../../redux/actions/searchActions';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ const Product = ({ product }) => {
 	const [quantity, setQuantity] = useState(1);
 
 	const dispatch = useDispatch();
-	const items = useSelector((state) => state.cart.items);
+	//const items = useSelector((state) => state.cart.items);
 	const [isEditing, setIsEditing] = useState(false);
 
 	const handleAddToCart = () => {
@@ -26,13 +26,13 @@ const Product = ({ product }) => {
 	const handleErase = () => {
 		// Aquí puedes manejar la lógica para eliminar el producto
 		dispatch(deleteProduct(product.id)); // Puedes pasar el ID del producto a eliminar
-	 };
+	};
 
 	const handleEdit = () => {
 		// Aquí puedes manejar la lógica para activar el modo de edición
 		setIsEditing(true);
 		setEditedProduct({ brand: product.brand }); // Copia los datos del producto para la edición
-	 };
+	};
 
 	// const maxQuantity = 10;
 	// const quantityOptions = Array.from({ length: maxQuantity }, (_, i) => i + 1);
@@ -70,7 +70,7 @@ const Product = ({ product }) => {
 					</Link>
 
 					<div className={style.btn}>
-						<Link onClick={handleAddToCart} className={style.links}>
+						<Link onClick={() => dispatch(addToCart(product.id))} className={style.links}>
 							Agregar{' '}
 							
 						</Link>

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import getDetail from '../../redux/actions/detailActions';
 import { GET_DETAIL } from '../../redux/actionTypes';
 import style from './Detail.module.css';
-import { addToCart } from '../../redux/actions/cartActions';
 import { FiShoppingCart } from 'react-icons/fi';
 
 const Detail = () => {

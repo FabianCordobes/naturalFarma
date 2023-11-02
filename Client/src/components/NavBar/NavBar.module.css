@@ -243,3 +243,9 @@ a::visited {
 .item {
 	font-size: 16px;
 }
+
+.about {
+	font-size: 25px;
+	color: var(--color-verde3);
+	margin-right: 2rem;
+}

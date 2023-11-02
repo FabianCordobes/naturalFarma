@@ -1,14 +1,22 @@
 // import { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import {  orderByName, orderByPrice, orderByStock, filterByCategory } from '../../redux/actions/searchActions';
-import { categoryOptions } from '../Categories/Categories';
+import {categoryOptions} from '../Categories/Categories';
 import { useDispatch, useSelector } from 'react-redux';
 import style from "./SortComponent.module.css"
 
 const SortComponent = () => {
 	// const [sortingOrder, setSortingOrder] = useState('asc');
 	const dispatch = useDispatch();
+	const [categories, setCategories] = useState([]);
+	
+	useEffect(() => {
+		categoryOptions().then((categories) => {
+		  setCategories(categories);
+		});
+	  }, []);
 
+	  console.log(categories);
 	const productsSort = useSelector((state) => state.search.products);
 
 	const handleFilterCategory = (event) => {
@@ -80,11 +88,11 @@ const SortComponent = () => {
 							value="all">
 							Todas las categorias
 							</option>
-							{categoryOptions.map((option) => (
-								<option key={option.value}
-									value={option.value}>
-									
-									{option.value}</option>
+							{categories.map((option) => (
+								console.log("esta es la option"+option.description),
+								<option key={option.id} value={option.description}>
+								{option.description}
+								</option>
 							))}
 						</div>
 					</div>
