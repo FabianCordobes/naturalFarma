@@ -65,7 +65,10 @@ const searchReducer = (state = initialState, action) => {
 					...state,
 					cart: [...state.cart, { ...newItem, quantity: 1 }],
 				};
+
+				localStorage.setItem('cart', JSON.stringify(state.cart));
 		}
+	
 
 		case REMOVE_ONE_FROM_CART: {
 			let itemToDelete = state.cart.find((item) => item.id === action.payload);
