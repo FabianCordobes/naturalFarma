@@ -1,5 +1,5 @@
-// const isAdmin = (username) => {
-//     return username === 'admin'; 
-//   };
+const isAdmin = (username) => {
+    return username === 'admin'; 
+  };
   
-//   module.exports = { isAdmin };
+  module.exports = { isAdmin };
