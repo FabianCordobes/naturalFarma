@@ -9,13 +9,17 @@ const createUserHandler = async (req , res) => {
             name,
             lastName,
             birthdate,
-            nationality
+            nationality,
+            password,
+            email
       } = req.body
         const response = await createUserController(
             name,
             lastName,
             birthdate,
-            nationality
+            nationality,  
+            password,
+            email
             );
             res.status(200).json(response);
     } catch (error) {
@@ -74,13 +78,19 @@ const deleteUserHandler = async (req , res) => {
 
     const putUserHandler = async (req, res) => {
         const { id } = req.params;
-    const {name,lastName,birthdate,nationality } = req.body;
+    const {name,lastName,birthdate,nationality, 
+        password,
+        email } = req.body;
     try {
-        if (!name ||  !lastName ||  !birthdate || !nationality) {
+        if (!name ||  !lastName ||  !birthdate || !nationality ||
+            !password ||
+            !email) {
             throw new Error('Falta información para modificar el Usuario.');
         }
 
-        const editUser = await putUserController(id,name,lastName,birthdate,nationality);
+        const editUser = await putUserController(id,name,lastName,birthdate,nationality, 
+            password,
+            email);
         return res.status(201).json(editUser);
     } catch (error) {
         res.status(400).json({ error: error.message });

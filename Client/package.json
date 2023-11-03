@@ -15,6 +15,7 @@
     "axios": "^1.6.0",
     "cloudinary": "^1.41.0",
     "init": "^0.1.2",
+    "jsonwebtoken": "^9.0.2",
     "jsrsasign": "^10.8.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

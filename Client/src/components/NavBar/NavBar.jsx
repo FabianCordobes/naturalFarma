@@ -35,12 +35,14 @@ export default function NavBar(props) {
 		if (token && token != null) {
 			console.log("entramos papu")
 		  // Reemplaza 'clave_secreta' con tu clave secreta real
-		  const secret = '123456';
+		  const secret = '1234';
 	
 		  try {
 			const isValid = KJUR.jws.JWS.verifyJWT(token, secret, {
 			  alg: ['HS256']
 			});
+
+			console.log("sera valido ?:"+isValid)
 	
 			if (isValid) {
 				// El usuario está autenticado, muestra el menú correspondiente
