@@ -139,11 +139,39 @@ export const filterByCategory = (category) => {
 
 
 // CARRITO
-export const addToCart = (id) => ({ type: ADD_TO_CART, payload: id });
+//export const addToCart = (id) => ({ type: ADD_TO_CART, payload: id });
+export const addToCart = (id) => {
+	return (dispatch, getState) => {
+		const state = getState();
+		const newItem = state.search.products.find((product) => product.id === id);
+		const itemInCart = state.search.cart.find((item) => item.id === newItem.id);
+
+		if (itemInCart) {
+			itemInCart.quantity += 1;
+		} else {
+			state.search.cart.push({ ...newItem, quantity: 1 });
+		}
+
+		dispatch({
+			type: ADD_TO_CART,
+			payload: state.search.cart,
+		});
+
+		// Guarda el carrito actualizado en el localStorage
+		localStorage.setItem('cart', JSON.stringify(state.search.cart));
+	};
+};
 
 export const delFromCart = (id, all = false) =>
-  all
-    ? { type: REMOVE_ALL_FROM_CART, payload: id }
-    : { type: REMOVE_ONE_FROM_CART, payload: id };
+	all
+		? { type: REMOVE_ALL_FROM_CART, payload: id }
+		: { type: REMOVE_ONE_FROM_CART, payload: id };
 
 export const clearCart = () => ({ type: CLEAR_CART });
+
+export const setCart = (id) => {
+	return {
+		type: 'SET_CART',
+		payload: id
+	};
+};

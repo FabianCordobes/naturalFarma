@@ -6,6 +6,7 @@ import {
 	REMOVE_ONE_FROM_CART,
 	REMOVE_ALL_FROM_CART,
 	CLEAR_CART,
+	SET_CART,
 	ORDER_BY_NAME, ORDER_BY_PRICE, ORDER_BY_STOCK, FILTER_BY_CATEGORY
 } from '../actionTypes';
 
@@ -40,10 +41,17 @@ const searchReducer = (state = initialState, action) => {
 
 		case ADD_TO_CART: {
 			let newItem = state.products.find((product) => product.id === action.payload);
-			console.log("nuevo item", newItem)
+			if(!newItem){
+				return {
+					...state,
+					cart: state.cart.map((item) => 
+					item.id === action.payload ? {...item, quantity: item.quantity + 1 } :
+					item)
+				}
+			}
 			let itemInCart = state.cart.find((item) => item.id === newItem.id);
-			console.log("state.cart:", state.cart);
-			console.log("Item:", newItem);
+			//console.log("state.cart:", state.cart);
+			//console.log("Item:", newItem);
 
 			return itemInCart
 				? {
@@ -57,7 +65,10 @@ const searchReducer = (state = initialState, action) => {
 					...state,
 					cart: [...state.cart, { ...newItem, quantity: 1 }],
 				};
+
+				localStorage.setItem('cart', JSON.stringify(state.cart));
 		}
+	
 
 		case REMOVE_ONE_FROM_CART: {
 			let itemToDelete = state.cart.find((item) => item.id === action.payload);
@@ -81,6 +92,12 @@ const searchReducer = (state = initialState, action) => {
 				cart: state.cart.filter((item) => item.id !== action.payload),
 			};
 		}
+
+		case SET_CART:
+      return {
+        ...state,
+        cart: action.payload, // Actualiza el carrito con los datos proporcionados en payload
+      };
 
 		case CLEAR_CART:
 			return {
