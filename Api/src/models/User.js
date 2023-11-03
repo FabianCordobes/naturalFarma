@@ -23,14 +23,23 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    password: {
+      type: DataTypes.STRING, // Agregamos la columna 'password'
+      allowNull: false,
+    },
     createdAt: {
       type: DataTypes.DATE,
-      defaultValue: sequelize.literal('NOW()'), // Hola gente estatira la fecha de creación automáticamente
+      defaultValue: sequelize.literal('NOW()'),
       allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      defaultValue: sequelize.literal('NOW()'), // y esta la fecha de actualización
+      defaultValue: sequelize.literal('NOW()'),
       allowNull: false,
     },
   }, { paranoid: true });

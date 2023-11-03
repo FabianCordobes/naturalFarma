@@ -17,55 +17,35 @@ export async function handleLogout() {
     
 
 export async function handleLogin(data) {
-
-    const request = await axios.post('http://localhost:3001/login/crear', {email: data.user, password: data.password});
-
-    if(request.data.response === 'success') {
-        const secret = "123456";
-        // Crea un payload con los datos del usuario
-        const payload = {
-            user: data.user,
-        };
-
-        // Configura el encabezado del token
-        const header = { alg: 'HS256', typ: 'JWT' };
-
-        // Firma el token
-        const token = KJUR.jws.JWS.sign('HS256', JSON.stringify(header), JSON.stringify(payload), secret);
-        
-        console.log("Token generado con éxito:", token);
-        // Almacena el token en el almacenamiento local (localStorage) para su posterior uso
+    try {
+      const response = await axios.post('http://localhost:3001/login', {
+        email: data.user,
+        password: data.password
+      });
+  
+      if (response.data.response === 'success') {
+        // Almacena el token en el almacenamiento local (localStorage) para mantener la sesión iniciada
+        const token = response.data.token;
         localStorage.setItem('token', token);
-
-        // Redirige al usuario a la página de inicio o a donde desees
+  
+        // Realiza una solicitud GET al servidor protegida con el token
+        const adminResponse = await axios.get('http://localhost:3001/login/admin-panel', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+  
+        console.log("Token generado con éxito:", token);
+        console.log("Datos del panel de administración:", adminResponse.data);
+  
         return true;
-    } else {
+      } else {
         window.alert("Datos incorrectos");
         return false;
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      window.alert("Error al iniciar sesión. Por favor, inténtalo de nuevo.");
+      return false;
     }
-
-    // if(data.user === usuarioParaPrueba.user && data.password === usuarioParaPrueba.password){
-    //     const secret = "123456";
-    //     // Crea un payload con los datos del usuario
-    //     const payload = {
-    //         user: data.user,
-    //     };
-
-    //     // Configura el encabezado del token
-    //     const header = { alg: 'HS256', typ: 'JWT' };
-
-    //     // Firma el token
-    //     const token = KJUR.jws.JWS.sign('HS256', JSON.stringify(header), JSON.stringify(payload), secret);
-        
-    //     console.log("Token generado con éxito:", token);
-    //     // Almacena el token en el almacenamiento local (localStorage) para su posterior uso
-    //     localStorage.setItem('token', token);
-
-    //     // Redirige al usuario a la página de inicio o a donde desees
-    //     return 'success';
-    // }
-    // else {
-    //     window.alert("Datos incorrectos");
-    //     return 'failed'
-    // }
-}
+  }

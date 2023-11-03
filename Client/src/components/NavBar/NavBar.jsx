@@ -30,9 +30,10 @@ export default function NavBar(props) {
 
 	const isAuthenticated = () => {
 		const token = localStorage.getItem('token');
+		console.log(token)
 	
 		if (token && token != null) {
-
+			console.log("entramos papu")
 		  // Reemplaza 'clave_secreta' con tu clave secreta real
 		  const secret = '123456';
 	

@@ -4,7 +4,9 @@ const userRouter = require ("../routes/UserRouter")
 
 const categoryRouter = require ("../routes/CategoryRouter")
 
-const loginRouter = require ("../routes/loginRouter")
+const loginRouter = require ("../routes/LoginRouter")
+
+const admin = require("../routes/adminRoutes")
 
 
 
@@ -14,6 +16,7 @@ router.use("/product", productRouter)
 router.use("/user", userRouter)
 
 router.use("/category", categoryRouter)
+router.use("/admin", admin)
 
 router.use("/login", loginRouter)
 
