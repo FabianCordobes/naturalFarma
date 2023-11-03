@@ -1,6 +1,6 @@
 const {User} = require ("../db");
 const {createUserController, deleteUserController,
-     getUserDeleteController, getAllUserControllers, restoreUserController,putUserController} = require ("../controllers/UserController")
+     getUserDeleteController, getAllUserControllers, restoreUserController,putUserController,getUserByIdController} = require ("../controllers/UserController")
 
 
 const createUserHandler = async (req , res) => {
@@ -96,6 +96,24 @@ const deleteUserHandler = async (req , res) => {
         res.status(400).json({ error: error.message });
     }
     }
+    
+const getUserIDHandler = async ( req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        if ( id ) {
+            const USerId = await getUserByIdController( id );
+            if ( !USerId.length ) throw Error(`El usuario ${id} no existe.`);
+            else return res.status(200).json(USerId);
+        }
+    } catch (error) {
+        res.status(500).json({error:error.message});
+    }
+
+}
+
+    
 module.exports = {
     createUserHandler,
     deleteUserHandler,
@@ -103,4 +121,5 @@ module.exports = {
     getAllUserHandler,
     restoreUserHandler,
     putUserHandler,
+    getUserIDHandler,
 }
