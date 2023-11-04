@@ -23,6 +23,8 @@ const createProductController = async (
         console.log(newProduct);
 
         const findCategory = await Category.findAll({where: {description: category}})
+
+        console.log("esta es la categoria"+findCategory);
     
         await newProduct.addCategories(findCategory);
     

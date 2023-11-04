@@ -1,4 +1,5 @@
 const {createProductController, getProductsByName, getAllProducts, deleteProducts, getProductById, putProducts} = require ("../controllers/ProductController")
+const { Category } = require("../db");
 
 const createProductHandler = async (req , res) => {
     try {
@@ -27,25 +28,24 @@ const createProductHandler = async (req , res) => {
 
 
 const getProductsHandler = async (req, res) => {
+    const { brand } = req.query;
   
-  const {brand} = req.query;
-
-  try {
-       if (brand) {
-            const productsByName = await getProductsByName(brand);
-            if (!productsByName.length ) {
-                 throw Error(`${brand} no se encuentró.`);
-            }else {
-                return res.status(200).json(productsByName);
-            }
+    try {
+      if (brand) {
+        const productsByName = await getProductsByName(brand);
+        if (!productsByName.length) {
+          throw Error(`${brand} no se encontró.`);
         } else {
-           const allProducts = await getAllProducts();
-           return res.status(200).json(allProducts); 
+          return res.status(200).json(productsByName);
         }
-  } catch (error) {
-        res.status(500).json({error:error.message});
-  }
-};
+      } else {
+        const allProducts = await getAllProducts({ include: Category });  // Incluir la relación con la categoría
+        return res.status(200).json(allProducts);
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
 
 const getProductByIdHandler = async ( req, res) => {
 
