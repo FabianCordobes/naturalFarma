@@ -52,8 +52,15 @@ const getProductsByName = async (brand) => {
 };
     
 const getAllProducts = async () => {
-    const allProductsDb = await Product.findAll();
-    return allProductsDb;
+    //const allProductsDb = await Product.findAll();
+    const produc = await Product.findAll({include: {
+        model: Category,
+        attributes: ["description"],
+        through: {
+          attributes: []
+        }
+      } })
+    return produc;
 };
 
 

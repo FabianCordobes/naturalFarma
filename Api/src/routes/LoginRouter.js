@@ -4,9 +4,6 @@ const verifyToken = require("../verifyToken")
 
 const router = express.Router()
 
-
-
-
 router.post("/", login)
 router.get("/admin-panel", verifyToken, (req, res) =>{
     res.send("Panel Administracion")
