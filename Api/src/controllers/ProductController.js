@@ -19,14 +19,13 @@ const createProductController = async (
             stocks,
             price,
             image, 
-        });          
-        console.log(newProduct);
+        });
 
         const findCategory = await Category.findAll({where: {description: category}})
 
-        console.log("esta es la categoria"+findCategory);
-    
         await newProduct.addCategories(findCategory);
+
+        console.log("esta es la categoria"+findCategory);
     
       const produc = await Product.findAll({include: {
         model: Category,

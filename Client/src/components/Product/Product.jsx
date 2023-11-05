@@ -36,7 +36,7 @@ const Product = ({ product }) => {
 
 	// const maxQuantity = 10;
 	// const quantityOptions = Array.from({ length: maxQuantity }, (_, i) => i + 1);
-	const image = product.image.length > 0 ? product.image : {remedio};
+	const image = product.image != [] || product.image != "" ? product.image : {remedio};
 
 	return (
 			<div className={style.product}>

@@ -7,12 +7,13 @@ import {
 	REMOVE_ALL_FROM_CART,
 	CLEAR_CART,
 	SET_CART,
-	ORDER_BY_NAME, ORDER_BY_PRICE, ORDER_BY_STOCK, FILTER_BY_CATEGORY
+	ORDER_BY_NAME, ORDER_BY_PRICE, ORDER_BY_STOCK, FILTER_BY_CATEGORY, FILTER_BY_PRICE
 } from '../actionTypes';
 
 const initialState = {
 	products: [],
 	productsAux: [],
+	productsPrice:[],
 	error: null,
 	cart: [],
 };
@@ -142,22 +143,91 @@ const searchReducer = (state = initialState, action) => {
 				products: sortedProductsByStock,
 			};
 
+		
+
+		case FILTER_BY_PRICE:
+
+			let priceMin = action.payload.priceMin;
+			let priceMax = action.payload.priceMax;
+			let filteredProductsPrice
+			// Invertir los valores si priceMin es mayor que priceMax
+			if (priceMin > priceMax && priceMax != "" && priceMax) {
+				const temp = priceMin;
+				action.payload.priceMin = priceMax;
+				action.payload.priceMax = temp;
+	}
+			if(action.payload.priceMin === "" && action.payload.priceMax === "")
+			{return {
+				...state,
+				products: state.productsAux,
+				productsPrice: []
+			}}
+			
+			else if(action.payload.priceMin === "" || action.payload.priceMin.length === 0 || !action.payload.priceMin){
+				filteredProductsPrice = state.productsAux.filter((product)=> product.price <=action.payload.priceMax)
+				return {
+					...state,
+					products: filteredProductsPrice,
+					productsPrice: filteredProductsPrice
+				}
+			}
+			else if(action.payload.priceMax === "" || action.payload.priceMax.length === 0 || !action.payload.priceMax){
+				filteredProductsPrice = state.productsAux.filter((product)=> product.price >=action.payload.priceMin)
+				return {
+					...state,
+					products: filteredProductsPrice,
+					productsPrice: filteredProductsPrice
+				}
+			}
+			
+			else{
+				filteredProductsPrice = state.productsAux.filter((product)=> product.price >=action.payload.priceMin && product.price <=action.payload.priceMax)
+				return {
+					...state,
+					products: filteredProductsPrice,
+					productsPrice: filteredProductsPrice
+				}};
+
 		case FILTER_BY_CATEGORY:
-			console.log(action.payload)
-			const filteredProducts = state.productsAux.filter(product => product.category === action.payload)
-			console.log("que pedo wey:" + JSON.stringify(filteredProducts))
-			if (action.payload != "all" && filteredProducts) {
-				return {
-					...state,
-					products: filteredProducts
+			
+			if(state.productsPrice.length != 0){
+				const filteredProducts = state.productsPrice.filter(product =>
+					product.Categories.some(category => category.description === action.payload)
+				  );
+				  console.log("que pedo wey:" + JSON.stringify(filteredProducts))
+				if (action.payload != "all" && filteredProducts) {
+					return {
+						...state,
+						products: filteredProducts
+					}
+				}
+				else if (action.payload === "all") {
+					return {
+						...state,
+						products: state.productsPrice
+					}
 				}
 			}
-			else if (action.payload === "all") {
-				return {
-					...state,
-					products: state.productsAux
-				}
-			}
+			else{
+					console.log(action.payload)
+					const filteredProducts = state.productsAux.filter(product =>
+						product.Categories.some(category => category.description === action.payload)
+					);
+					console.log("que pedo wey:" + JSON.stringify(filteredProducts))
+					if (action.payload != "all" && filteredProducts) {
+						return {
+							...state,
+							products: filteredProducts
+						}
+					}
+					else if (action.payload === "all") {
+						return {
+							...state,
+							products: state.productsAux
+						}
+					}}
+			
+
 		default:
 			return state;
 	}

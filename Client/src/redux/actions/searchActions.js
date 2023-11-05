@@ -6,6 +6,7 @@ import {
 	ORDER_BY_PRICE,
 	ORDER_BY_STOCK,
 	FILTER_BY_CATEGORY,
+	FILTER_BY_PRICE,
 	PRODUCTS_EDIT_SUCCESS,
 	PRODUCTS_EDIT_FAILURE,
 	CLEAR_PRODUCTS,
@@ -41,7 +42,6 @@ export const searchProducts = (brand) => {
 
 			if (response.status === 200) {
 				dispatch(searchProductSuccess(response.data));
-				console.log('Todo salio joya');
 			} else {
 				dispatch(searchProductFailure('No se pudieron encontrar resultados'));
 			}
@@ -133,6 +133,13 @@ export const filterByCategory = (category) => {
 	return {
 		type: FILTER_BY_CATEGORY,
 		payload: category,
+	};
+};
+
+export const filterByPrice = (priceMin, priceMax) => {
+	return {
+		type: FILTER_BY_PRICE,
+		payload: {priceMin, priceMax}
 	};
 };
 

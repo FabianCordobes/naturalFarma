@@ -43,7 +43,7 @@ export default function StockForm() {
 
 	const changeHandler = (event) => {
 		
-		console.log("este es el :"+event.target.name);
+		console.log("este es el :"+event.target.value);
 		
 		if (event.target.name === "description") {
 		  // Manejar cambios en la propiedad 'description' de 'category'
@@ -77,7 +77,7 @@ export default function StockForm() {
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		console.log(form);
+		console.log("este es el form:"+JSON.stringify(form));
 		// console.log(category);
 		addProducts(form);
 		
