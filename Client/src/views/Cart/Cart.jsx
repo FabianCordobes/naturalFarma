@@ -1,12 +1,40 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, delFromCart, setCart } from '../../redux/actions/searchActions';
 import style from './Cart.module.css';
-import React, { useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
+import axios from 'axios';
+
 
 const Cart = () => {
+
   // Obtengo los productos y la cantidad del estado
   const items = useSelector((state) => state.search.cart);
   const dispatch = useDispatch();
+
+  const [preferenceId, setpreferenceId] = useState(null)
+  initMercadoPago("TEST-4443090684227901-110316-34c0605bc0b2477e1bcdcc56b42939ff-223028779");
+
+  const createPreference = async () => {
+    try {
+      const response = await axios.post("http://localhost:3001/order", //peticion post, envia algo al back (al servidor, localhost)
+        items[0]
+      );
+
+      const {id} = response.data; //recibe un id, que viene de response.data(del servidor)
+      return id;                  //retorna ese id para utilizarlo dsp
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleBuy = async () => {      //funcion asincrona al hacer click en comprar
+    const id = await createPreference(); //recibe lo de createPreference q seria un id en definitiva
+    if (id) {
+      setpreferenceId(id)
+    }
+  }
+
 
   // Agregamos una variable para llevar un seguimiento del precio total
   let finalPrice = 0;
@@ -60,7 +88,8 @@ useEffect(() => {
       </div>
 
       <div>
-        <button>FINALIZAR COMPRA</button>
+        <button onClick={handleBuy}>FINALIZAR COMPRA</button>
+        {preferenceId && <Wallet initializacion = {preferenceId} />}
       </div>
 
     </div>
