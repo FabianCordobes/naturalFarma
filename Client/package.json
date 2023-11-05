@@ -13,13 +13,9 @@
     "@auth0/auth0-react": "^2.2.3",
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.12.0",
-<<<<<<< HEAD
-    "@mercadopago/sdk-react": "^0.0.15",
-=======
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
->>>>>>> 75caa8c13b919696d4069fc5be4676dd5fdeaeda
     "axios": "^1.6.0",
     "cloudinary": "^1.41.0",
     "init": "^0.1.2",
