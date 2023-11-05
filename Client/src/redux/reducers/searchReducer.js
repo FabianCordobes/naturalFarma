@@ -14,6 +14,7 @@ const initialState = {
 	products: [],
 	productsAux: [],
 	productsPrice:[],
+	productsCategory:[],
 	error: null,
 	cart: [],
 };
@@ -151,7 +152,12 @@ const searchReducer = (state = initialState, action) => {
 			let priceMax = action.payload.priceMax;
 			let filteredProductsPrice
 			// Invertir los valores si priceMin es mayor que priceMax
-			if (priceMin > priceMax && priceMax != "" && priceMax) {
+
+			if(state.productsCategory.length != 0)
+
+			{console.log("probando"+state.productsCategory)
+				
+				if (priceMin > priceMax && priceMax != "" && priceMax) {
 				const temp = priceMin;
 				action.payload.priceMin = priceMax;
 				action.payload.priceMax = temp;
@@ -159,12 +165,12 @@ const searchReducer = (state = initialState, action) => {
 			if(action.payload.priceMin === "" && action.payload.priceMax === "")
 			{return {
 				...state,
-				products: state.productsAux,
+				products: state.productsCategory,
 				productsPrice: []
 			}}
 			
 			else if(action.payload.priceMin === "" || action.payload.priceMin.length === 0 || !action.payload.priceMin){
-				filteredProductsPrice = state.productsAux.filter((product)=> product.price <=action.payload.priceMax)
+				filteredProductsPrice = state.productsCategory.filter((product)=> product.price <=action.payload.priceMax)
 				return {
 					...state,
 					products: filteredProductsPrice,
@@ -172,7 +178,7 @@ const searchReducer = (state = initialState, action) => {
 				}
 			}
 			else if(action.payload.priceMax === "" || action.payload.priceMax.length === 0 || !action.payload.priceMax){
-				filteredProductsPrice = state.productsAux.filter((product)=> product.price >=action.payload.priceMin)
+				filteredProductsPrice = state.productsCategory.filter((product)=> product.price >=action.payload.priceMin)
 				return {
 					...state,
 					products: filteredProductsPrice,
@@ -181,12 +187,51 @@ const searchReducer = (state = initialState, action) => {
 			}
 			
 			else{
-				filteredProductsPrice = state.productsAux.filter((product)=> product.price >=action.payload.priceMin && product.price <=action.payload.priceMax)
+				filteredProductsPrice = state.productsCategory.filter((product)=> product.price >=action.payload.priceMin && product.price <=action.payload.priceMax)
 				return {
 					...state,
 					products: filteredProductsPrice,
 					productsPrice: filteredProductsPrice
-				}};
+				}};}
+
+			else{
+				if (priceMin > priceMax && priceMax != "" && priceMax) {
+					const temp = priceMin;
+					action.payload.priceMin = priceMax;
+					action.payload.priceMax = temp;
+		}
+				if(action.payload.priceMin === "" && action.payload.priceMax === "")
+				{return {
+					...state,
+					products: state.productsAux,
+					productsPrice: []
+				}}
+				
+				else if(action.payload.priceMin === "" || action.payload.priceMin.length === 0 || !action.payload.priceMin){
+					filteredProductsPrice = state.productsAux.filter((product)=> product.price <=action.payload.priceMax)
+					return {
+						...state,
+						products: filteredProductsPrice,
+						productsPrice: filteredProductsPrice
+					}
+				}
+				else if(action.payload.priceMax === "" || action.payload.priceMax.length === 0 || !action.payload.priceMax){
+					filteredProductsPrice = state.productsAux.filter((product)=> product.price >=action.payload.priceMin)
+					return {
+						...state,
+						products: filteredProductsPrice,
+						productsPrice: filteredProductsPrice
+					}
+				}
+				
+				else{
+					filteredProductsPrice = state.productsAux.filter((product)=> product.price >=action.payload.priceMin && product.price <=action.payload.priceMax)
+					return {
+						...state,
+						products: filteredProductsPrice,
+						productsPrice: filteredProductsPrice
+					}};
+			}
 
 		case FILTER_BY_CATEGORY:
 			
@@ -217,13 +262,15 @@ const searchReducer = (state = initialState, action) => {
 					if (action.payload != "all" && filteredProducts) {
 						return {
 							...state,
-							products: filteredProducts
+							products: filteredProducts,
+							productsCategory: filteredProducts
 						}
 					}
 					else if (action.payload === "all") {
 						return {
 							...state,
-							products: state.productsAux
+							products: state.productsAux,
+							productsCategory: []
 						}
 					}}
 			
