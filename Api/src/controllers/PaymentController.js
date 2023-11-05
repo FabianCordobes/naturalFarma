@@ -12,8 +12,8 @@ const createOrder = async ( id, brand, quantity, price )=>{
         body: {
           items: [
             {
-              title: "Allegra",
-              unit_price: 4,
+              title: brand,
+              unit_price: price,
               quantity: quantity,
               currency_id: "ARG",
             },
