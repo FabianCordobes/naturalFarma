@@ -19,12 +19,13 @@ const createProductController = async (
             stocks,
             price,
             image, 
-        });          
-        console.log(newProduct);
+        });
 
         const findCategory = await Category.findAll({where: {description: category}})
-    
+
         await newProduct.addCategories(findCategory);
+
+        console.log("esta es la categoria"+findCategory);
     
       const produc = await Product.findAll({include: {
         model: Category,
@@ -52,8 +53,15 @@ const getProductsByName = async (brand) => {
 };
     
 const getAllProducts = async () => {
-    const allProductsDb = await Product.findAll();
-    return allProductsDb;
+    //const allProductsDb = await Product.findAll();
+    const produc = await Product.findAll({include: {
+        model: Category,
+        attributes: ["description"],
+        through: {
+          attributes: []
+        }
+      } })
+    return produc;
 };
 
 

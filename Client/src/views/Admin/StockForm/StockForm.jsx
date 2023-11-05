@@ -43,7 +43,7 @@ export default function StockForm() {
 
 	const changeHandler = (event) => {
 		
-		
+		console.log("este es el :"+event.target.value);
 		
 		if (event.target.name === "description") {
 		  // Manejar cambios en la propiedad 'description' de 'category'
@@ -77,7 +77,7 @@ export default function StockForm() {
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		console.log(form);
+		console.log("este es el form:"+JSON.stringify(form));
 		// console.log(category);
 		addProducts(form);
 		
@@ -92,9 +92,9 @@ export default function StockForm() {
 			<div>
 				<form className={style.form}>
 					<label>Seleccionar Categoria</label>
-					<select className={style.input}  >
+					<select className={style.input} onChange={changeHandler} value={form.category} name="category">
 						{categories.map((option) => (
-							<option key={option.id} value={option.description}>
+							<option>
 								{option.description}
 							</option>
 						))}
@@ -108,7 +108,7 @@ export default function StockForm() {
 					<label>Eliminar Categoria</label>
 					<select className={style.input}>
 						{categories.map((option) => (
-							<option key={option.id} value={option.description}>
+							<option key={option.id} value={option.description} onChange={changeHandler}>
 								{option.description}
 							</option>
 						))}

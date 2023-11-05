@@ -8,11 +8,12 @@ import KJUR from 'jsrsasign';
 import React, { useState, useEffect } from 'react';
 import Logo from '../../assets/OIG.jpeg';
 import {handleLogout } from '../../components/UserAuthentications/UserAuthentications';
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function NavBar(props) {
 	const { searchByName } = props;
 	const navigate = useNavigate();
-
+	const { logout } = useAuth0();
 	useEffect(() => {
 		isAuthenticated(); // Llama a la función para verificar la autenticación
 	}, []);
@@ -65,7 +66,7 @@ export default function NavBar(props) {
 		handleLogout()
 		setShowUserMenu(false);
 	  };
-
+      
 	return (
 		<nav className={style.navBar}>
 			<div className={style.leftSide}>
@@ -125,8 +126,7 @@ export default function NavBar(props) {
 							<>
 								<button className={style.item} onClick={toLogin}>Iniciar sesión</button>
 								<button className={style.item} onClick={toRegister}>Registrarse</button>
-							</>
-						)}
+								<button className={style.item} onClick={() => { const redirectTo = "http://localhost:5173/login"; logout({ returnTo: redirectTo });}}>Cerrar Sesión</button></>)}
 					</ul>
 				</div>
 			)}
