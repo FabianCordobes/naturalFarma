@@ -15,7 +15,7 @@ const Cart = () => {
   const [preferenceId, setpreferenceId] = useState(null)
   initMercadoPago("TEST-4443090684227901-110316-34c0605bc0b2477e1bcdcc56b42939ff-223028779");
 
-  const createPreference = async () => {
+const createPreference = async () => {
     try {
       const response = await axios.post("http://localhost:3001/order", //peticion post, envia algo al back (al servidor, localhost)
         items[0]
@@ -27,6 +27,15 @@ const Cart = () => {
       console.log(error);
     }
   }
+
+  /*const createPreference = () => {
+    axios
+    .post("http://localhost:3001/order", {...Cart, items})
+    .then((response) => {
+      windows.location.href = response.data.init_point
+    })
+    .catch(error => console.log(error)) 
+  }*/
 
   const handleBuy = async () => {      //funcion asincrona al hacer click en comprar
     const id = await createPreference(); //recibe lo de createPreference q seria un id en definitiva
