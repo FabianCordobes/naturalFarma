@@ -36,3 +36,16 @@ export const categoryOptions = async () => {
 	  throw error;
 	}
   };
+
+  export const deleteCategory = async (id) => {
+	console.log("es el id:"+JSON.stringify(id))
+	try {
+	  const response = await axios.delete(`http://localhost:3001/category/${id.id}`, {
+		id: id.id,
+	  });
+	  return response.data;
+	} catch (error) {
+	  console.error('Error al crear la categoría:', error);
+	  throw error;
+	}
+  };

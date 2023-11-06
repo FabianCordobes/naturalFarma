@@ -12,23 +12,8 @@ const Footer = () => {
 				/>
 			</div>
 
-			<div className={style.container}>
-				<h3>MI CUENTA</h3>
-				<div>
-					<p>
-						Historial
-					</p>
-					<p>
-						Favoritos
-					</p>
-					<p>
-						Cerrar Sesión
-					</p>
-				</div>
-			</div>
-
 			<div className={`${style.container} ${style.margin}`}>
-				<h3>CATEGORIAS</h3>
+				<h3>SECCIONES</h3>
 				<div>
 					<Link 
 						to="/medicinal" 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./Login.module.css";
 import {handleLogin}    from "../../components/UserAuthentications/UserAuthentications";
-import { useAuth0 } from "@auth0/auth0-react";
+
 
 export default function Login() {
 	const { loginWithRedirect} = useAuth0();
