@@ -1,6 +1,6 @@
 const initialState = {
-    user: null, // Inicializa el usuario como nulo
-    error: null, // Inicializa el error como nulo
+    user: null, 
+    error: null, 
   };
   
   const userReducer = (state = initialState, action) => {
