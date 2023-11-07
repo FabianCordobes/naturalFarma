@@ -14,6 +14,7 @@ import Perfumery from './views/Categories/Perfumery/Perfumery';
 import Accessories from './views/Categories/Accessories/Accessories';
 import Esthetic from './views/Categories/Esthetic/Esthetic';
 import About from './views/About/About';
+import CreateAdmin from './views/Admin/CreateAdmin/CreateAdmin';
 
 function App() {
 	const location = useLocation();
@@ -28,8 +29,8 @@ function App() {
 					element={<Home />}
 					/>
 				<Route 
-				path="/product/:id" 
-				element={<Detail/>} 
+					path="/product/:id" 
+					element={<Detail/>} 
 					/>
 				<Route
 					path="/"
@@ -74,6 +75,10 @@ function App() {
 				<Route
 					path='/about'
 					element={<About />}
+					/>
+				<Route
+					path='/admin'
+					element={<CreateAdmin/>}
 					/>
 			</Routes>
 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
