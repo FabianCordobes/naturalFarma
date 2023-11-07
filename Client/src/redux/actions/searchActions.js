@@ -14,6 +14,9 @@ import {
 	REMOVE_ALL_FROM_CART,
 	REMOVE_ONE_FROM_CART,
 	CLEAR_CART,
+	ADD_TO_FAVORITES,
+	REMOVE_TO_FAVORITES,
+	SET_FAVORITES,
 } from '../actionTypes';
 import axios from 'axios';
 
@@ -139,11 +142,9 @@ export const filterByCategory = (category) => {
 export const filterByPrice = (priceMin, priceMax) => {
 	return {
 		type: FILTER_BY_PRICE,
-		payload: {priceMin, priceMax}
+		payload: { priceMin, priceMax },
 	};
 };
-
-
 
 // CARRITO
 //export const addToCart = (id) => ({ type: ADD_TO_CART, payload: id });
@@ -179,6 +180,37 @@ export const clearCart = () => ({ type: CLEAR_CART });
 export const setCart = (id) => {
 	return {
 		type: 'SET_CART',
-		payload: id
+		payload: id,
+	};
+};
+
+export const addToFavorites = (id) => {
+	return (dispatch, getState) => {
+		const state = getState(); // Corregido: declara la variable 'state'
+		const newItem = state.search.products.find((product) => product.id === id);
+		dispatch({
+			type: ADD_TO_FAVORITES,
+			payload: newItem,
+		});
+		// Guardar la lista de favoritos en el localStorage
+		localStorage.setItem('favorites', JSON.stringify(state.search.favorites));
+	};
+};
+
+export const removeToFavorites = (id) => {
+	return (dispatch) => {
+		dispatch({
+			type: REMOVE_TO_FAVORITES,
+			payload: id,
+		});
+	};
+};
+
+export const setFavorites = (favorites) => {
+	return (dispatch) => {
+		dispatch({
+			type: SET_FAVORITES,
+			payload: favorites,
+		});
 	};
 };
