@@ -87,7 +87,7 @@ function App() {
 					path="/about"
 					element={<About />}
 				/>
-					/>
+					
 				<Route
 					path='/admin'
 					element={<CreateAdmin/>}
