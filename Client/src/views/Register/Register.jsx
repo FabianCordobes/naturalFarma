@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../redux/actions/userActions';
 import './Register.css';
+import { isNameValid, isEmailValid, isPasswordValid } from '../../utils/registerValidations';
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -24,23 +25,14 @@ export default function Register() {
     setErrors({ ...errors, [name]: '' });
   };
 
-  const isEmailValid = (email) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  };
-
-  const isPasswordValid = (password) => {
-    const passwordRegex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#\$%\^&*])(?=.{5,20})/;
-    return passwordRegex.test(password);
-  };
-
   const validateForm = () => {
     const newErrors = {};
 
-    if (formData.name.length < 3 || formData.name.length > 15 || !/^[a-zA-Z]+$/.test(formData.name)) {
+    if (!isNameValid(formData.name)) {
       newErrors.name = 'El nombre debe contener solo letras y tener entre 3 y 15 caracteres.';
     }
-    if (formData.lastName.length < 3 || formData.lastName.length > 15 || !/^[a-zA-Z]+$/.test(formData.lastName)) {
+
+    if (!isNameValid(formData.lastName)) {
       newErrors.lastName = 'El apellido debe contener solo letras y tener entre 3 y 15 caracteres.';
     }
 
@@ -69,7 +61,7 @@ export default function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     validateForm();
-  
+
     if (Object.keys(errors).length === 0) {
       const userData = {
         name: formData.name,
@@ -79,7 +71,7 @@ export default function Register() {
         email: formData.email,
         password: formData.password,
       };
-  
+
       dispatch(registerUser(userData));
     }
   };

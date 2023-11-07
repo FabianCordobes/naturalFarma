@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true, // Asegura que cada email sea único
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
@@ -36,6 +36,13 @@ module.exports = (sequelize) => {
     isAdmin: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      validate: {
+        onlyTrueValue(value) {
+          if (value !== true) {
+            throw new Error('isAdmin debe ser true');
+          }
+        },
+      },
     }
   }, { timestamps: false });
 }

@@ -18,6 +18,7 @@ import Favorites from './views/Favorites/Favorites';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { setFavorites } from './redux/actions/searchActions';
+import CreateAdmin from './views/Admin/CreateAdmin/CreateAdmin';
 
 function App() {
 	const location = useLocation();
@@ -33,11 +34,11 @@ function App() {
 				<Route
 					path="/"
 					element={<Home />}
-				/>
-				<Route
-					path="/product/:id"
-					element={<Detail />}
-				/>
+					/>
+				<Route 
+					path="/product/:id" 
+					element={<Detail/>} 
+					/>
 				<Route
 					path="/"
 					element={<NavBar />}
@@ -86,6 +87,11 @@ function App() {
 					path="/about"
 					element={<About />}
 				/>
+					/>
+				<Route
+					path='/admin'
+					element={<CreateAdmin/>}
+					/>
 			</Routes>
 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
 		</div>
