@@ -1,24 +1,38 @@
 const { Admin } = require(".././db");
+const { Op, where } = require('sequelize');
 
-async function crearAdmin(req, res) {
-  try {
-    const { email, password, name, lastName, birthdate, nationality, review } = req.body;
 
-    // Crea un administrador en la base de datos
-    const admin = await Admin.create({
-      email,
-      password,
-      name,
-      lastName,
-      birthdate,
-      nationality,
-      isAdmin: true
-    });
-    res.json({ response: 'success' });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Error al crear administrador " + error);
-  }
+const createAdminController = async (
+            email,
+            password,
+            name,
+            lastName,
+            birthdate,
+            nationality,
+            isAdmin,
+)=>{
+const newAdmin = await Admin.create({
+            email,
+            password,
+            name,
+            lastName,
+            birthdate,
+            nationality,
+            isAdmin,
+});     
+  return newAdmin
 }
 
-module.exports = { crearAdmin };
+const deleteAdminController = async(id) => await Admin.destroy({where: {id}});
+
+
+const getAllAdminControllers = async () => {
+  const allAdminDb = await Admin.findAll();
+  return allAdminDb;
+};
+
+module.exports = { 
+  createAdminController,
+  deleteAdminController,
+  getAllAdminControllers,
+ }

@@ -1,8 +1,15 @@
 const express = require('express');
-const {crearAdmin} = require('../controllers/adminController');
+const {createAdminHandler,deleteAdminHandler, getAllAdminHandler} = require('../handlers/adminHandler');
 
 const router = express.Router();
 
-router.post('/crear', crearAdmin);
+// Esta ruta creo Admin
+router.post('/', createAdminHandler);
+
+// Trae todos los Admin
+router.get('/', getAllAdminHandler);
+
+// Esta ruta elimina Admin por ID 
+router.delete('/:id', deleteAdminHandler);
 
 module.exports = router;
