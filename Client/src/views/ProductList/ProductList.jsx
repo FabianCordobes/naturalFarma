@@ -5,7 +5,7 @@ import SortComponent from '../../components/Sorts/SortComponent';
 import { useEffect, useState } from 'react';
 import Pagination from '../../components/Pagination/Pagination';
 import { Link } from 'react-router-dom';
-import { clearProducts, searchProducts } from '../../redux/actions/searchActions';
+import { clearProducts, searchProducts, setFavorites } from '../../redux/actions/searchActions';
 
 const ProductList = () => {
 	const allProducts = useSelector((state) => state.search.products); // Accede a la lista de perros desde el estado global de Redux.
@@ -35,6 +35,16 @@ const ProductList = () => {
 		return () => {
 			dispatch(clearProducts());
 		};
+	}, []);
+
+
+		useEffect(() => {
+		const storedFavorites = localStorage.getItem('favorites');
+		if (storedFavorites) {
+			const parsedFavorites = JSON.parse(storedFavorites);
+			// Actualiza el estado de Redux con los favoritos almacenados
+			dispatch(setFavorites(parsedFavorites));
+		}
 	}, []);
 
 	return (
