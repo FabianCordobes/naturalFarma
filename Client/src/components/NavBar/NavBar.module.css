@@ -1,10 +1,11 @@
 .navBar {
 	display: flex;
 	flex-direction: row;
-	height: 20%;
+	flex-wrap: wrap;
+	min-height: 20vh;
 	align-items: center;
 	justify-content: space-between;
-	width: 97vw;
+	width: 95vw;
 	padding: 0px 5px 5px 5px;
 }
 
@@ -241,4 +242,10 @@ a::visited {
 
 .item {
 	font-size: 16px;
+}
+
+.about {
+	font-size: 25px;
+	color: var(--color-verde3);
+	margin-right: 2rem;
 }

@@ -24,6 +24,7 @@ const ImageUploader = ({ handleImageUpload }) => {
 
       handleImageUpload(imageUrl); 
       console.log(imageUrl);
+      
     } catch (error) {
       // Maneja errores de la solicitud
       console.log(error.message);

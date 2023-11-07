@@ -1,44 +1,51 @@
 import axios  from "axios";
 import KJUR from 'jsrsasign';
 
-// export async function handleLogout(data) {
-//     response = await axios.get("http://localhost:8080/logout");
-//     data = response.data
-//     return data
-// }
-
-const usuarioParaPrueba = {
-    user: '123',
-    password: '123456'
+export async function handleLogout() {
+    // Borra el token del localStorage
+    localStorage.removeItem('token');
+    window.alert("Sesión cerrada con éxito");
 }
+
+// const usuarioParaPrueba = {
+//     user: '123',
+//     password: '123456'
+// }
 
 
 
     
 
-export function handleLogin(data) {
-    if(data.user === usuarioParaPrueba.user && data.password === usuarioParaPrueba.password){
-        const secret = "123456";
-        // Crea un payload con los datos del usuario
-        const payload = {
-            user: data.user,
-        };
-
-        // Configura el encabezado del token
-        const header = { alg: 'HS256', typ: 'JWT' };
-
-        // Firma el token
-        const token = KJUR.jws.JWS.sign('HS256', JSON.stringify(header), JSON.stringify(payload), secret);
-        
-        console.log("Token generado con éxito:", token);
-        // Almacena el token en el almacenamiento local (localStorage) para su posterior uso
+export async function handleLogin(data) {
+    try {
+      const response = await axios.post('http://localhost:3001/login', {
+        email: data.user,
+        password: data.password
+      });
+  
+      if (response.data.response === 'success') {
+        // Almacena el token en el almacenamiento local (localStorage) para mantener la sesión iniciada
+        const token = response.data.token;
         localStorage.setItem('token', token);
-
-        // Redirige al usuario a la página de inicio o a donde desees
+  
+        // Realiza una solicitud GET al servidor protegida con el token
+        const adminResponse = await axios.get('http://localhost:3001/login/admin-panel', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+  
+        console.log("Token generado con éxito:", token);
+        console.log("Datos del panel de administración:", adminResponse.data);
+  
         return true;
-    }
-    else {
+      } else {
         window.alert("Datos incorrectos");
-        return false
+        return false;
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      window.alert("Error al iniciar sesión. Por favor, inténtalo de nuevo.");
+      return false;
     }
-}
+  }

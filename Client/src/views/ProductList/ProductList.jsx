@@ -5,10 +5,11 @@ import SortComponent from '../../components/Sorts/SortComponent';
 import { useEffect, useState } from 'react';
 import Pagination from '../../components/Pagination/Pagination';
 import { Link } from 'react-router-dom';
-import { clearProducts, searchProducts } from '../../redux/actions/searchActions';
+import { clearProducts, searchProducts, setFavorites } from '../../redux/actions/searchActions';
 
 const ProductList = () => {
 	const allProducts = useSelector((state) => state.search.products); // Accede a la lista de perros desde el estado global de Redux.
+	const searchQuery = useSelector((state) => state.search.searchQuery);
 
 	const [currentPage, setCurrentPage] = useState(1); // Define el estado local para la página actual.
 
@@ -28,15 +29,30 @@ const ProductList = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(searchProducts(''));
+		if (allProducts.length === 0) {
+			dispatch(searchProducts(''));
+		}
 		return () => {
 			dispatch(clearProducts());
 		};
 	}, []);
 
+
+		useEffect(() => {
+		const storedFavorites = localStorage.getItem('favorites');
+		if (storedFavorites) {
+			const parsedFavorites = JSON.parse(storedFavorites);
+			// Actualiza el estado de Redux con los favoritos almacenados
+			dispatch(setFavorites(parsedFavorites));
+		}
+	}, []);
+
 	return (
 		<div className={style.productListContainer}>
+			<div className={style.sort}>
 			<SortComponent />
+			</div>
+			<div className={style.content}>
 			<Pagination
 				productsPerPage={productsPerPage}
 				allProducts={allProducts.length}
@@ -56,6 +72,7 @@ const ProductList = () => {
 						);
 					})}
 			</ul>
+			</div>
 		</div>
 	);
 };
