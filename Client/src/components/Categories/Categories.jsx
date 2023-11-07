@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export const addProducts = async (product)=>{
 	try {
-		const response = await axios.post('http://localhost:3001/product', product)
+		const response = await axios.post('/product', product)
 		return response.data;
 	} catch (error) {
 		console.error('Error al agregar el producto:', error);
@@ -16,7 +16,7 @@ export const addProducts = async (product)=>{
 
 export const categoryOptions = async () => {
 	try {
-	  const response = await axios.get('http://localhost:3001/category');
+	  const response = await axios.get('/category');
 	  const data = response.data;
 	  return data;
 	} catch (error) {
@@ -27,7 +27,7 @@ export const categoryOptions = async () => {
 
   export const createCategory = async (category) => {
 	try {
-	  const response = await axios.post('http://localhost:3001/category', {
+	  const response = await axios.post('/category', {
 		description: category.description,
 	  });
 	  return response.data;
@@ -40,7 +40,7 @@ export const categoryOptions = async () => {
   export const deleteCategory = async (id) => {
 	console.log("es el id:"+JSON.stringify(id))
 	try {
-	  const response = await axios.delete(`http://localhost:3001/category/${id.id}`, {
+	  const response = await axios.delete(`/category/${id.id}`, {
 		id: id.id,
 	  });
 	  return response.data;

@@ -37,7 +37,7 @@ export const searchProductFailure = (error) => {
 // action para realizar la busqueda
 
 export const searchProducts = (brand) => {
-	const endpoint = `http://localhost:3001/product?brand=${brand}`;
+	const endpoint = `/product?brand=${brand}`;
 	return async (dispatch) => {
 		try {
 			const response = await axios.get(endpoint);
@@ -58,7 +58,7 @@ export const searchProducts = (brand) => {
 export const deleteProduct = (payload) => {
 	return async function (dispatch) {
 		try {
-			const response = await axios.delete(`http://localHost:3001/product/${payload}`);
+			const response = await axios.delete(`/product/${payload}`);
 			console.log(response);
 			dispatch({
 				type: DELETE_PRODUCT,
@@ -86,7 +86,7 @@ export const editProduct = (productId, updatedProductData) => {
 	return async (dispatch) => {
 		try {
 			const response = await axios.put(
-				`http://localhost:3001/products/${productId}`,
+				`/products/${productId}`,
 				updatedProductData
 			);
 

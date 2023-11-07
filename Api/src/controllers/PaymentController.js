@@ -28,9 +28,9 @@ const createOrder = async (items) => {
 			items: products,
 
 			back_urls: {
-				failure: 'http://localhost:5173/',
+				failure: 'https://natural-farma.onrender.com/',
 				pending: '',
-				success: 'http://localhost:5173/',
+				success: 'https://natural-farma.onrender.com/',
 			},
 			auto_return: 'approved',
 		},

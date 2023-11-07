@@ -16,7 +16,7 @@ const Cart = () => {
 	const createPreference = async () => {
 		try {
 			const response = await axios.post(
-				'http://localhost:3001/order', //peticion post, envia algo al back (al servidor, localhost)
+				'/order', //peticion post, envia algo al back (al servidor, localhost)
 				{items}
 			);
 			// console.log('la response del front:', response);
