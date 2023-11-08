@@ -50,7 +50,7 @@ const Product = ({ product }) => {
 		localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 	};
 
-	const image = product.image != [] || product.image != '' ? product.image : { remedio };
+	const image = product.image 
 
 	return (
 		<div className={style.product}>
