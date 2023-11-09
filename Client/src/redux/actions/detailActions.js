@@ -1,4 +1,4 @@
-import { GET_DETAIL, LOAD_REVIEWS } from "../actionTypes";
+import { CREATE_REVIEW_ERROR, CREATE_REVIEW_SUCCESS, GET_DETAIL, GET_PRODUCT_REVIEWS_ERROR, GET_PRODUCT_REVIEWS_SUCCESS } from "../actionTypes";
 import axios from "axios";
 
 export const getDetail = (id) => {
@@ -23,13 +23,13 @@ export const createReview = (reviewData) => {
 
             // Despachar una acción de éxito, con los datos si la solicitud es exitosa
             dispatch({
-                type: 'CREATE_REVIEW_SUCCESS',
+                type: CREATE_REVIEW_SUCCESS,
                 payload: response.data, 
             });
         } catch (error) {
             // Despachar una acción de error si la solicitud falla
             dispatch({
-                type: 'CREATE_REVIEW_ERROR',
+                type: CREATE_REVIEW_ERROR,
                 payload: error.message,
             });
         }
@@ -44,17 +44,17 @@ export const getProductReviews = (productId) => {
 
             // Despachar una acción con las revisiones obtenidas, con los datos
             dispatch({
-                type: 'GET_PRODUCT_REVIEWS_SUCCESS',
+                type: GET_PRODUCT_REVIEWS_SUCCESS,
                 payload: response.data,
             });
         } catch (error) {
             // Despachar una acción de error si la solicitud falla
             dispatch({
-                type: 'GET_PRODUCT_REVIEWS_ERROR',
+                type: GET_PRODUCT_REVIEWS_ERROR,
                 payload: error.message,
             });
         }
     };
 };
 
-export default getDetail;
+export default getDetail

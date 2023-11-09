@@ -35,8 +35,8 @@ const Reviews = ({ productId }) => { //recibe productId como propiedad
 
     // Llamar a la acción de Redux para crear la revisión
     dispatch(createReview(reviewData));
-    console.log("Reviews después de submit:", productReviews);
     alert("Reseña enviada con éxito");
+
     //limpio los campos de texto y puntuacion dsp de enviar la review
     setReviewText('');
     setRating(0)
@@ -69,12 +69,21 @@ const Reviews = ({ productId }) => { //recibe productId como propiedad
 
         <div>
           <h4>Reseñas anteriores: </h4>
-          {productReviews && productReviews.map((review) => (
-            <div key={review.id}>
-              <p>{review.description}</p>
-              <p>Puntuación: {review.punctuation}</p>
-            </div>
-          ))}
+          {productReviews && productReviews.length > 0 ? (
+            productReviews.map((product) => (
+              <div key={product.id}>
+                <h5>Reseñas para {product.brand}</h5>
+                {product.Reviews.map((review, index) => (
+                  <div key={index}>
+                    <p>Descripción 📝: {review.description}</p>
+                    <p>Puntuación ⭐: {review.punctuation}</p>
+                  </div>
+                ))}
+              </div>
+            ))
+          ) : (
+            <p>No hay reseñas disponibles.</p>
+          )}
         </div>
       </div>
     </div>
