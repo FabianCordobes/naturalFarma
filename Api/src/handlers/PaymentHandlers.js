@@ -22,7 +22,8 @@ const succesfulPurchase = (req, res) => {
 		//comunicarme a la DB buscar al usuario y asociarle el id de pag.
 
 		const payment = getSuccesfulPurchase(payment_id);
-    
+		
+		console.log(payment);
 		res.status(200).send('Compra realizada con exito');
 	} catch (error) {
 		res.status(400).json({ error: error.message });

@@ -18,6 +18,10 @@
 	background-color: rgb(236, 48, 48) !important;
 }
 
+.delButton:hover {
+	background-color: rgb(187, 38, 38) !important;
+
+}
 
 .productLink {
 	color: var(--color-texto);
@@ -26,7 +30,6 @@
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	
 }
 
 .product img {
@@ -70,9 +73,11 @@
 .buttons {
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: center;
 	z-index: 2;
-	gap: 20%;
+	gap: 5%;
+	width: 100%;
+	margin-top: 5px;
 }
 
 .buttons button {
@@ -84,7 +89,7 @@
 	display: flex;
 	/* flex-direction: column; */
 	height: 30%;
-	gap: .5rem;
+	gap: 0.5rem;
 	padding: 1rem 2.5rem;
 	border: none;
 	outline: none;
@@ -148,19 +153,19 @@
 	@media (max-width: 1300px) {
 		font-size: 150%;
 		margin-left: 13rem;
-	  }
+	}
 	@media (max-width: 1200px) {
 		font-size: 150%;
 		margin-left: 10rem;
-	  }
-	
+	}
 }
 .favIcon:hover {
 	color: var(--color-azul);
 }
 
 @media (max-width: 1000px) {
-	.favIcon {font-size: 150%;
+	.favIcon {
+		font-size: 150%;
 		margin-left: 0rem;
 		color: var(--color-verde3);
 		cursor: pointer;
@@ -170,7 +175,7 @@
 		gap: 8%;
 	}
 	.btn {
-		padding:0;
+		padding: 0;
 		width: 80%;
 	}
 
@@ -180,61 +185,56 @@
 		text-align: start;
 		margin-bottom: 10px;
 	}
-	
+
 	.price {
 		font-size: 100%;
 		text-align: start;
 		margin-bottom: 10px;
 	}
-	
+
 	.stock {
 		text-align: start;
 		font-size: 100%;
 		margin-bottom: 20px;
 	}
+}
 
-
-	.editButton {
-
+@media (max-width: 800px) {
+	.favIcon {
+		font-size: 150%; /* Ajusta el tamaño del icono para pantallas más pequeñas */
+		margin-left: 0rem;
+		color: var(--color-verde3);
+		cursor: pointer;
+		margin-top: 0.5rem; /* Ajusta el margen izquierdo para pantallas más pequeñas */
 	}
-		
-	  }
+	.botoncitos {
+		margin-bottom: -80%;
+		width: 100%;
+		height: 150%;
+		font-size: 20%;
+	}
+	.btn {
+		font-size: 70%;
+		padding: 0;
+		width: 80%;
+	}
 
-	  @media (max-width: 800px) {
-		.favIcon {font-size: 150%; /* Ajusta el tamaño del icono para pantallas más pequeñas */
-			margin-left: 0rem;
-			color: var(--color-verde3);
-			cursor: pointer;
-			margin-top: 0.5rem; /* Ajusta el margen izquierdo para pantallas más pequeñas */
-		}
-		.botoncitos{
-			margin-bottom: -80%;
-			width: 100%;
-			height: 150%;
-			font-size: 20%;}
-		.btn {
-			font-size: 70%;
-			padding:0;
-			width: 80%;
-		}
-	
-		.title {
-			font-weight: 700;
-			font-size: 100%;
-			text-align: start;
-			margin-bottom: 10px;
-		}
-		
-		.price {
-			font-size: 100%;
-			text-align: start;
-			margin-bottom: 10px;
-		}
-		
-		.stock {
-			text-align: start;
-			font-size: 100%;
-			margin-bottom: 20px;
-		}
-			
-		  }
+	.title {
+		font-weight: 700;
+		font-size: 100%;
+		text-align: start;
+		margin-bottom: 10px;
+	}
+
+	.price {
+		font-size: 100%;
+		text-align: start;
+		margin-bottom: 10px;
+	}
+
+	.stock {
+		text-align: start;
+		font-size: 100%;
+		margin-bottom: 20px;
+	}
+}

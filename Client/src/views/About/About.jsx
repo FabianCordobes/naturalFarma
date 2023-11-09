@@ -73,7 +73,7 @@ export default function About() {
             name: 'Andrea Ochoaispuru',
             image: Andrea,
             info: 'FullStack Developer',
-            linkedin: 'URL_del_perfil_de_Linkedin_de_Sergio',
+            linkedin: 'https://www.linkedin.com/in/andrea-ochoaispuru-625391228/',
             phone: '+5492364529229',
             github: 'https://github.com/olandrea',
             email: 'andreaochoaispuru@gmail.com',

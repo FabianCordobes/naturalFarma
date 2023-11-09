@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import style from './Product.module.css';
-import remedio from '../../assets/remedio.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	addToCart,
 	addToFavorites,
 	removeToFavorites,
-	setFavorites,
+	showErrorAlert,
+	showSuccessAlert,
 } from '../../redux/actions/searchActions';
 import { deleteProduct } from '../../redux/actions/searchActions';
 import { Link, useLocation } from 'react-router-dom';
@@ -15,27 +15,28 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { FiShoppingCart } from 'react-icons/fi';
 
 const Product = ({ product }) => {
-	const location = useLocation();
 
 	const dispatch = useDispatch();
 	const favorites = useSelector((state) => state.search.favorites);
 	const isFavorite = favorites.some((favProduct) => favProduct.id === product.id);
 
-	const [isEditing, setIsEditing] = useState(false);
+	const cart = useSelector((state) => state.search.cart);
+	const isCartItem = cart.some((item) => item.id === product.id )
+
+	// const [isEditing, setIsEditing] = useState(false);
 
 	const handleErase = () => {
 		// Aquí puedes manejar la lógica para eliminar el producto
 		dispatch(deleteProduct(product.id)); // Puedes pasar el ID del producto a eliminar
 	};
 
-	const handleEdit = () => {
-		// Aquí puedes manejar la lógica para activar el modo de edición
-		setIsEditing(true);
-		setEditedProduct({ brand: product.brand }); // Copia los datos del producto para la edición
-	};
+	// const handleEdit = () => {
+	// 	// Aquí puedes manejar la lógica para activar el modo de edición
+	// 	setIsEditing(true);
+	// 	setEditedProduct({ brand: product.brand }); // Copia los datos del producto para la edición
+	// };
 
 	// Añade el bloque useEffect para cargar los favoritos desde el localStorage al inicio
-
 
 	const toggleFavorite = () => {
 		if (isFavorite) {
@@ -50,8 +51,24 @@ const Product = ({ product }) => {
 		localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 	};
 
-	const image = product.image 
+	const image = product.image;
 
+	const handleAddToCart = () => {
+		try {
+      dispatch(addToCart(product.id));
+      dispatch(showSuccessAlert()); // Muestra el alert de éxito
+
+
+		// Actualiza el localStorage después de cambiar el estado de Redux
+		// const updatedCart = isCartItem
+		// 	? cart.filter((item) => item.id !== product.id)
+		// 	: [...cart, product];
+		// localStorage.setItem('cart', JSON.stringify(updatedCart));
+		
+    } catch (error) {
+      dispatch(showErrorAlert()); // Muestra el alert de error
+    }
+	}
 	return (
 		<div className={style.product}>
 			<div className={style.favIcon}>
@@ -90,7 +107,7 @@ const Product = ({ product }) => {
 
 				<div className={style.btn}>
 					<Link
-						onClick={() => dispatch(addToCart(product.id))}
+						onClick={handleAddToCart}
 						className={style.links}>
 						Agregar{' '}
 					</Link>

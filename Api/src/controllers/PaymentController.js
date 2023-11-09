@@ -14,23 +14,23 @@ const createOrder = async (items) => {
 
 	items.map((item) =>
 		products.push({
-      id: item.id,
+			id: item.id,
 			title: item.brand,
 			unit_price: item.price,
 			quantity: item.quantity,
-      picture_url: item.image,
+			picture_url: item.image,
 			currency_id: 'ARG',
 		})
 	);
-  console.log(products);
+	console.log(products);
 	let preference = {
 		body: {
 			items: products,
 
 			back_urls: {
-				failure: 'https://natural-farma.onrender.com/',
+				failure: 'https://natural-farma.onrender.com/cart',
 				pending: '',
-				success: 'https://natural-farma.onrender.com/',
+				success: 'http://localhost:5173/success',
 			},
 			auto_return: 'approved',
 		},
@@ -43,7 +43,6 @@ const createOrder = async (items) => {
 const getSuccesfulPurchase = async (payment_id) => {
 	//comunicarme a la DB buscar al usuario y asociarle el id de pago
 	await User.addProduct(payment_id);
-	return payment_id;
 };
 
 module.exports = {

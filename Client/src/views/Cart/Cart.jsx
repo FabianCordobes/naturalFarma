@@ -43,12 +43,13 @@ const Cart = () => {
 	// Agregamos una variable para llevar un seguimiento del precio total
 	let finalPrice = 0;
 
-	// Cuando el componente se monta, intenta cargar el carrito desde el localStorage.
+	
+
 	useEffect(() => {
 		const storedCart = localStorage.getItem('cart');
 		if (storedCart) {
 			const parsedCart = JSON.parse(storedCart);
-			// Actualiza el estado del carrito con los datos del localStorage
+			// Actualiza el estado de Redux con los favoritos almacenados
 			dispatch(setCart(parsedCart));
 		}
 	}, []);

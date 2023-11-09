@@ -125,17 +125,12 @@ export default function AccountMenu() {
 					</MenuItem>
 					<MenuItem
 						onClick={() => {
-							// logout({ returnTo: window.origin });
-							handleClose;
+							handleClose, logout({ returnTo: window.origin });
 						}}>
 						<ListItemIcon>
 							<Logout fontSize="small" />
 						</ListItemIcon>
-						<AlertDialog
-							buttonText={'Cerrar sesión'}
-							title={'¿Está seguro que desea eliminar su cuenta?'}
-							description={'Tenga en cuenta que esta acción es irreversible'}
-						/>
+						Cerrar sesión
 					</MenuItem>
 				</Menu>
 			) : (

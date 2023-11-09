@@ -17,6 +17,10 @@ import {
 	ADD_TO_FAVORITES,
 	REMOVE_TO_FAVORITES,
 	SET_FAVORITES,
+	HIDE_SUCCESS_ALERT,
+	SHOW_SUCCESS_ALERT,
+	SHOW_ERROR_ALERT,
+	HIDE_ERROR_ALERT,
 } from '../actionTypes';
 import axios from 'axios';
 
@@ -85,10 +89,7 @@ export const editProductFailure = (error) => ({
 export const editProduct = (productId, updatedProductData) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.put(
-				`/products/${productId}`,
-				updatedProductData
-			);
+			const response = await axios.put(`/products/${productId}`, updatedProductData);
 
 			if (response.status === 200) {
 				const updatedProduct = response.data;
@@ -214,3 +215,23 @@ export const setFavorites = (favorites) => {
 		});
 	};
 };
+
+
+// ALERTAS
+
+// alertActions.js
+export const showSuccessAlert = () => {
+	return { type: SHOW_SUCCESS_ALERT };
+ };
+ 
+ export const hideSuccessAlert = () => {
+	return { type: HIDE_SUCCESS_ALERT };
+ };
+ 
+ export const showErrorAlert = () => ({
+	type: SHOW_ERROR_ALERT,
+ });
+ 
+ export const hideErrorAlert = () => ({
+	type: HIDE_ERROR_ALERT,
+ });
