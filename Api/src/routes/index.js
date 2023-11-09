@@ -8,11 +8,11 @@ const loginRouter = require ("../routes/LoginRouter")
 
 const admin = require("../routes/adminRoutes")
 const paymentRouter = require("../routes/PaymentRoutes")
-
+const AuthToken = require("../middlewares/AuthToken")
 
 
 const router = Router();
-
+// router.use(AuthToken)
 router.use("/product", productRouter)
 router.use("/user", userRouter)
 

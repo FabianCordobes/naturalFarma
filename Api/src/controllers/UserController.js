@@ -9,7 +9,8 @@ const createUserController = async (
             birthdate,
             nationality,
             password,
-            email
+            email,
+            role,
     )=>{
 const newUser = await User.create({
             name,
@@ -17,7 +18,8 @@ const newUser = await User.create({
             birthdate,
             nationality,
             password,
-            email
+            email,
+            role
 });          
 
 return newUser;
@@ -59,7 +61,7 @@ const getUserDeleteController = async (id) => {
 
  const putUserController = async (id,name,lastName,birthdate,nationality,
   password,
-  email) => {
+  email,role) => {
   try {
       const user = await User.findByPk(id);
 
@@ -70,9 +72,9 @@ const getUserDeleteController = async (id) => {
       user.lastName = lastName;
       user.birthdate = birthdate;
       user.nationality = nationality;
-      
-      user.password=password
-      user.email=email
+      user.password=password;
+      user.email=email;
+      user.role=role;
  
       await user.save();
 

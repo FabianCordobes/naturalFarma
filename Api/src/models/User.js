@@ -32,6 +32,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING, // Agregamos la columna 'password'
       allowNull: true,
     },
+    role: {
+      type: DataTypes.STRING,
+       default: 'regular',
+       enum: [
+                'regular',
+                'admin'
+       ]
+    },
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: sequelize.literal('NOW()'),
