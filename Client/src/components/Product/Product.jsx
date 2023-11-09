@@ -103,12 +103,12 @@ const Product = ({ product }) => {
 			<div className={style.buttons}>
 				<button
 					onClick={handleErase}
-					className={style.botoncitos}>
+					className={style.delButton}>
 					Delete
 				</button>
 				<button
 					// onClick={handleEdit}
-					className={style.botoncitos}>
+					className={`${style.botoncitos} ${style.editButton}`}>
 					Edit
 				</button>
 			</div>

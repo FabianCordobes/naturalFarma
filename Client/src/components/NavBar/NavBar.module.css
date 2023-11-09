@@ -17,6 +17,7 @@
 
 .rightSide {
 	display: flex;
+	align-items: center;
 }
 
 .logoContainer {
@@ -199,7 +200,7 @@ a::visited {
 }
 
 .userIcon:hover {
- color: var(--color-azul);
+	color: var(--color-azul);
 }
 
 .navToggle {
@@ -225,8 +226,16 @@ a::visited {
 	height: 30rem;
 	background-color: var(--color-azul-oscuro);
 	top: 6rem;
-	right: 0rem;
+	right: -100%; /* Cambia esto a -100% para ocultar el menú inicialmente */
 	z-index: 99;
+	transition: right 0.6s ease; /* Agrega la propiedad de transición */
+ }
+ 
+.sideMenu.active {
+	right: 0;
+	/* transition: 0.6s ease all; */
+	/* transform: translateX(0); */
+
 }
 
 .itemList {
@@ -249,3 +258,5 @@ a::visited {
 	color: var(--color-verde3);
 	margin-right: 2rem;
 }
+
+/* ------------ */

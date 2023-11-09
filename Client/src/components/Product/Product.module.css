@@ -3,8 +3,7 @@
 	border: 2px solid var(--color-borde);
 	border-radius: 10px;
 	padding: 0px 0px 20px 0px;
-	margin-top: 25px;
-	width: 100%;
+	min-width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -15,6 +14,10 @@
 		0px 0px 3.6px rgba(0, 0, 0, 0.145), 0px 0px 6.5px rgba(0, 0, 0, 0.173),
 		0px 0px 12.1px rgba(0, 0, 0, 0.208), 0px 0px 29px rgba(0, 0, 0, 0.29);
 }
+.delButton {
+	background-color: rgb(236, 48, 48) !important;
+}
+
 
 .productLink {
 	color: var(--color-texto);
@@ -28,7 +31,7 @@
 
 .product img {
 	width: 100%;
-	border-radius: 10px;
+	/* border-radius: 10px; */
 }
 
 .title {
@@ -79,19 +82,19 @@
 
 .btn {
 	display: flex;
-	flex-direction: column;
+	/* flex-direction: column; */
 	height: 30%;
+	gap: .5rem;
 	padding: 1rem 2.5rem;
 	border: none;
 	outline: none;
 	border-radius: 0.4rem;
 	cursor: pointer;
 	text-transform: uppercase;
-	background-color: var(--color-verde3);
+	background-color: var(--color-verde);
 	color: rgb(234, 234, 234);
-	font-weight: 700;
-	transition: 0.6s;
-	box-shadow: 0px 0px 15px 5px #1f4c65;
+	font-weight: 600;
+	transition: 0.6s ease all;
 }
 
 .btn:active {
@@ -101,12 +104,7 @@
 }
 
 .btn:hover {
-	background: rgb(2, 29, 78);
-	background: linear-gradient(
-		270deg,
-		rgba(2, 29, 78, 0.681) 0%,
-		rgba(31, 215, 232, 0.873) 60%
-	);
+	transform: translateY(-10%);
 	color: rgb(4, 4, 38);
 }
 
@@ -116,6 +114,7 @@
 	font-size: 100%;
 	border: none;
 	transition: all 0.6s ease;
+	color: rgb(235, 225, 225);
 }
 
 .btn span {
@@ -141,7 +140,8 @@
 .favIcon {
 	font-size: 200%;
 	position: relative;
-	margin-left: 15rem;
+	margin-left: 14rem;
+	margin-right: 1rem;
 	margin-top: 0.5rem;
 	color: var(--color-verde3);
 	cursor: pointer;
@@ -191,6 +191,11 @@
 		text-align: start;
 		font-size: 100%;
 		margin-bottom: 20px;
+	}
+
+
+	.editButton {
+
 	}
 		
 	  }

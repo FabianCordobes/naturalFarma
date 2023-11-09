@@ -9,7 +9,7 @@ import App from './App.jsx';
 import axios from 'axios';
 
 
-axios.defaults.baseURL = 'https://natural-farma.onrender.com/';
+axios.defaults.baseURL = 'http://localhost:3001';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -17,7 +17,7 @@ root.render(
   <Auth0Provider
     domain="dev-oz8qfoyi7ulqh7ta.us.auth0.com"
     clientId="x9vuuypfoUPiMFv6l2a3ujDqAFMEtdOm"
-	returnTo="https://natural-farma.onrender.com/login"
+	returnTo="https://natural-farma.vercel.app/"
     authorizationParams={{
       redirect_uri: window.location.origin
     }}

@@ -19,13 +19,11 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { setFavorites } from './redux/actions/searchActions';
 import CreateAdmin from './views/Admin/CreateAdmin/CreateAdmin';
+import UserDetail from './views/UserDetail/UserDetail';
 
 function App() {
 	const location = useLocation();
 	const route = location.pathname.slice(1);
-
-
-
 
 	return (
 		<div className={`${style.App} ${style[route]}`}>
@@ -34,11 +32,11 @@ function App() {
 				<Route
 					path="/"
 					element={<Home />}
-					/>
-				<Route 
-					path="/product/:id" 
-					element={<Detail/>} 
-					/>
+				/>
+				<Route
+					path="/product/:id"
+					element={<Detail />}
+				/>
 				<Route
 					path="/"
 					element={<NavBar />}
@@ -87,11 +85,14 @@ function App() {
 					path="/about"
 					element={<About />}
 				/>
-					/>
 				<Route
-					path='/admin'
-					element={<CreateAdmin/>}
-					/>
+					path="/admin"
+					element={<CreateAdmin />}
+				/>
+				<Route
+					path="/userDetail"
+					element={<UserDetail />}
+				/>
 			</Routes>
 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
 		</div>
