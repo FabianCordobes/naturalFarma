@@ -1,26 +1,31 @@
 .container {
 	height: 100%;
-	min-height: 90vh;
 	width: 100%;
 	display: flex;
+	align-items: start;
 	/* background-color: aqua; */
 	font-family: 'Public Sans', sans-serif;
 }
 
-.box{width: 50%;
-display: flex;
-flex-direction: row;
-justify-content: center;}
+.box {
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
 
 .form1 {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	height: 100%;
-	width:50%;
+	width: 60%;
 	margin-bottom: 20px;
-	border: 3px solid black;
-	gap: 10%;
+	/* background-color: #b7e4b3d5; */
+	border: 2px solid #c2c5d1;
+	border-radius: 20px;
+	padding: 20px;
+	gap: 2rem;
 }
 
 .form2 {
@@ -28,28 +33,41 @@ justify-content: center;}
 	flex-direction: column;
 	align-items: center;
 	height: 100%;
-	width:50%;
+	width: 80%;
 	margin-bottom: 20px;
-	border: 3px solid black;
-	gap: 2%;
+	/* border: 3px solid black; */
+	/* background-color: #4bd13fd5; */
+	border: 2px solid #c2c5d1;
+
+	border-radius: 20px;
+	padding: 20px;
+	gap: 1rem;
+}
+
+.form2 label {
+position: relative;
+top: 30px;
+color: #67686b;
+font-weight: 500;
+font-size: 20px;
 }
 
 .form1 div {
- display: flex;
- flex-direction: column;
- align-items: center;
- width: 100%;
- 
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
 }
 
 .input {
 	width: 70%;
-	height: 2rem;
+	height: 40px;
 	border-radius: 8px;
 }
 
-.input:target {
-	border-color: green;
+.input:active {
+	border-color: green !important;
+	/* border:none; */
 }
 
 .img {
@@ -57,27 +75,27 @@ justify-content: center;}
 	max-height: 200px; /* Personaliza el tamaño máximo de la vista previa */
 	margin-top: 10px;
 	display: block;
- }
+}
 
- .errors {
+.errors {
 	color: red;
- }
+}
 
- .continueApplication {
+.continueApplication {
 	--color: #fff;
 	--background: #404660;
-	--background-hover: #3A4059;
-	--background-left: #2B3044;
-	--folder: #F3E9CB;
-	--folder-inner: #BEB393;
-	--paper: #FFFFFF;
-	--paper-lines: #BBC1E1;
-	--paper-behind: #E1E6F9;
+	--background-hover: #3a4059;
+	--background-left: #2b3044;
+	--folder: #f3e9cb;
+	--folder-inner: #beb393;
+	--paper: #ffffff;
+	--paper-lines: #bbc1e1;
+	--paper-behind: #e1e6f9;
 	--pencil-cap: #fff;
-	--pencil-top: #275EFE;
+	--pencil-top: #275efe;
 	--pencil-middle: #fff;
-	--pencil-bottom: #5C86FF;
-	--shadow: rgba(13, 15, 25, .2);
+	--pencil-bottom: #5c86ff;
+	--shadow: rgba(13, 15, 25, 0.2);
 	border: none;
 	outline: none;
 	cursor: pointer;
@@ -92,9 +110,9 @@ justify-content: center;}
 	transition: background 0.3s;
 	color: var(--color);
 	background: var(--bg, var(--background));
-  }
-  
-  .continueApplication > div {
+}
+
+.continueApplication > div {
 	top: 0;
 	left: 0;
 	bottom: 0;
@@ -103,26 +121,26 @@ justify-content: center;}
 	overflow: hidden;
 	border-radius: 5px 0 0 5px;
 	background: var(--background-left);
-  }
-  
-  .continueApplication > div .folder {
+}
+
+.continueApplication > div .folder {
 	width: 23px;
 	height: 27px;
 	position: absolute;
 	left: 15px;
 	top: 13px;
-  }
-  
-  .continueApplication > div .folder .top {
+}
+
+.continueApplication > div .folder .top {
 	left: 0;
 	top: 0;
 	z-index: 2;
 	position: absolute;
 	transform: translateX(var(--fx, 0));
 	transition: transform 0.4s ease var(--fd, 0.3s);
-  }
-  
-  .continueApplication > div .folder .top svg {
+}
+
+.continueApplication > div .folder .top svg {
 	width: 24px;
 	height: 27px;
 	display: block;
@@ -130,11 +148,12 @@ justify-content: center;}
 	transform-origin: 0 50%;
 	transition: transform 0.3s ease var(--fds, 0.45s);
 	transform: perspective(120px) rotateY(var(--fr, 0deg));
-  }
-  
-  .continueApplication > div .folder:before, .continueApplication > div .folder:after,
-  .continueApplication > div .folder .paper {
-	content: "";
+}
+
+.continueApplication > div .folder:before,
+.continueApplication > div .folder:after,
+.continueApplication > div .folder .paper {
+	content: '';
 	position: absolute;
 	left: var(--l, 0);
 	top: var(--t, 0);
@@ -142,35 +161,37 @@ justify-content: center;}
 	height: var(--h, 100%);
 	border-radius: 1px;
 	background: var(--b, var(--folder-inner));
-  }
-  
-  .continueApplication > div .folder:before {
-	box-shadow: 0 1.5px 3px var(--shadow), 0 2.5px 5px var(--shadow), 0 3.5px 7px var(--shadow);
+}
+
+.continueApplication > div .folder:before {
+	box-shadow: 0 1.5px 3px var(--shadow), 0 2.5px 5px var(--shadow),
+		0 3.5px 7px var(--shadow);
 	transform: translateX(var(--fx, 0));
 	transition: transform 0.4s ease var(--fd, 0.3s);
-  }
-  
-  .continueApplication > div .folder:after,
-  .continueApplication > div .folder .paper {
+}
+
+.continueApplication > div .folder:after,
+.continueApplication > div .folder .paper {
 	--l: 1px;
 	--t: 1px;
 	--w: 21px;
 	--h: 25px;
 	--b: var(--paper-behind);
-  }
-  
-  .continueApplication > div .folder:after {
+}
+
+.continueApplication > div .folder:after {
 	transform: translate(var(--pbx, 0), var(--pby, 0));
 	transition: transform 0.4s ease var(--pbd, 0s);
-  }
-  
-  .continueApplication > div .folder .paper {
+}
+
+.continueApplication > div .folder .paper {
 	z-index: 1;
 	--b: var(--paper);
-  }
-  
-  .continueApplication > div .folder .paper:before, .continueApplication > div .folder .paper:after {
-	content: "";
+}
+
+.continueApplication > div .folder .paper:before,
+.continueApplication > div .folder .paper:after {
+	content: '';
 	width: var(--wp, 14px);
 	height: 2px;
 	border-radius: 1px;
@@ -180,14 +201,14 @@ justify-content: center;}
 	position: absolute;
 	background: var(--paper-lines);
 	box-shadow: 0 12px 0 0 var(--paper-lines), 0 24px 0 0 var(--paper-lines);
-  }
-  
-  .continueApplication > div .folder .paper:after {
+}
+
+.continueApplication > div .folder .paper:after {
 	--tp: 6px;
 	--wp: 10px;
-  }
-  
-  .continueApplication > div .pencil {
+}
+
+.continueApplication > div .pencil {
 	height: 2px;
 	width: 3px;
 	border-radius: 1px 1px 0 0;
@@ -199,26 +220,35 @@ justify-content: center;}
 	background: var(--pencil-cap);
 	transform: translateX(var(--pex, 0)) rotate(35deg);
 	transition: transform 0.4s ease var(--pbd, 0s);
-  }
-  
-  .continueApplication > div .pencil:before, .continueApplication > div .pencil:after {
-	content: "";
+}
+
+.continueApplication > div .pencil:before,
+.continueApplication > div .pencil:after {
+	content: '';
 	position: absolute;
 	display: block;
-	background: var(--b, linear-gradient(var(--pencil-top) 55%, var(--pencil-middle) 55.1%, var(--pencil-middle) 60%, var(--pencil-bottom) 60.1%));
+	background: var(
+		--b,
+		linear-gradient(
+			var(--pencil-top) 55%,
+			var(--pencil-middle) 55.1%,
+			var(--pencil-middle) 60%,
+			var(--pencil-bottom) 60.1%
+		)
+	);
 	width: var(--w, 5px);
 	height: var(--h, 20px);
 	border-radius: var(--br, 2px 2px 0 0);
 	top: var(--t, 2px);
 	left: var(--l, -1px);
-  }
-  
-  .continueApplication > div .pencil:before {
+}
+
+.continueApplication > div .pencil:before {
 	-webkit-clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
 	clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
-  }
-  
-  .continueApplication > div .pencil:after {
+}
+
+.continueApplication > div .pencil:after {
 	--b: none;
 	--w: 3px;
 	--h: 6px;
@@ -227,10 +257,11 @@ justify-content: center;}
 	--l: 3px;
 	border-top: 1px solid var(--pencil-top);
 	border-right: 1px solid var(--pencil-top);
-  }
-  
-  .continueApplication:before, .continueApplication:after {
-	content: "";
+}
+
+.continueApplication:before,
+.continueApplication:after {
+	content: '';
 	position: absolute;
 	width: 10px;
 	height: 2px;
@@ -241,30 +272,33 @@ justify-content: center;}
 	top: 26px;
 	right: 16px;
 	transition: transform 0.3s;
-  }
-  
-  .continueApplication:after {
+}
+
+.continueApplication:after {
 	--r: 45deg;
-  }
-  
-  .continueApplication:hover {
+}
+
+.continueApplication:hover {
 	--cx: 2px;
 	--bg: var(--background-hover);
 	--fx: -40px;
 	--fr: -60deg;
-	--fd: .15s;
+	--fd: 0.15s;
 	--fds: 0s;
 	--pbx: 3px;
 	--pby: -3px;
-	--pbd: .15s;
+	--pbd: 0.15s;
 	--pex: -24px;
-  }
+}
 
-.buttonbutton{display: flex;
-justify-content:flex-start;
-width: 100%;}
+.buttonbutton {
+	display: flex;
+	justify-content: flex-start;
+	width: 100%;
+}
 
-  .buttonFacherito {
+
+.buttonFacherito {
 	--font-color: #323232;
 	--bg-color: #fff;
 	--main-color: #323232;
@@ -278,10 +312,9 @@ width: 100%;}
 	font-weight: 600;
 	color: var(--font-color);
 	cursor: pointer;
-  }
-  
-  .buttonFacherito:active {
+}
+
+.buttonFacherito:active {
 	box-shadow: 0px 0px var(--main-color);
 	transform: translate(3px, 3px);
-  }
-  
+}

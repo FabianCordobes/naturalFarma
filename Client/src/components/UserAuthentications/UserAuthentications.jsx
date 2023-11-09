@@ -18,7 +18,7 @@ export async function handleLogout() {
 
 export async function handleLogin(data) {
     try {
-      const response = await axios.post('http://localhost:3001/login', {
+      const response = await axios.post('/login', {
         email: data.user,
         password: data.password
       });
@@ -29,7 +29,7 @@ export async function handleLogin(data) {
         localStorage.setItem('token', token);
   
         // Realiza una solicitud GET al servidor protegida con el token
-        const adminResponse = await axios.get('http://localhost:3001/login/admin-panel', {
+        const adminResponse = await axios.get('/login/admin-panel', {
           headers: {
             'Authorization': `Bearer ${token}`
           }

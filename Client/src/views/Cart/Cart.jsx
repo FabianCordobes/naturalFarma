@@ -16,7 +16,7 @@ const Cart = () => {
 	const createPreference = async () => {
 		try {
 			const response = await axios.post(
-				'http://localhost:3001/order', //peticion post, envia algo al back (al servidor, localhost)
+				'/order', //peticion post, envia algo al back (al servidor, localhost)
 				{items}
 			);
 			// console.log('la response del front:', response);
@@ -43,12 +43,13 @@ const Cart = () => {
 	// Agregamos una variable para llevar un seguimiento del precio total
 	let finalPrice = 0;
 
-	// Cuando el componente se monta, intenta cargar el carrito desde el localStorage.
+	
+
 	useEffect(() => {
 		const storedCart = localStorage.getItem('cart');
 		if (storedCart) {
 			const parsedCart = JSON.parse(storedCart);
-			// Actualiza el estado del carrito con los datos del localStorage
+			// Actualiza el estado de Redux con los favoritos almacenados
 			dispatch(setCart(parsedCart));
 		}
 	}, []);

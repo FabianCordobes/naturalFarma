@@ -4,7 +4,7 @@ import axios from "axios";
 export const getDetail = (id) => {
     return async function(dispatch){
         try{
-            let response = await axios.get(`http://localhost:3001/product/${id}`)
+            let response = await axios.get(`/product/${id}`)
             return dispatch({
                 type: GET_DETAIL,
                 payload: response.data

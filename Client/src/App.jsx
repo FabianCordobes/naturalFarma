@@ -21,13 +21,12 @@ import { setFavorites } from './redux/actions/searchActions';
 import CreateAdmin from './views/Admin/CreateAdmin/CreateAdmin';
 import AdminList from './views/Admin/AdminList/AdminLIst';
 import ClientList from './views/Admin/ClientList/ClientList';
+import UserDetail from './views/UserDetail/UserDetail';
+import Success from './views/Success/Success';
 
 function App() {
 	const location = useLocation();
 	const route = location.pathname.slice(1);
-
-
-
 
 	return (
 		<div className={`${style.App} ${style[route]}`}>
@@ -36,11 +35,11 @@ function App() {
 				<Route
 					path="/"
 					element={<Home />}
-					/>
-				<Route 
-					path="/product/:id" 
-					element={<Detail/>} 
-					/>
+				/>
+				<Route
+					path="/product/:id"
+					element={<Detail />}
+				/>
 				<Route
 					path="/"
 					element={<NavBar />}
@@ -89,19 +88,30 @@ function App() {
 					path="/about"
 					element={<About />}
 				/>
-					
 				<Route
-					path='/admin/create'
-					element={<CreateAdmin/>}
-					/>
+					path="/admin"
+					element={<CreateAdmin />}
+				/>
 				<Route
-					path='/admin/accounts'
-					element={<AdminList/>}
-					/>
+					path="/admin/create"
+					element={<CreateAdmin />}
+				/>
 				<Route
-					path='/admin/clients'
-					element={<ClientList/>}
-					/>
+					path="/admin/accounts"
+					element={<AdminList />}
+				/>
+				<Route
+					path="/admin/clients"
+					element={<ClientList />}
+				/>
+				<Route
+					path="/success"
+					element={<Success />}
+				/>
+				<Route
+					path="/userDetail"
+					element={<UserDetail />}
+				/>
 			</Routes>
 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
 		</div>
