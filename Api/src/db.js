@@ -29,7 +29,7 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Login, Admin, User, Product, History, Category } = sequelize.models;
+const { Login, Admin, User, Product, History, Category, Review } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -46,6 +46,9 @@ Category.belongsToMany(Product, { through: "Product_Category", timestamps: false
 Admin.hasMany(Product);
 Product.belongsTo(Admin);
 
+Product.hasMany(Review);
+Review.belongsTo(Product);
+
 // 1:1
 Admin.hasOne(Login);
 Login.belongsTo(Admin);
@@ -55,6 +58,7 @@ Login.belongsTo(Admin);
 
 User.hasOne(History);
 History.belongsTo(User);
+
 
 module.exports = {
     ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -5,6 +5,7 @@ import getDetail from '../../redux/actions/detailActions';
 import { GET_DETAIL } from '../../redux/actionTypes';
 import style from './Detail.module.css';
 import { FiShoppingCart } from 'react-icons/fi';
+import Reviews from '../../components/Reviews/Reviews';
 
 const Detail = () => {
 	let { id } = useParams();
@@ -74,6 +75,8 @@ const Detail = () => {
 					<p>...Loading</p>
 				</div>
 			)}
+			<br />
+			<Reviews />
 		</div>
 	);
 };
