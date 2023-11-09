@@ -6,32 +6,34 @@ import { FaTruck, FaWhatsapp } from 'react-icons/fa';
 import { BiSolidCreditCardFront } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import Swiper from 'swiper/bundle';
+import { useAuth0 } from '@auth0/auth0-react';
 
 //
 
 const subcategorias = {
-  Medicinales: ['Subcat1', 'Subcat2', 'Subcat3'],
-  Perfumería: ['Subcat4', 'Subcat5', 'Subcat6'],
-  Accesorios: ['Subcat7', 'Subcat8', 'Subcat9'],
-  Estética: ['Subcat10', 'Subcat11', 'Subcat12'],
+	Medicinales: ['Subcat1', 'Subcat2', 'Subcat3'],
+	Perfumería: ['Subcat4', 'Subcat5', 'Subcat6'],
+	Accesorios: ['Subcat7', 'Subcat8', 'Subcat9'],
+	Estética: ['Subcat10', 'Subcat11', 'Subcat12'],
 };
 
 export default function Home() {
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+	const [activeCategory, setActiveCategory] = useState(null);
+	const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleCategoryHover = (category) => {
-    setActiveCategory(category);
-  };
+	const { isAuthenticated } = useAuth0();
+	const handleCategoryHover = (category) => {
+		setActiveCategory(category);
+	};
 
-  const handleCategoryLeave = () => {
-    setActiveCategory(null);
-  };
+	const handleCategoryLeave = () => {
+		setActiveCategory(null);
+	};
 
-  // Obtener el rol del usuario desde el estado o el contexto global
-  const userType = 'admin'; // Reemplaza con la lógica real para obtener el tipo de usuario
+	// Obtener el rol del usuario desde el estado o el contexto global
+	const userType = 'admin'; // Reemplaza con la lógica real para obtener el tipo de usuario
 
-  const isAdministrator = userType === 'admin';
+	const isAdministrator = userType === 'admin';
 
 	/*const categories = [
 		{ name: 'Medicinales', path: '/medicinal' },
@@ -53,47 +55,47 @@ export default function Home() {
 			},
 		});
 	}, []);
-  const categories = [
-    { name: 'Medicinales', path: '/medicinal' },
-    { name: 'Perfumería', path: '/perfumery' },
-    { name: 'Accesorios', path: '/accesories' },
-    { name: 'Estética', path: '/esthetic' },
-	{ name: 'Editar Stock', path: "/stockform" },
-  ];
+	const categories = [
+		{ name: 'Medicinales', path: '/medicinal' },
+		{ name: 'Perfumería', path: '/perfumery' },
+		{ name: 'Accesorios', path: '/accesories' },
+		{ name: 'Estética', path: '/esthetic' },
+	];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex === 0 ? 1 : 0));
-    }, 5000);
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentIndex((prevIndex) => (prevIndex === 0 ? 1 : 0));
+		}, 5000);
 
-    return () => {
-      clearInterval(interval); 
-    };
-  }, []);
+		return () => {
+			clearInterval(interval);
+		};
+	}, []);
 
-  return (
-    <div className={style.container}>
-      <div className={style.cuerpo}>
-		<div className={style.botones}>
-		{categories.map((category) => (
-			<div
+	return (
+		<div className={style.container}>
+			<div className={style.cuerpo}>
+				<div className={style.botones}>
+					{categories.map((category) => (
+						<div
 							key={category.name}
 							onMouseEnter={() => handleCategoryHover(category.name)}>
-			<Link
+							<Link
 								to={category.path}
 								className={style.link}>
-						<button className={style.btn}>{category.name}</button>
-			</Link>
-				<div className={style.subcategoriasCont}>
-					{activeCategory != 'Editar Stock' && activeCategory === category.name && (
-							<div
+								<button className={style.btn}>{category.name}</button>
+							</Link>
+
+							<div className={style.subcategoriasCont}>
+								{activeCategory != 'Editar Stock' && activeCategory === category.name && (
+									<div
 										className={style.subcategorias}
 										onMouseLeave={handleCategoryLeave}>
-								{subcategorias[category.name].map((subCat) => (
-					                      <span
+										{subcategorias[category.name].map((subCat) => (
+											<span
 												key={subCat}
 												className={style.subcategoria}>
-											{subCat}
+												{subCat}
 											</span>
 										))}
 									</div>
@@ -101,32 +103,51 @@ export default function Home() {
 							</div>
 						</div>
 					))}
+					{isAuthenticated && (
+						<Link
+							to={'/stockForm'}
+							className={style.link}>
+							<button className={style.btn}>Editar Stock</button>
+						</Link>
+					)}
 				</div>
 			</div>
-      <div className={style.slider}>
-        <div className="slideshow">
-          <div className="slideshowSlider">
-            <div className="slide" style={{ display: currentIndex === 0 ? 'block' : 'none' }}>
-              <img src={img1} alt="Oferta 1" width="100%" />
-            </div>
-            <div className="slide" style={{ display: currentIndex === 1 ? 'block' : 'none' }}>
-              <img src={img2} alt="Oferta 2" width="100%" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <ul className={style.servicios}>
-        <li className={style.servicioItem}>
-          <BiSolidCreditCardFront className={style.icon} />{' '}
-          <span>Hasta 12 cuotas sin interés</span>
-        </li>
-        <li className={style.servicioItem}>
-          <FaWhatsapp className={style.icon} /> <span>Atención personalizada</span>
-        </li>
-        <li className={style.servicioItem}>
-          <FaTruck className={style.icon} /> <span>Calculá el costo de tu envío</span>
-        </li>
-      </ul>
-    </div>
-  );
+			<div className={style.slider}>
+				<div className="slideshow">
+					<div className="slideshowSlider">
+						<div
+							className="slide"
+							style={{ display: currentIndex === 0 ? 'block' : 'none' }}>
+							<img
+								src={img1}
+								alt="Oferta 1"
+								width="100%"
+							/>
+						</div>
+						<div
+							className="slide"
+							style={{ display: currentIndex === 1 ? 'block' : 'none' }}>
+							<img
+								src={img2}
+								alt="Oferta 2"
+								width="100%"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul className={style.servicios}>
+				<li className={style.servicioItem}>
+					<BiSolidCreditCardFront className={style.icon} />{' '}
+					<span>Hasta 12 cuotas sin interés</span>
+				</li>
+				<li className={style.servicioItem}>
+					<FaWhatsapp className={style.icon} /> <span>Atención personalizada</span>
+				</li>
+				<li className={style.servicioItem}>
+					<FaTruck className={style.icon} /> <span>Calculá el costo de tu envío</span>
+				</li>
+			</ul>
+		</div>
+	);
 }
