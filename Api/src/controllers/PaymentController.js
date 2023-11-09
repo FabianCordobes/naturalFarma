@@ -14,15 +14,15 @@ const createOrder = async (items) => {
 
 	items.map((item) =>
 		products.push({
-      id: item.id,
+			id: item.id,
 			title: item.brand,
 			unit_price: item.price,
 			quantity: item.quantity,
-      picture_url: item.image,
+			picture_url: item.image,
 			currency_id: 'ARG',
 		})
 	);
-  console.log(products);
+	console.log(products);
 	let preference = {
 		body: {
 			items: products,
