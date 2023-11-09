@@ -5,6 +5,7 @@ import { combineReducers } from 'redux';
 import searchReducer from './searchReducer';
 import detailReducer from './detailReducer';
 import userReducer from './userReducer';
+import adminReducer from './adminReducer';
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,9 @@ const rootReducer = combineReducers({
 
 	detail: detailReducer,
 
-	user: userReducer
+	user: userReducer,
+
+	admin: adminReducer,
 });
 
 export default rootReducer;

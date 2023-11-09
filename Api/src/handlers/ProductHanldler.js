@@ -100,5 +100,5 @@ module.exports = {
     getProductsHandler,
     deleteProductHandler,
     putProductsHandler,
-    getProductByIdHandler
+    getProductByIdHandler,
 };

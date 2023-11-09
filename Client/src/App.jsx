@@ -19,6 +19,8 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { setFavorites } from './redux/actions/searchActions';
 import CreateAdmin from './views/Admin/CreateAdmin/CreateAdmin';
+import AdminList from './views/Admin/AdminList/AdminLIst';
+import ClientList from './views/Admin/ClientList/ClientList';
 import UserDetail from './views/UserDetail/UserDetail';
 
 function App() {
@@ -90,9 +92,17 @@ function App() {
 					element={<CreateAdmin />}
 				/>
 				<Route
-					path="/userDetail"
-					element={<UserDetail />}
-				/>
+					path='/admin/create'
+					element={<CreateAdmin/>}
+					/>
+				<Route
+					path='/admin/accounts'
+					element={<AdminList/>}
+					/>
+				<Route
+					path='/admin/clients'
+					element={<ClientList/>}
+					/>
 			</Routes>
 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
 		</div>

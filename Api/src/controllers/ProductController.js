@@ -1,6 +1,5 @@
-//const { post } = require("../routes");
 const axios = require ("axios");
-const {Product, Category} = require ("../db");
+const {Product, Category, Review} = require ("../db");
 const { Op, where } = require('sequelize');
 
 const createProductController = async (
@@ -53,7 +52,6 @@ const getProductsByName = async (brand) => {
 };
     
 const getAllProducts = async () => {
-    //const allProductsDb = await Product.findAll();
     const produc = await Product.findAll({include: {
         model: Category,
         attributes: ["description"],
@@ -64,14 +62,14 @@ const getAllProducts = async () => {
     return produc;
 };
 
-
-const getProductById = async ( id ) => {
-
-    const productFilter = await Product.findAll({ where:{ id } } );
-
-
+const getProductById = async (id) => {
+    const productFilter = await Product.findAll({
+      where: { id },
+      include: Review, 
+    });
+  
     return productFilter;
-}
+  };
 
 const putProducts = async (id, brand, therapeuticAction, presentation, stocks, price, image) => {
     try {

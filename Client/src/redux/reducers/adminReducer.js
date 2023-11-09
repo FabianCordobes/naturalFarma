@@ -1,6 +1,7 @@
 const initialState = {
     admin: null,
-    error: null
+    error: null,
+    adminUsers: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -16,6 +17,18 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
                 user: null,
                 error: action.payload,
+            };
+        case 'GET_ADMIN_USERS_SUCCESS':
+            return {
+                ...state,
+                adminUsers: action.payload,
+                error: null,
+            }
+        case 'GET_ADMIN_USERS_FAILURE':
+            return {
+                ...state,
+                adminUsers: [],
+                error: action.payload
             }
         default:
             return state;
