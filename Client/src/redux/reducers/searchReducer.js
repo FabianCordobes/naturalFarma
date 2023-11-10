@@ -19,6 +19,8 @@ import {
 	HIDE_SUCCESS_ALERT,
 	SHOW_ERROR_ALERT,
 	HIDE_ERROR_ALERT,
+	INCREMENT_CART_COUNT,
+	DECREMENT_CART_COUNT,
 } from '../actionTypes';
 
 const initialState = {

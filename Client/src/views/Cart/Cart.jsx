@@ -4,6 +4,11 @@ import style from './Cart.module.css';
 import { useEffect, useState } from 'react';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 import axios from 'axios';
+import {
+	decrementAll,
+	decrementCartCount,
+	incrementCartCount,
+} from '../../redux/actions/countActions';
 
 const Cart = () => {
 	// Obtengo los productos y la cantidad del estado
@@ -17,7 +22,7 @@ const Cart = () => {
 		try {
 			const response = await axios.post(
 				'/order', //peticion post, envia algo al back (al servidor, localhost)
-				{items}
+				{ items }
 			);
 			// console.log('la response del front:', response);
 			const { id } = response.data;
@@ -29,21 +34,19 @@ const Cart = () => {
 	};
 
 	const handleBuy = async () => {
-    const id = await createPreference();
-    console.log('id del handlebuy: ', id);
-  
-    if (id) {
-      setPreferenceId(id);
-      console.log('setpreferenceId:', id);
-    } else {
-      console.error('La preferencia no se generó correctamente.');
-    }
-  };
+		const id = await createPreference();
+		console.log('id del handlebuy: ', id);
+
+		if (id) {
+			setPreferenceId(id);
+			console.log('setpreferenceId:', id);
+		} else {
+			console.error('La preferencia no se generó correctamente.');
+		}
+	};
 
 	// Agregamos una variable para llevar un seguimiento del precio total
 	let finalPrice = 0;
-
-	
 
 	useEffect(() => {
 		const storedCart = localStorage.getItem('cart');
@@ -58,6 +61,21 @@ const Cart = () => {
 	useEffect(() => {
 		localStorage.setItem('cart', JSON.stringify(items));
 	}, [items]);
+
+	const handleIncrement = () => {
+		dispatch(addToCart(item.id));
+		dispatch(incrementCartCount());
+	};
+
+	const handleDecrement = () => {
+		dispatch(delFromCart(item.id));
+		dispatch(decrementCartCount());
+	};
+
+	const handleDecrementAll = () => {
+		dispatch(delFromCart(item.id, true));
+		dispatch(decrementAll());
+	};
 
 	return (
 		<div className={style.cartContainer}>
@@ -80,11 +98,9 @@ const Cart = () => {
 								<p>Precio por unidad: ${item.price}</p>
 								<p>Precio total: ${item.price * item.quantity}</p>
 							</div>
-							<button onClick={() => dispatch(addToCart(item.id))}>Agregar uno</button>
-							<button onClick={() => dispatch(delFromCart(item.id))}>Eliminar uno</button>
-							<button onClick={() => dispatch(delFromCart(item.id, true))}>
-								Eliminar todos
-							</button>
+							<button onClick={handleIncrement}>Agregar uno</button>
+							<button onClick={handleDecrement}>Eliminar uno</button>
+							<button onClick={handleDecrementAll}>Eliminar todos</button>
 						</li>
 					);
 				})}
@@ -98,7 +114,12 @@ const Cart = () => {
 
 			<div>
 				<button onClick={handleBuy}>FINALIZAR COMPRA</button>
-				{preferenceId && <Wallet initialization={{ preferenceId }} target='blank_' />}
+				{preferenceId && (
+					<Wallet
+						initialization={{ preferenceId }}
+						target="blank_"
+					/>
+				)}
 			</div>
 		</div>
 	);
