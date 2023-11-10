@@ -25,15 +25,7 @@ export async function handleLogin(data) {
 			const token = response.data.token;
 			localStorage.setItem('token', token);
 
-			// Realiza una solicitud GET al servidor protegida con el token
-			// const adminResponse = await axios.get('/login/admin-panel', {
-			// 	headers: {
-			// 		Authorization: `Bearer ${token}`,
-			// 	},
-			// });
-      console.log(response.data.user);
 			console.log('Token generado con éxito:', token);
-			// console.log('Datos del panel de administración:', adminResponse.data);
 			return {
 				status: true,
 				userData: response.data.user,

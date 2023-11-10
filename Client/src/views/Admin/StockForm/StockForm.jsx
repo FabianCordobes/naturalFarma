@@ -233,7 +233,6 @@ export default function StockForm() {
 								← Seleccionar categoria !
 							</button>
 						</div>
-
 						<label>Marca</label>
 						<input
 							type="text"
@@ -242,9 +241,7 @@ export default function StockForm() {
 							value={form.brand}
 							onChange={changeHandler}
 						/>
-
 						{errors.brand && <p className={style.errors}>{errors.brand}</p>}
-						
 						<label>Accion terapeutica</label>
 						<input
 							type="text"
@@ -256,7 +253,6 @@ export default function StockForm() {
 						{errors.therapeuticAction && (
 							<p className={style.errors}>{errors.therapeuticAction}</p>
 						)}
-						
 						<label>Presentacion</label>
 						<select
 							className={style.input}
@@ -278,7 +274,6 @@ export default function StockForm() {
 							))}
 						</select>
 						{errors.presentation && <p className={style.errors}>{errors.presentation}</p>}
-
 						<label>Stock</label>
 						<input
 							type="text"
@@ -288,7 +283,6 @@ export default function StockForm() {
 							onChange={changeHandler}
 						/>
 						{errors.stocks && <p className={style.errors}>{errors.stocks}</p>}
-
 						<label>Precio</label>
 						<input
 							type="text"
@@ -298,7 +292,6 @@ export default function StockForm() {
 							onChange={changeHandler}
 						/>
 						{errors.price && <p className={style.errors}>{errors.price}</p>}
-						
 						<ImageUploader handleImageUpload={handleImageUpload} />{' '}
 						{/* Integra ImageUploader aquí */}
 						{form.brand != '' &&

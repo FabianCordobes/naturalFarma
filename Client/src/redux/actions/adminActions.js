@@ -15,7 +15,7 @@ export const addAdminUser = (adminUserData) => {
 export const getAdminUsers = () => {
     return async (dispatch) => {
         try {
-            const response = await axios.get('http://localhost:3001/admin');
+            const response = await axios.get('/admin');
             dispatch({ type: GET_ADMIN_USERS_SUCCESS, payload: response.data });
         } catch (error) {
             dispatch({ type: GET_ADMIN_USERS_FAILURE, payload: error.message });

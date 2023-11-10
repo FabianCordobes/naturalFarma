@@ -5,7 +5,7 @@ import { handleLogin } from '../../components/UserAuthentications/UserAuthentica
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from 'react-redux';
 import { addUserData, setUserData } from '../../redux/actions/userActions';
-
+import axios from 'axios';
 
 export default function Login() {
 	const { loginWithRedirect } = useAuth0();
@@ -37,15 +37,25 @@ export default function Login() {
 		} else {
 			window.alert('Datos incorrectos');
 		}
+
+		const token = localStorage.getItem('token');
+		console.log(token);
+
+		const adminResponse = await axios.get('/login/admin-panel', {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		console.log('Datos del panel de administración:', adminResponse.data);
 	};
 
 	useEffect(() => {
 		return () => {
-			const storedFav = localStorage.getItem('user');
-			if (storedFav) {
-				const parsedFav = JSON.parse(storedFav);
-				dispatch(setUserData(parsedFav));
-			}
+			// const storedFav = localStorage.getItem('user');
+			// if (storedFav) {
+			// 	const parsedFav = JSON.parse(storedFav);
+			// 	dispatch(setUserData(parsedFav));
+			// }
 		};
 	}, []);
 
