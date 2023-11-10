@@ -13,10 +13,6 @@ export async function handleLogout() {
 //     password: '123456'
 // }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b580296bf7bf669e160be9719ac8217c01cea689
 export async function handleLogin(data) {
 	try {
 		const response = await axios.post('/login', {
@@ -29,15 +25,7 @@ export async function handleLogin(data) {
 			const token = response.data.token;
 			localStorage.setItem('token', token);
 
-			// Realiza una solicitud GET al servidor protegida con el token
-			// const adminResponse = await axios.get('/login/admin-panel', {
-			// 	headers: {
-			// 		Authorization: `Bearer ${token}`,
-			// 	},
-			// });
-      console.log(response.data.user);
 			console.log('Token generado con éxito:', token);
-			// console.log('Datos del panel de administración:', adminResponse.data);
 			return {
 				status: true,
 				userData: response.data.user,
