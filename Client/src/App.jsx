@@ -15,18 +15,36 @@ import Accessories from './views/Categories/Accessories/Accessories';
 import Esthetic from './views/Categories/Esthetic/Esthetic';
 import About from './views/About/About';
 import Favorites from './views/Favorites/Favorites';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { setFavorites } from './redux/actions/searchActions';
+import {
+	clearProducts,
+	searchProducts,
+	setFavorites,
+} from './redux/actions/searchActions';
 import CreateAdmin from './views/Admin/CreateAdmin/CreateAdmin';
 import AdminList from './views/Admin/AdminList/AdminLIst';
 import ClientList from './views/Admin/ClientList/ClientList';
 import UserDetail from './views/UserDetail/UserDetail';
 import Success from './views/Success/Success';
+import { setUserData } from './redux/actions/userActions';
 
 function App() {
 	const location = useLocation();
 	const route = location.pathname.slice(1);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(searchProducts(''));
+		const storedFav = localStorage.getItem('user');
+		if (storedFav) {
+			const parsedFav = JSON.parse(storedFav);
+			dispatch(setUserData(parsedFav));
+		}
+		return () => {
+			dispatch(clearProducts());
+		};
+	}, []);
 
 	return (
 		<div className={`${style.App} ${style[route]}`}>

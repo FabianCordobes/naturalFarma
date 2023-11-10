@@ -1,14 +1,11 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -16,11 +13,12 @@ import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import LoginIcon from '@mui/icons-material/Login';
 import { useNavigate } from 'react-router-dom';
-import AlertDialog from '../AlertDialog/AlertDialog';
+import { useSelector } from 'react-redux';
 
 export default function AccountMenu() {
 	const { isAuthenticated, user } = useAuth0();
 	const { logout, loginWithRedirect } = useAuth0();
+	const userData = useSelector((state) => state.user.user);
 
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
@@ -29,12 +27,15 @@ export default function AccountMenu() {
 	};
 	const handleClose = () => {
 		setAnchorEl(null);
+		// localStorage.removeItem('user');
+		localStorage.setItem('user', JSON.stringify(''));
+		
 	};
 
 	const navigate = useNavigate();
 	const UserDetail = () => {
 		navigate('/userDetail');
-		console.log(user);
+		console.log(user.sub);
 	};
 
 	const toRegister = () => {
@@ -42,28 +43,28 @@ export default function AccountMenu() {
 	};
 	return (
 		<React.Fragment>
-			<Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-				<Tooltip title="Account settings">
-					<IconButton
-						onClick={handleClick}
-						size="small"
-						sx={{ ml: 2 }}
-						aria-controls={open ? 'account-menu' : undefined}
-						aria-haspopup="true"
-						aria-expanded={open ? 'true' : undefined}>
-						{isAuthenticated ? (
-							<img
-								src={user.picture}
-								width={50}
-								style={{ borderRadius: '40px', margin: '0' }}
-							/>
-						) : (
-							<Avatar />
-						)}
-					</IconButton>
-				</Tooltip>
-			</Box>
-			{isAuthenticated ? (
+			{/* <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}> */}
+			<Tooltip title="Account settings">
+				<IconButton
+					onClick={handleClick}
+					size="small"
+					sx={{ ml: 2 }}
+					aria-controls={open ? 'account-menu' : undefined}
+					aria-haspopup="true"
+					aria-expanded={open ? 'true' : undefined}>
+					{isAuthenticated ? (
+						<img
+							src={user.picture}
+							width={50}
+							style={{ borderRadius: '40px', margin: '0' }}
+						/>
+					) : (
+						<Avatar />
+					)}
+				</IconButton>
+			</Tooltip>
+			{/* </Box> */}
+			{isAuthenticated || userData ? (
 				<Menu
 					anchorEl={anchorEl}
 					id="account-menu"
@@ -102,11 +103,15 @@ export default function AccountMenu() {
 						onClick={(handleClose, UserDetail)}
 						style={{ paddingLeft: '10px' }}>
 						<ListItemIcon>
-							<img
-								src={user.picture}
-								width={33}
-								style={{ borderRadius: '40px', marginRight: '10px', marginTop: '0' }}
-							/>
+							{isAuthenticated ? (
+								<img
+									src={user.picture}
+									width={33}
+									style={{ borderRadius: '40px', marginRight: '10px', marginTop: '0' }}
+								/>
+							) : (
+								<Avatar />
+							)}
 						</ListItemIcon>
 						Mi cuenta
 					</MenuItem>

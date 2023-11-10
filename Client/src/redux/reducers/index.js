@@ -6,11 +6,14 @@ import searchReducer from './searchReducer';
 import detailReducer from './detailReducer';
 import userReducer from './userReducer';
 import adminReducer from './adminReducer';
+import countReducer from './countReducer';
 
 
 const rootReducer = combineReducers({
 	
 	search: searchReducer,
+
+	count: countReducer,
 
 	detail: detailReducer,
 

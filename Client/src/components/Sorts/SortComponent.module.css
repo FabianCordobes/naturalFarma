@@ -1,203 +1,222 @@
-.sort{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    gap: 8%;
-    border-right: solid black;
-    border-top: solid black;
+.sort {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	gap: 8%;
+	border-right: solid black;
+	border-top: solid black;
 }
-.division{display: flex;
-flex-direction: column;
-height: 50%;
-gap: 10%;}
-
-.division2{display: flex;
-    flex-direction: column;
-    height: 50%;
-    gap: 20%;}
-
-.tag{height: 5%;
-    font-size:150%;
-    font-weight: 700;
-    padding-top: 5%;}
-
-.tag2{height: 5%;
-font-size:150%;
-font-weight: 700;
-border-top: solid black;
-padding-top: 5%;}
-
-.order{display: flex;
-flex-direction: column;
-height: 95%;
-gap: 25%;
-justify-content: center;
+.division {
+	display: flex;
+	flex-direction: column;
+	height: 20vh;
+	gap: 10%;
 }
 
-.filter{display: flex;
-    flex-direction: column;
-    height: 100%;
-    gap: 25%;
-    justify-content:flex-start;}
+.division2 {
+	display: flex;
+	flex-direction: column;
+	height: 80vh;
+	gap: 20%;
+}
+
+.tag {
+	height: 5%;
+	font-size: 150%;
+	font-weight: 700;
+	padding-top: 5%;
+}
+
+.tag2 {
+	height: 5%;
+	font-size: 150%;
+	font-weight: 700;
+	border-top: solid black;
+	padding-top: 5%;
+}
+
+.order {
+	display: flex;
+	flex-direction: column;
+	height: 95%;
+	gap: 25%;
+	justify-content: center;
+}
+
+.filter {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	gap: 25%;
+	justify-content: flex-start;
+}
 
 @media (max-width: 800px) {
-    .sort{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            border-right: none;
-        }
+	.sort {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		border-right: none;
+	}
 
-    .division{display: flex;
-        flex-direction: column;
-        width: 50%;}
-    
-    .division2{display: flex;
-        flex-direction: column;
-        width: 50%;}
-        
+	.division {
+		display: flex;
+		flex-direction: column;
+		width: 50%;
+	}
 
-    .order{display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 5%;}
-    
-    .tag2{height: 5%;
-        font-size:150%;
-        font-weight: 700;
-        border-left: solid black;
-        border-top: none;
-        padding-top: 5%;}
+	.division2 {
+		display: flex;
+		flex-direction: column;
+		width: 50%;
+	}
 
-    .filter{display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-    width: 100%;}
-    
-        
-      }
+	.order {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		gap: 5%;
+	}
+
+	.tag2 {
+		height: 5%;
+		font-size: 150%;
+		font-weight: 700;
+		border-left: solid black;
+		border-top: none;
+		padding-top: 5%;
+	}
+
+	.filter {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}
+}
 
 .pasteButton {
-    position: relative;
-    display: block;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-      
+	position: relative;
+	display: block;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .button {
-    background-color: var(--color-verde3);
-    color: #212121;
-    padding: 10px 15px;
-    font-size: 15px;
-    font-weight: bold;
-    border: 2px solid transparent;
-    border-radius: 15px;
-    cursor: pointer;
-    width: 100%;
+	background-color: var(--color-verde3);
+	color: #212121;
+	padding: 10px 15px;
+	font-size: 15px;
+	font-weight: bold;
+	border: 2px solid transparent;
+	border-radius: 15px;
+	cursor: pointer;
+	width: 100%;
 }
 
-.button:hover{
-    background-color: var(--color-verde3);
-    color: #212121;
-    padding: 10px 15px;
-    font-size: 15px;
-    font-weight: bold;
-    border: 2px solid transparent;
-    border-radius: 15px;
-    cursor: pointer;
-    width: 100%;
-    
+.button:hover {
+	background-color: var(--color-verde3);
+	color: #212121;
+	padding: 10px 15px;
+	font-size: 15px;
+	font-weight: bold;
+	border: 2px solid transparent;
+	border-radius: 15px;
+	cursor: pointer;
+	width: 100%;
 }
-      
+
 .dropdownContent {
-    display: none;
-    font-size: 100%;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-    background-color: #282828;
-    border: 2px solid var(--color-verde3);
-    border-radius: 0px 0px 15px 15px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	display: none;
+	font-size: 100%;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+	background-color: #282828;
+	border: 2px solid var(--color-verde3);
+	border-radius: 0px 0px 15px 15px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
-      
+
 .dropdownContent option {
-    color: var(--color-verde3);
-    padding: 8px 10px;
-    text-decoration: none;
-    display: block;
-    transition: 0.1s;
+	color: var(--color-verde3);
+	padding: 8px 10px;
+	text-decoration: none;
+	display: block;
+	transition: 0.1s;
 }
-      
+
 .dropdownContent option:hover {
-    background-color: var(--color-verde3);
-    color: #212121;
-    cursor: pointer;
+	background-color: var(--color-verde3);
+	color: #212121;
+	cursor: pointer;
 }
-      
+
 .dropdownContent option:focus {
-    background-color: #212121;
-    color: var(--color-verde3);
+	background-color: #212121;
+	color: var(--color-verde3);
 }
-      
+
 .pasteButton:hover button {
-    border-radius: 15px 15px 0px 0px;
+	border-radius: 15px 15px 0px 0px;
 }
-      
+
 .pasteButton:hover .dropdownContent {
-    display: block;
+	display: block;
 }
 
-.divPrice{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-gap: 10%;}
+.divPrice {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	gap: 10%;
+}
 
-.divPrice1{
-    height: 100%;
-    width: 100%;
-    gap: 10%;
-    display: flex;
-    flex-direction: column;
-    font-size: 100%;
-    z-index: 1;
-    background-color: var(--color-verde3);
-    border: 8px solid var(--color-verde3);
-    border-radius: 15px 15px 15px 15px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);}
+.divPrice1 {
+	height: 100%;
+	width: 100%;
+	gap: 10%;
+	display: flex;
+	flex-direction: column;
+	font-size: 100%;
+	z-index: 1;
+	background-color: var(--color-verde3);
+	border: 8px solid var(--color-verde3);
+	border-radius: 15px 15px 15px 15px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
 
-.inputTag{
-    height: 50%;
-    width: 100%;}
+.inputTag {
+	height: 50%;
+	width: 100%;
+}
 
 .button2 {
-    background-color: #212121;
-    color: var(--color-verde3);
-    padding: 10px 15px;
-    font-size: 15px;
-    font-weight: bold;
-    border: 2px solid transparent;
-    border-radius: 15px;
-    cursor: pointer;
-    width: 100%;
+	background-color: #212121;
+	color: var(--color-verde3);
+	padding: 10px 15px;
+	font-size: 15px;
+	font-weight: bold;
+	border: 2px solid transparent;
+	border-radius: 15px;
+	cursor: pointer;
+	width: 100%;
 }
 
 .button3 {
-    background-color: #212121;
-    color: var(--color-verde3);
-    padding: 0px 10px;
-    font-size: 100%;
-    border: 1px solid transparent;
-    height: 20%;
-    border-radius: 15px;
-    cursor: pointer;
-    width: 100%;
+	background-color: #212121;
+	color: var(--color-verde3);
+	padding: 0px 10px;
+	font-size: 100%;
+	border: 1px solid transparent;
+	height: 20%;
+	border-radius: 15px;
+	cursor: pointer;
+	width: 100%;
 }
-      
