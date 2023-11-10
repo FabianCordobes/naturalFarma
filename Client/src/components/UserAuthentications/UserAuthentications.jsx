@@ -13,9 +13,6 @@ export async function handleLogout() {
 // }
 
 
-
-    
-
 export async function handleLogin(data) {
     try {
       const response = await axios.post('/login', {
