@@ -2,6 +2,7 @@ const KJUR = require("jsrsasign");
 
 function verifyToken(req, res, next) {
     const userHeader = req.headers["authorization"]; // "Bearer JWT"
+    console.log("LOCO"+ req.headers["authorization"]);
     if (typeof userHeader !== undefined) {
         const authString = userHeader.split(" "); // ["BEARER", "JWT"]
         const token = authString[1];
