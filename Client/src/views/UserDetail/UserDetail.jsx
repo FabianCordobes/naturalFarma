@@ -3,10 +3,14 @@ import style from './UserDetail.module.css';
 import { useState } from 'react';
 import { PiWarningOctagonFill } from 'react-icons/pi';
 import AlertDialog from '../../components/AlertDialog/AlertDialog';
+import { useSelector } from 'react-redux';
+import { Avatar } from '@mui/material';
 
 const UserDetail = () => {
 	const { isAuthenticated, user } = useAuth0();
 	const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
+
+	const userData = useSelector((state) => state.user.user);
 
 	const handleDeleteAccount = () => {
 		setShowConfirmationDialog(true);
@@ -25,27 +29,46 @@ const UserDetail = () => {
 	return (
 		<div className={style.container}>
 			<div className={style.leftSide}>
-				<div className={style.photoCont}>
-					<img
-						src={user.picture}
-						alt={user.name}
-					/>
-				</div>
-				<h3>{user.name}</h3>
-
-				<div>
-					<h4>{user.email}</h4>
-					{user.email_verified === false ? (
-						<div>
-							<span>
-								<PiWarningOctagonFill /> El email no ha sido verificado
-							</span>
-							<p>Por favor revise su buzón</p>
+				{isAuthenticated && (
+					<>
+						<div className={style.photoCont}>
+							<img
+								src={user.picture}
+								alt={user.name}
+							/>
 						</div>
-					) : (
-						<></>
-					)}
-				</div>
+						<h3>{user.name}</h3>
+
+						<div>
+							<h4>{user.email}</h4>
+							{user.email_verified === false ? (
+								<div>
+									<span>
+										<PiWarningOctagonFill /> El email no ha sido verificado
+									</span>
+									<p>Por favor revise su buzón</p>
+								</div>
+							) : (
+								<></>
+							)}
+						</div>
+					</>
+				)}
+				{userData && (
+					<>
+						<div className={style.photoCont}>
+							<Avatar/>
+						</div>
+						<h3>{`${userData.name} ${userData.lastName}`}</h3>
+
+						<div>
+							<h4>{userData.email}</h4>
+							<h4>{userData.birthdate}</h4>
+							<h4>{userData.nacionality}</h4>
+						</div>
+					</>
+					// 
+				)}
 			</div>
 
 			<div className={style.rightSide}>
@@ -63,3 +86,37 @@ const UserDetail = () => {
 };
 
 export default UserDetail;
+
+
+// userData
+// : 
+// birthdate
+// : 
+// "2004-10-14"
+// createdAt
+// : 
+// "2023-11-10T14:44:35.606Z"
+// deletedAt
+// : 
+// null
+// email
+// : 
+// "fabianarielcordobes@gmail.com"
+// id
+// : 
+// "31c6b0aa-12d9-440e-a7f8-9f06ba6c76ac"
+// lastName
+// : 
+// "Cordobes"
+// name
+// : 
+// "Fabian"
+// nationality
+// : 
+// ""
+// password
+// : 
+// "14102004aA@"
+// updatedAt
+// : 
+// "2023-11-10T14:44:35.606Z"

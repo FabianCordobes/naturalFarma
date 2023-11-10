@@ -7,6 +7,8 @@ import { BiSolidCreditCardFront } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import Swiper from 'swiper/bundle';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useDispatch } from 'react-redux';
+import { filterByCategory } from '../../redux/actions/searchActions';
 
 //
 
@@ -20,6 +22,8 @@ const subcategorias = {
 export default function Home() {
 	const [activeCategory, setActiveCategory] = useState(null);
 	const [currentIndex, setCurrentIndex] = useState(0);
+
+	const dispatch = useDispatch();
 
 	const { isAuthenticated } = useAuth0();
 	const handleCategoryHover = (category) => {
@@ -56,10 +60,10 @@ export default function Home() {
 		});
 	}, []);
 	const categories = [
-		{ name: 'Medicinales', path: '/medicinal' },
-		{ name: 'Perfumería', path: '/perfumery' },
-		{ name: 'Accesorios', path: '/accesories' },
-		{ name: 'Estética', path: '/esthetic' },
+		{ name: 'medicinales', path: '/medicinal' },
+		{ name: 'perfumeria', path: '/perfumery' },
+		{ name: 'accesorios', path: '/accesories' },
+		{ name: 'estética', path: '/esthetic' },
 	];
 
 	useEffect(() => {
@@ -72,6 +76,7 @@ export default function Home() {
 		};
 	}, []);
 
+
 	return (
 		<div className={style.container}>
 			<div className={style.cuerpo}>
@@ -81,12 +86,13 @@ export default function Home() {
 							key={category.name}
 							onMouseEnter={() => handleCategoryHover(category.name)}>
 							<Link
-								to={category.path}
+								to={'productList'}
+								onClick={() => dispatch(filterByCategory(category.name))}
 								className={style.link}>
 								<button className={style.btn}>{category.name}</button>
 							</Link>
 
-							<div className={style.subcategoriasCont}>
+							{/* <div className={style.subcategoriasCont}>
 								{activeCategory != 'Editar Stock' && activeCategory === category.name && (
 									<div
 										className={style.subcategorias}
@@ -100,7 +106,7 @@ export default function Home() {
 										))}
 									</div>
 								)}
-							</div>
+							</div> */}
 						</div>
 					))}
 					{isAuthenticated && (

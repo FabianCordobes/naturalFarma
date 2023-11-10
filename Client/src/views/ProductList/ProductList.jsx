@@ -21,8 +21,6 @@ const ProductList = () => {
 	const showSuccessAlert = useSelector((state) => state.search.showSuccessAlert);
 	const showErrorAlert = useSelector((state) => state.search.showErrorAlert);
 
-	
-
 	const [currentPage, setCurrentPage] = useState(1); // Define el estado local para la página actual.
 
 	const productsPerPage = 8; // Define la cantidad de perros a mostrar por página.
@@ -76,20 +74,16 @@ const ProductList = () => {
 				{showSuccessAlert && (
 					<Alerts
 						typeSeverity="success"
-						title='Añadido'
-						description='Producto agregado al carrito con éxito.'
-					>
-					</Alerts>
+						title="Añadido"
+						description="Producto agregado al carrito con éxito."></Alerts>
 				)}
 				{showErrorAlert && (
 					<Alerts
 						typeSeverity="error"
-						title='Ocurrió un problema'
-						description='El producto no ha sido agregado al carrito.'
-					>
-					</Alerts>
+						title="Ocurrió un problema"
+						description="El producto no ha sido agregado al carrito."></Alerts>
 				)}
-					
+
 				<Pagination
 					productsPerPage={productsPerPage}
 					allProducts={allProducts.length}
