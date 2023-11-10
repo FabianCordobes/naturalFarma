@@ -16,6 +16,7 @@ const Detail = () => {
 
 	useEffect(() => {
 		dispatch(getDetail(id));
+		
 		console.log(detailProducts[0]);
 		return () => {
 			dispatch({
@@ -28,6 +29,8 @@ const Detail = () => {
 	if (!detailProducts) {
 		return <p>Loading...</p>;
 	}
+
+	const productId = detailProducts[0]?.id; // Obtén el productId desde el detalle del producto
 
 	return (
 		<div className={style.detailContainer}>
@@ -76,7 +79,8 @@ const Detail = () => {
 				</div>
 			)}
 			<br />
-			<Reviews />
+			<Reviews productId={productId}/>
+
 		</div>
 	);
 };
