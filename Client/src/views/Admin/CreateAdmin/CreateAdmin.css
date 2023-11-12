@@ -32,7 +32,7 @@ select {
   margin-top: 5px;
 }
 
-button {
+.buttonAdmin {
   background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
@@ -41,6 +41,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.buttonAdmin:hover {
   background-color: #0056b3;
 }

@@ -33,7 +33,7 @@ async function login(req, res) {
         const token = KJUR.jws.JWS.sign(null, { alg: "HS256" }, { userId: admin.id, isAdmin: true }, "1234");
         res.json({ token, response: 'success' });
       } else {
-        res.status(401).send("Credenciales inválidas");
+        res.status(201).send("Credenciales inválidas");
       }
     }
   } catch (error) {

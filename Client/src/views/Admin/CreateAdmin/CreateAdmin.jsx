@@ -185,7 +185,7 @@ export default function CreateAdmin() {
 					/>
 				</div>
 				<div className="form-group">
-					<button type="submit">Registrarse</button>
+					<button type="submit" className={Style.buttonAdmin}>Registrarse</button>
 				</div>
 			</form>
 		</div>

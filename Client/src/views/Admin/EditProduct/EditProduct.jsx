@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import style from './StockForm.module.css';
+import style from './EditProduct.module.css';
 import axios from 'axios';
 import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 import {

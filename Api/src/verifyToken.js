@@ -28,7 +28,7 @@ function verifyToken(req, res, next) {
                     req.userId = payload.userId;
                     next();
                 } else {
-                    res.status(403).send("No tienes permisos");
+                    res.status(202).send("No tienes permisos");
                 }
             } else {
                 res.status(401).send("Token Invalido");

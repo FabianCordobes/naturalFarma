@@ -2,7 +2,7 @@ import style from './App.module.css';
 import Detail from './views/Detail/Detail';
 import Home from './views/Home/Home';
 import NavBar from './components/NavBar/NavBar';
-import StockForm from './views/Admin/StockForm/StockForm';
+import EditProduct from './views/Admin/EditProduct/EditProduct';
 import Login from './views/Login/Login';
 import Register from './views/Register/Register';
 import Cart from './views/Cart/Cart';
@@ -22,6 +22,7 @@ import {
 	searchProducts,
 	setFavorites,
 } from './redux/actions/searchActions';
+import BadLogin from './views/BadLogin/BadLogin';
 import CreateAdmin from './views/Admin/CreateAdmin/CreateAdmin';
 import AdminList from './views/Admin/AdminList/AdminLIst';
 import ClientList from './views/Admin/ClientList/ClientList';
@@ -233,8 +234,8 @@ function App() {
 						element={<NavBar />}
 					/>
 					<Route
-						path="/stockform"
-						element={<StockForm />}
+						path="/editproduct"
+						element={<EditProduct />}
 					/>
 					<Route
 						path="/productList"
@@ -248,7 +249,7 @@ function App() {
 						path="/register"
 						element={<Register />}
 					/>
-					{/* <Route path="/cart" element={<Cart />} /> */}
+					<Route path="/cart" element={<Cart />} />
 					<Route
 						path="/favorites"
 						element={<Favorites />}
@@ -294,6 +295,7 @@ function App() {
 						path="/userDetail"
 						element={<UserDetail />}
 					/>
+					<Route path="/badlogin" element={<BadLogin/>}/>
 				</Routes>
 			)}
 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
