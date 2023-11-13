@@ -29,7 +29,7 @@ import BadLogin from './views/BadLogin/BadLogin';
 import UserDetail from './views/UserDetail/UserDetail';
 import Success from './views/Success/Success';
 import { setUserData } from './redux/actions/userActions';
-import AdminDashboard from './views/Admin/AdminDashboard/AdminDashboard'
+import AdminDashboard from './views/Admin/AdminDashboard/AdminDashboard';
 import axios from 'axios';
 import ProductList from './views/ProductList/ProductList';
 
@@ -251,7 +251,10 @@ function App() {
 						path="/register"
 						element={<Register />}
 					/>
-					<Route path="/cart" element={<Cart />} />
+					<Route
+						path="/cart"
+						element={<Cart />}
+					/>
 					<Route
 						path="/favorites"
 						element={<Favorites />}
@@ -278,7 +281,7 @@ function App() {
 					/>
 					<Route
 						path="/admin"
-						element={<AdminDashboard/>}
+						element={<AdminDashboard />}
 					/>
 					{/* <Route path="/admin/create" element={<CreateAdmin />} /> */}
 					{/*<Route
@@ -297,7 +300,10 @@ function App() {
 						path="/userDetail"
 						element={<UserDetail />}
 					/>
-					<Route path="/badlogin" element={<BadLogin/>}/>
+					<Route
+						path="/badlogin"
+						element={<BadLogin />}
+					/>
 				</Routes>
 			)}
 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
