@@ -13,10 +13,6 @@ export async function handleLogout() {
 //     password: '123456'
 // }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b580296bf7bf669e160be9719ac8217c01cea689
 export async function handleLogin(data) {
 	try {
 		const response = await axios.post('/login', {

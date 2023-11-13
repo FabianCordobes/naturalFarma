@@ -1,7 +1,7 @@
 import React, {  useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addAdminUser } from '../../../redux/actions/adminActions';
-import { isNameValid, isEmailValid, isPasswordValid } from '../../../utils/registerValidations';
+import { addAdminUser } from '../../../../redux/actions/adminActions';
+import { isNameValid, isEmailValid, isPasswordValid } from '../../../../utils/registerValidations';
 import './CreateAdmin.css'
 
 export default function CreateAdmin () {

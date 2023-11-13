@@ -2,7 +2,7 @@ import style from './App.module.css';
 import Detail from './views/Detail/Detail';
 import Home from './views/Home/Home';
 import NavBar from './components/NavBar/NavBar';
-import StockForm from './views/Admin/StockForm/StockForm';
+//import StockForm from './views/Admin/StockForm/StockForm';
 import Login from './views/Login/Login';
 import Register from './views/Register/Register';
 import Cart from './views/Cart/Cart';
@@ -22,12 +22,13 @@ import {
 	searchProducts,
 	setFavorites,
 } from './redux/actions/searchActions';
-import CreateAdmin from './views/Admin/CreateAdmin/CreateAdmin';
-import AdminList from './views/Admin/AdminList/AdminLIst';
-import ClientList from './views/Admin/ClientList/ClientList';
+//import CreateAdmin from './views/Admin/CreateAdmin/CreateAdmin';
+//import AdminList from './views/Admin/AdminList/AdminLIst';
+//import ClientList from './views/Admin/ClientList/ClientList';
 import UserDetail from './views/UserDetail/UserDetail';
 import Success from './views/Success/Success';
 import { setUserData } from './redux/actions/userActions';
+import AdminDashboard from './views/Admin/AdminDashboard/AdminDashboard';
 
 function App() {
     const location = useLocation();
@@ -182,10 +183,11 @@ return (
 	<Route path="/about" element={<About />} />
 	{/* <Route path="/admin" element={<CreateAdmin />} /> */}
 	{/* <Route path="/admin/create" element={<CreateAdmin />} /> */}
-	<Route path="/admin/accounts" element={<AdminList />} />
-	<Route path="/admin/clients" element={<ClientList />} />
+	{/*<Route path="/admin/accounts" element={<AdminList />} />*/}
+	{/*<Route path="/admin/clients" element={<ClientList />} />*/}
 	<Route path="/success" element={<Success />} />
 	<Route path="/userDetail" element={<UserDetail />} />
+	<Route path='/admin' element={<AdminDashboard/>}/>
 </Routes>
 		{isAdmin && ( // Muestra si el usuario es administrador
 			<div>
@@ -234,11 +236,11 @@ return (
 				<Route
 					path="/perfumery"
 					element={<Perfumery />}
-				/> */}
+				/> 
 				<Route
 					path="/accesories"
 					element={<Accessories />}
-				/>
+				/>*/}
 				{/* ... Agrega más rutas para funcionalidades de administrador */}
 			</div>
 		)}
