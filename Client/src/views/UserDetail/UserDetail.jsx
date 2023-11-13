@@ -1,16 +1,36 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import style from './UserDetail.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PiWarningOctagonFill } from 'react-icons/pi';
 import AlertDialog from '../../components/AlertDialog/AlertDialog';
 import { useSelector } from 'react-redux';
 import { Avatar } from '@mui/material';
+import axios from 'axios';
+import EditModal from '../../components/Modal/EditModal';
 
 const UserDetail = () => {
-	const { isAuthenticated, user } = useAuth0();
 	const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
+	const [userData, setUserData] = useState(null); // Estado para almacenar los datos del usuario
 
-	const userData = useSelector((state) => state.user.user);
+	const user = localStorage.getItem('user');
+	const userID = user.split('"').join('');
+
+	useEffect(() => {
+		const getUserData = async () => {
+			try {
+				if (userID) {
+					const response = await axios.get(`/user/${userID}`);
+					setUserData(response.data);
+				}
+			} catch (error) {
+				console.error('Error al obtener datos del usuario:', error);
+			}
+		};
+
+		// Llama a la función al montar el componente
+		getUserData();
+	}, [userID]);
+
+	console.log(userData);
 
 	const handleDeleteAccount = () => {
 		setShowConfirmationDialog(true);
@@ -26,10 +46,22 @@ const UserDetail = () => {
 		setShowConfirmationDialog(false); // Cierra el diálogo de confirmación
 	};
 
+	const handleEditName = () => {
+		setShowModalName(true);
+	};
+
+	const handleEditEmail = () => {
+		setShowModalEmail(true);
+	};
+
+	const handleEditPassword = () => {
+		setShowModalPassword(true);
+	};
+
 	return (
 		<div className={style.container}>
 			<div className={style.leftSide}>
-				{isAuthenticated && (
+				{/* {isAuthenticated && (
 					<>
 						<div className={style.photoCont}>
 							<img
@@ -53,27 +85,49 @@ const UserDetail = () => {
 							)}
 						</div>
 					</>
-				)}
-				{userData && (
-					<>
-						<div className={style.photoCont}>
-							<Avatar/>
-						</div>
-						<h3>{`${userData.name} ${userData.lastName}`}</h3>
+				)} */}
+				{userData &&
+					userData.map((data) => (
+						<div key={data.id}>
+							<div className={style.photoCont}>
+								<Avatar />
+							</div>
+							<h3>{`${data.name} ${data.lastName}`}</h3>
 
-						<div>
-							<h4>{userData.email}</h4>
-							<h4>{userData.birthdate}</h4>
-							<h4>{userData.nacionality}</h4>
+							<div>
+								<h4>{data.email}</h4>
+								<h4>{data.birthdate}</h4>
+								<h4>{data.nationality}</h4>
+							</div>
 						</div>
-					</>
-					// 
-				)}
+					))}
 			</div>
 
 			<div className={style.rightSide}>
-				<button>Editar datos de usuario</button>
-				<button>Editar contraseña</button>
+				<EditModal
+					buttonText="Cambiar nombre"
+					modalText="Escriba su nuevo nombre"
+					inputDefaultValue={''}
+					inputLabel="Nombre"
+					inputType="name"
+					userData={userData}
+				/>
+				<EditModal
+					buttonText="Cambiar email"
+					modalText="Escriba su nuevo email"
+					inputDefaultValue={''}
+					inputLabel="Email"
+					inputType="email"
+					userData={userData}
+				/>
+				<EditModal
+					buttonText="Cambiar contraseña"
+					modalText="Escriba su nueva contraseña"
+					inputDefaultValue={''}
+					inputLabel="Contraseña"
+					inputType="password"
+					userData={userData}
+				/>
 
 				<AlertDialog
 					buttonText={'Eliminar cuenta'}
@@ -86,37 +140,3 @@ const UserDetail = () => {
 };
 
 export default UserDetail;
-
-
-// userData
-// : 
-// birthdate
-// : 
-// "2004-10-14"
-// createdAt
-// : 
-// "2023-11-10T14:44:35.606Z"
-// deletedAt
-// : 
-// null
-// email
-// : 
-// "fabianarielcordobes@gmail.com"
-// id
-// : 
-// "31c6b0aa-12d9-440e-a7f8-9f06ba6c76ac"
-// lastName
-// : 
-// "Cordobes"
-// name
-// : 
-// "Fabian"
-// nationality
-// : 
-// ""
-// password
-// : 
-// "14102004aA@"
-// updatedAt
-// : 
-// "2023-11-10T14:44:35.606Z"

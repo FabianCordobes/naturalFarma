@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from './Login.module.css';
 import { handleLogin } from '../../components/UserAuthentications/UserAuthentications';
-import { initializeApp } from "firebase/app";
-import {firebaseConfig} from '../../firebaseConfig';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../../firebaseConfig';
 import { FaGoogle } from 'react-icons/fa';
-import {GoogleAuthProvider, getAuth, signInWithPopup} from 'firebase/auth';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { addUserData, setUserData } from '../../redux/actions/userActions';
 import axios from 'axios';
 
@@ -15,33 +15,30 @@ export default function Login() {
 	const navigate = useNavigate();
 	const auth = getAuth();
 	const provider = new GoogleAuthProvider();
-	
+
 	const handleGoogleSignIn = () => {
 		signInWithPopup(auth, provider)
-		  .then((result) => {
-			// Manejar el resultado de inicio de sesión con Google
-			const user = result.user;
+			.then((result) => {
+				// Manejar el resultado de inicio de sesión con Google
+				const user = result.user;
 
-			// Obtener el token de acceso desde el resultado
-			const token = result._tokenResponse?.idToken;
-			if (token) {
-			  // Guardar el token en localStorage
-			  localStorage.setItem('token', token);
-			}
-	  
-			window.alert('Usuario autenticado:', user);
-	  
-			// Realizar la redirección después del inicio de sesión
-			navigate('/');
-		  })
-		  .catch((error) => {
-			// Manejar errores aquí
-			console.error(error);
-		  });
-	  };
-	
-	
+				// Obtener el token de acceso desde el resultado
+				const token = result._tokenResponse?.idToken;
+				if (token) {
+					// Guardar el token en localStorage
+					localStorage.setItem('token', token);
+				}
 
+				window.alert('Usuario autenticado:', user);
+
+				// Realizar la redirección después del inicio de sesión
+				navigate('/');
+			})
+			.catch((error) => {
+				// Manejar errores aquí
+				console.error(error);
+			});
+	};
 
 	const [dataUser, setDataUser] = useState({
 		user: '',
@@ -55,14 +52,12 @@ export default function Login() {
 		});
 	};
 
-	
-
 	const isAuthenticated = async () => {
 		// e.preventDefault();
 		const user = await handleLogin(dataUser);
 		if (user.status === true) {
 			navigate('/');
-		}	
+		}
 	};
 
 	useEffect(() => {
@@ -97,8 +92,12 @@ export default function Login() {
 					}}>
 					Iniciar Sesión
 				</button>
-				<button type="button" onClick={() => { handleGoogleSignIn() }}>
-				Iniciar Sesión con Google <FaGoogle />
+				<button
+					type="button"
+					onClick={() => {
+						handleGoogleSignIn();
+					}}>
+					Iniciar Sesión con Google <FaGoogle />
 				</button>
 			</form>
 		</div>

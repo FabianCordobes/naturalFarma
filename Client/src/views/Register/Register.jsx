@@ -170,7 +170,7 @@ export default function Register() {
 					{errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
 				</div>
 				<div className="form-group">
-					<button className={style.registerButton} type="submit">Registrarse</button>
+					<button  type="submit">Registrarse</button>
 				</div>
 			</form>
 		</div>
