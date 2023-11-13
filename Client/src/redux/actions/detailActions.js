@@ -19,7 +19,7 @@ export const createReview = (reviewData) => {
     return async (dispatch) => {
         try {
             // Hago la solicitud POST al servidor para crear la review
-            const response = await axios.post('http://localhost:3001/review', reviewData);
+            const response = await axios.post('/review', reviewData);
 
             // Despachar una acción de éxito, con los datos si la solicitud es exitosa
             dispatch({
@@ -40,7 +40,7 @@ export const getProductReviews = (productId) => {
     return async (dispatch) => {
         try {
             // Hago la solicitud GET al servidor para obtener las revisiones/reviews del producto
-            const response = await axios.get(`http://localhost:3001/product/${productId}`);
+            const response = await axios.get(`/product/${productId}`);
 
             // Despachar una acción con las revisiones obtenidas, con los datos
             dispatch({

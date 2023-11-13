@@ -21,6 +21,8 @@ import {
 	HIDE_ERROR_ALERT,
 	INCREMENT_CART_COUNT,
 	DECREMENT_CART_COUNT,
+	PRODUCTS_EDIT_SUCCESS,
+	PRODUCTS_EDIT_FAILURE,
 } from '../actionTypes';
 
 const initialState = {
@@ -37,8 +39,20 @@ const initialState = {
 
 const searchReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case PRODUCTS_EDIT_SUCCESS:
+			return {
+				...state,
+				error: null,
+			};
+		case PRODUCTS_EDIT_FAILURE:
+			return {
+				...state,
+				error: action.payload,
+			};
+
 		case SHOW_SUCCESS_ALERT:
 			return { ...state, showSuccessAlert: true };
+
 		case HIDE_SUCCESS_ALERT:
 			return { ...state, showSuccessAlert: false };
 

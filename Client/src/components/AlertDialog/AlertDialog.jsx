@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useAuth0 } from '@auth0/auth0-react';
 
-export default function AlertDialog({ buttonText, title, description }) {
+export default function AlertDialog({ buttonText, title, description, handleAccept }) {
 	const { logout } = useAuth0();
 
 	const [open, setOpen] = React.useState(false);
@@ -16,22 +16,34 @@ export default function AlertDialog({ buttonText, title, description }) {
 		setOpen(true);
 	};
 
-	const handleClose = () => {
+	const handleCancelSubmit = () => {
 		setOpen(false);
 	};
 
-   
+	const handleAcceptSubmit = () => {
+		setOpen(false);
+		handleAccept();
+	};
 
 	return (
 		<React.Fragment>
-			<Button
-				variant="outlined"
-				onClick={handleClickOpen}>
-				{buttonText}
-			</Button>
+			{buttonText === 'Eliminar' ? (
+				<Button
+					style={{background:'#ec3030', color:'#fff', fontWeight:'400', fontSize:'14px', height:'31px', marginTop:'2px'}}
+					variant="fill"
+					onClick={handleClickOpen}>
+					{buttonText}
+				</Button>
+			) : (
+				<Button
+					variant="outlined"
+					onClick={handleClickOpen}>
+					{buttonText}
+				</Button>
+			)}
 			<Dialog
 				open={open}
-				onClose={handleClose}
+				onClose={handleCancelSubmit}
 				aria-labelledby="alert-dialog-title"
 				aria-describedby="alert-dialog-description">
 				<DialogTitle id="alert-dialog-title">{title}</DialogTitle>
@@ -41,10 +53,10 @@ export default function AlertDialog({ buttonText, title, description }) {
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose}>Cancelar</Button>
+					<Button onClick={handleCancelSubmit}>Cancelar</Button>
 
 					<Button
-						onClick={handleClose}
+						onClick={handleAcceptSubmit}
 						autoFocus>
 						Acepto
 					</Button>

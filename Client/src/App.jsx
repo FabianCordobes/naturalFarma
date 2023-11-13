@@ -2,13 +2,13 @@ import style from './App.module.css';
 import Detail from './views/Detail/Detail';
 import Home from './views/Home/Home';
 import NavBar from './components/NavBar/NavBar';
-import EditProduct from './views/Admin/EditProduct/EditProduct';
+//import EditProduct from './views/Admin/EditProduct/EditProduct';
 import Login from './views/Login/Login';
 import Register from './views/Register/Register';
 import Cart from './views/Cart/Cart';
 import { useLocation, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
-import ProductList from './views/ProductList/ProductList';
+//import ProductList from './views/ProductList/ProductList';
 import Medicinal from './views/Categories/Medicinal/Medicinal';
 import Perfumery from './views/Categories/Perfumery/Perfumery';
 import Accessories from './views/Categories/Accessories/Accessories';
@@ -23,13 +23,15 @@ import {
 	setFavorites,
 } from './redux/actions/searchActions';
 import BadLogin from './views/BadLogin/BadLogin';
-import CreateAdmin from './views/Admin/CreateAdmin/CreateAdmin';
-import AdminList from './views/Admin/AdminList/AdminLIst';
-import ClientList from './views/Admin/ClientList/ClientList';
+//import CreateAdmin from './views/Admin/CreateAdmin/CreateAdmin';
+//import AdminList from './views/Admin/AdminList/AdminLIst';
+//import ClientList from './views/Admin/ClientList/ClientList';
 import UserDetail from './views/UserDetail/UserDetail';
 import Success from './views/Success/Success';
 import { setUserData } from './redux/actions/userActions';
+import AdminDashboard from './views/Admin/AdminDashboard/AdminDashboard';
 import axios from 'axios';
+import ProductList from './views/ProductList/ProductList';
 
 function App() {
 	const location = useLocation();
@@ -228,15 +230,15 @@ function App() {
 						path="/"
 						element={<Home />}
 					/>
-					{/* <Route path="/product/:id" element={<Detail />} /> */}
+					<Route path="/product/:id" element={<Detail />} /> 
 					<Route
 						path="/"
 						element={<NavBar />}
 					/>
-					<Route
+					{/* <Route
 						path="/editproduct"
 						element={<EditProduct />}
-					/>
+					/> */}
 					<Route
 						path="/productList"
 						element={<ProductList />}
@@ -249,7 +251,10 @@ function App() {
 						path="/register"
 						element={<Register />}
 					/>
-					<Route path="/cart" element={<Cart />} />
+					<Route
+						path="/cart"
+						element={<Cart />}
+					/>
 					<Route
 						path="/favorites"
 						element={<Favorites />}
@@ -276,17 +281,17 @@ function App() {
 					/>
 					<Route
 						path="/admin"
-						element={<CreateAdmin />}
+						element={<AdminDashboard />}
 					/>
 					{/* <Route path="/admin/create" element={<CreateAdmin />} /> */}
-					<Route
+					{/*<Route
 						path="/admin/accounts"
 						element={<AdminList />}
-					/>
-					<Route
+					/>*/}
+					{/*<Route
 						path="/admin/clients"
 						element={<ClientList />}
-					/>
+					/>*/}
 					<Route
 						path="/success"
 						element={<Success />}
@@ -295,7 +300,10 @@ function App() {
 						path="/userDetail"
 						element={<UserDetail />}
 					/>
-					<Route path="/badlogin" element={<BadLogin/>}/>
+					<Route
+						path="/badlogin"
+						element={<BadLogin />}
+					/>
 				</Routes>
 			)}
 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}

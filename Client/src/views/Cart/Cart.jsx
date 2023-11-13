@@ -62,20 +62,19 @@ const Cart = () => {
 		localStorage.setItem('cart', JSON.stringify(items));
 	}, [items]);
 
-	const handleIncrement = () => {
-		dispatch(addToCart(item.id));
-		dispatch(incrementCartCount());
-	};
+	// const handleIncrement = () => {
+	// dispatch(addToCart(item.id));
+	// dispatch(incrementCartCount());
+	// };
 
-	const handleDecrement = () => {
-		dispatch(delFromCart(item.id));
-		dispatch(decrementCartCount());
-	};
+	// const handleDecrement = () => {
+	// dispatch(delFromCart(item.id));
+	// dispatch(decrementCartCount());
+	// };
 
-	const handleDecrementAll = () => {
-		dispatch(delFromCart(item.id, true));
-		dispatch(decrementAll());
-	};
+	// const handleDecrementAll = () => {
+	// dispatch(decrementAll());
+	// };
 
 	return (
 		<div className={style.cartContainer}>
@@ -98,9 +97,11 @@ const Cart = () => {
 								<p>Precio por unidad: ${item.price}</p>
 								<p>Precio total: ${item.price * item.quantity}</p>
 							</div>
-							<button onClick={handleIncrement}>Agregar uno</button>
-							<button onClick={handleDecrement}>Eliminar uno</button>
-							<button onClick={handleDecrementAll}>Eliminar todos</button>
+							<button onClick={() => dispatch(addToCart(item.id))}>Agregar uno</button>
+							<button onClick={() => dispatch(delFromCart(item.id))}>Eliminar uno</button>
+							<button onClick={() => dispatch(delFromCart(item.id, true))}>
+								Eliminar todos
+							</button>
 						</li>
 					);
 				})}
