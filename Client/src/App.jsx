@@ -230,7 +230,7 @@ function App() {
 						path="/"
 						element={<Home />}
 					/>
-					{/* <Route path="/product/:id" element={<Detail />} /> */}
+					<Route path="/product/:id" element={<Detail />} /> 
 					<Route
 						path="/"
 						element={<NavBar />}
