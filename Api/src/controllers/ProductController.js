@@ -71,27 +71,27 @@ const getProductById = async (id) => {
     return productFilter;
   };
 
-const putProducts = async (id, brand, therapeuticAction, presentation, stocks, price, image) => {
+  const putProducts = async (id, editedData) => {
     try {
-        const product = await Product.findByPk(id);
-
-        if (!product) {
-            throw new Error('El producto no se encontró.');
-        }
-        product.brand = brand;
-        product.therapeuticAction = therapeuticAction;
-        product.presentation = presentation;
-        product.stocks = stocks;
-        product.price = price;
-        product.image = image;
-
-        await product.save();
-
-        return product;
+      const product = await Product.findByPk(id);
+  
+      if (!product) {
+        throw new Error('El producto no se encontró.');
+      }
+  
+      if (editedData && typeof editedData === 'object') {
+        product.stocks = parseInt(editedData.stocks);
+        product.price = parseInt(editedData.price);
+      }
+  
+      await product.save();
+  
+      return product;
     } catch (error) {
-        throw new Error(`Error al actualizar el producto: ${error.message}`);
+      console.error('Error during product update:', error.message);
+      throw new Error(`Error al actualizar el producto: ${error.message}`);
     }
-}
+  };
 
 const deleteProducts = async(id) => await Product.destroy({where: {id}});
 
