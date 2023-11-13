@@ -31,6 +31,7 @@ import Success from './views/Success/Success';
 import { setUserData } from './redux/actions/userActions';
 import AdminDashboard from './views/Admin/AdminDashboard/AdminDashboard'
 import axios from 'axios';
+import ProductList from './views/ProductList/ProductList';
 
 function App() {
 	const location = useLocation();
@@ -234,14 +235,14 @@ function App() {
 						path="/"
 						element={<NavBar />}
 					/>
-					{/*<Route
+					{/* <Route
 						path="/editproduct"
 						element={<EditProduct />}
-					/>*/}
-					{/*<Route
+					/> */}
+					<Route
 						path="/productList"
 						element={<ProductList />}
-					/>*/}
+					/>
 					<Route
 						path="/login"
 						element={<Login />}
