@@ -2,14 +2,12 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 
 const Success = () => {
 	const location = useLocation();
 	const searchParams = location.search.substring(1); // Elimina el '?' inicial de la cadena
 	const paramsArray = searchParams.split('&'); // Divide en pares de clave-valor
 	const paramsObject = {};
-	const { user } = useAuth0();
 
 	const storedCart = localStorage.getItem('cart');
 
@@ -40,6 +38,7 @@ const Success = () => {
 		};
 
 		// console.log(orderData);
+		
 	}
 
 	// console.log(orderData.push(paramsObject));
@@ -47,8 +46,10 @@ const Success = () => {
 	useEffect(() => {
 		// const response = axios.get('/order', orderData)
 		// console.log(paramsObject);
-		if (user) {
-			console.log(user);
+		const idGoogle = localStorage.getItem('idGoogle');
+
+		if (idGoogle) {
+			console.log(idGoogle);
 		}
 	}, [location.href]);
 

@@ -18,27 +18,31 @@ export default function Login() {
 
 	const handleGoogleSignIn = () => {
 		signInWithPopup(auth, provider)
-			.then((result) => {
-				// Manejar el resultado de inicio de sesión con Google
-				const user = result.user;
+		  .then((result) => {
+			// Manejar el resultado de inicio de sesión con Google
+			const user = result.user;
+			console.log("buscando el id"+JSON.stringify(user))
 
-				// Obtener el token de acceso desde el resultado
-				const token = result._tokenResponse?.idToken;
-				if (token) {
-					// Guardar el token en localStorage
-					localStorage.setItem('token', token);
-				}
-
-				window.alert('Usuario autenticado:', user);
-
-				// Realizar la redirección después del inicio de sesión
-				navigate('/');
-			})
-			.catch((error) => {
-				// Manejar errores aquí
-				console.error(error);
-			});
-	};
+			// Obtener el token de acceso desde el resultado
+			const token = result._tokenResponse?.idToken;
+			const idGoogle = user.uid;
+			if (token) {
+			  // Guardar el token en localStorage
+			  localStorage.setItem('token', token);
+			  localStorage.setItem('idGoogle', idGoogle);
+			}
+	  
+			window.alert('Usuario autenticado:', user);
+	  
+			// Realizar la redirección después del inicio de sesión
+			navigate('/');
+		  })
+		  .catch((error) => {
+			// Manejar errores aquí
+			console.error(error);
+		  });
+	  };
+	
 
 	const [dataUser, setDataUser] = useState({
 		user: '',
