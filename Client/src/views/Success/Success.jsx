@@ -38,6 +38,7 @@ const Success = () => {
 		};
 
 		// console.log(orderData);
+		
 	}
 
 	// console.log(orderData.push(paramsObject));

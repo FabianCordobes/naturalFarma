@@ -18,7 +18,6 @@ export default function Login() {
 
 	const handleGoogleSignIn = () => {
 		signInWithPopup(auth, provider)
-<<<<<<< HEAD
 		  .then((result) => {
 			// Manejar el resultado de inicio de sesión con Google
 			const user = result.user;
@@ -44,30 +43,6 @@ export default function Login() {
 		  });
 	  };
 	
-	
-=======
-			.then((result) => {
-				// Manejar el resultado de inicio de sesión con Google
-				const user = result.user;
-
-				// Obtener el token de acceso desde el resultado
-				const token = result._tokenResponse?.idToken;
-				if (token) {
-					// Guardar el token en localStorage
-					localStorage.setItem('token', token);
-				}
->>>>>>> e2e4d65f3539a605c12a5521849844b4e79baa62
-
-				window.alert('Usuario autenticado:', user);
-
-				// Realizar la redirección después del inicio de sesión
-				navigate('/');
-			})
-			.catch((error) => {
-				// Manejar errores aquí
-				console.error(error);
-			});
-	};
 
 	const [dataUser, setDataUser] = useState({
 		user: '',
