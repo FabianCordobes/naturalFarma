@@ -18,7 +18,7 @@ async function login(req, res) {
       console.log('------------------------------------------------USUARIO--------------------',user.dataValues);
       // Si el usuario existe en la tabla "Users", genera un token de usuario común
       const token = KJUR.jws.JWS.sign(null, { alg: "HS256" }, { userId: user.id, isAdmin: false }, "1234");
-      res.json({ token, response: 'success', user: user.dataValues });
+      res.json({ token, response: 'success', user: user.dataValues.id });
     } else {
       // Si el usuario no existe en la tabla "Users", verifica si existe en la tabla "Admin"
       const admin = await Admin.findOne({

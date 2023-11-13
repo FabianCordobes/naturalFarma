@@ -27,7 +27,6 @@ export default function Dashboard() {
   }, [dispatch]);
 
   return (
-    <div>
       <main className="main-container">
         <div className="main-title">
           <h3>PANEL DE ADMINISTRADOR</h3>
@@ -63,6 +62,5 @@ export default function Dashboard() {
           </div>
         </div>
       </main>
-    </div>
   );
 }

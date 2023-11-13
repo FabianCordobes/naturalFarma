@@ -27,6 +27,12 @@ const Reviews = ({ productId }) => { //recibe productId como propiedad
       return;
     }
 
+      // Validate that both review text and rating are provided
+  if (!reviewText || rating === 0) {
+    alert("Por favor, completa la reseña y asigna una puntuación antes de enviar.");
+    return;
+  }
+
     const reviewData = {
       description: reviewText,
       punctuation: rating.toString(), // Convertir a cadena ya que el backend espera un string

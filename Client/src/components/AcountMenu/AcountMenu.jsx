@@ -72,6 +72,10 @@ export default function AccountMenu() {
 		navigate('/register');
 	};
 
+	const toAdminDashboard = () => {
+		navigate('/admin');
+	};
+
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
@@ -167,11 +171,11 @@ export default function AccountMenu() {
 					</MenuItem>
 					<Divider />
 
-					<MenuItem onClick={handleClose}>
+					<MenuItem onClick={(handleClose, toAdminDashboard)}>
 						<ListItemIcon>
 							<AdminPanelSettingsIcon fontSize="small" />
 						</ListItemIcon>
-						Opciones de administración
+						Dashboard de administrador
 					</MenuItem>
 					<MenuItem onClick={handleClose}>
 						<ListItemIcon>
