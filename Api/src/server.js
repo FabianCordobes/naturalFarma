@@ -2,13 +2,14 @@ const express = require("express");
 const router = require('./routes/index.js');
 const morgan = require("morgan");
 const cors = require("cors");
+const nodemailer = require ("./routes/nodemailer.js")
 
 const server = express();
 
 server.use(cors()); //Permite que cualquier cliente se conecte 
 
 server.use(morgan("dev")); //Registra tus peticiones en la terminal.
-
+server.use("/nodemailer",nodemailer);
 server.use((req, res, next)=> {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", "true");
