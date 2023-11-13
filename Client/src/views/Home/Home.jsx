@@ -109,13 +109,11 @@ export default function Home() {
 							</div> */}
 						</div>
 					))}
-					{isAuthenticated && (
 						<Link
 							to={'/stockForm'}
 							className={style.link}>
 							<button className={style.btn}>Editar Stock</button>
 						</Link>
-					)}
 				</div>
 			</div>
 			<div className={style.slider}>
@@ -154,6 +152,7 @@ export default function Home() {
 					<FaTruck className={style.icon} /> <span>Calculá el costo de tu envío</span>
 				</li>
 			</ul>
+
 		</div>
 	);
 }

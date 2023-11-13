@@ -51,11 +51,11 @@ export default function Login() {
 
 	useEffect(() => {
 		return () => {
-			// const storedFav = localStorage.getItem('user');
-			// if (storedFav) {
-			// 	const parsedFav = JSON.parse(storedFav);
-			// 	dispatch(setUserData(parsedFav));
-			// }
+			const storedFav = localStorage.getItem('user');
+			if (storedFav) {
+				const parsedFav = JSON.parse(storedFav);
+				dispatch(setUserData(parsedFav));
+			}
 		};
 	}, []);
 

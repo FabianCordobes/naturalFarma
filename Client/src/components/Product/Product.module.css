@@ -15,7 +15,7 @@
 		0px 0px 12.1px rgba(0, 0, 0, 0.208), 0px 0px 29px rgba(0, 0, 0, 0.29);
 }
 .delButton {
-	background-color: rgb(236, 48, 48) !important;
+	background-color: #ec3030 !important;
 }
 
 .delButton:hover {
@@ -209,8 +209,7 @@
 	}
 	.botoncitos {
 		margin-bottom: -80%;
-		width: 100%;
-		height: 150%;
+		height: 35px;
 		font-size: 20%;
 	}
 	.btn {

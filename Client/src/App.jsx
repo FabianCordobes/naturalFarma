@@ -37,43 +37,43 @@ function App() {
 
 	useEffect(() => {
 		dispatch(searchProducts(''));
-		// const storedFav = localStorage.getItem('user');
-		// if (storedFav) {
-		// 	const parsedFav = JSON.parse(storedFav);
-		// 	dispatch(setUserData(parsedFav));
-		// }
+		const storedFav = localStorage.getItem('user');
+		if (storedFav) {
+			const parsedFav = JSON.parse(storedFav);
+			dispatch(setUserData(parsedFav));
+		}
 		return () => {
 			dispatch(clearProducts());
 		};
 	}, []);
 	const [isAdmin, setIsAdmin] = useState(false); // Estado para verificar si el usuario es administrador
 
-	useEffect(() => {
-		const checkAdminStatus = async () => {
-			try {
-				const token = localStorage.getItem('token');
-				if (token) {
-					const adminResponse = await axios.get('/login/admin-panel', {
-						headers: {
-							Authorization: `Bearer ${token}`,
-						},
-					});
-					if (adminResponse.data) {
-						const res = adminResponse.data;
-						setIsAdmin(res.data === 'Panel Administracion');
-					} else {
-						console.error('error');
-					}
-				}
-			} catch (error) {
-				console.error('Error al verificar el estado de administrador:', error);
-				setIsAdmin(false); // Manejo de error, se asume que el usuario no es administrador
-			}
-		};
-		console.log(isAdmin);
+	// useEffect(() => {
+	// 	const checkAdminStatus = async () => {
+	// 		try {
+	// 			const token = localStorage.getItem('token');
+	// 			if (token) {
+	// 				const adminResponse = await axios.get('/login/admin-panel', {
+	// 					headers: {
+	// 						Authorization: `Bearer ${token}`,
+	// 					},
+	// 				});
+	// 				if (adminResponse.data) {
+	// 					const res = adminResponse.data;
+	// 					setIsAdmin(res.data === 'Panel Administracion');
+	// 				} else {
+	// 					console.error('error');
+	// 				}
+	// 			}
+	// 		} catch (error) {
+	// 			console.error('Error al verificar el estado de administrador:', error);
+	// 			setIsAdmin(false); // Manejo de error, se asume que el usuario no es administrador
+	// 		}
+	// 	};
+	// 	console.log(isAdmin);
 
-		checkAdminStatus();
-	}, []);
+	// 	checkAdminStatus();
+	// }, []);
 
 	// 	return (
 	// 		<div className={`${style.App} ${style[route]}`}>
@@ -176,7 +176,7 @@ function App() {
 							element={<Home />}
 						/> /* Agrega aquí las rutas y componentes para administradores */
 					}
-					{/* <Route
+					<Route
 					path="/accesories"
 					element={<Accessories />}
 				/>
@@ -215,11 +215,11 @@ function App() {
 				<Route
 					path="/perfumery"
 					element={<Perfumery />}
-				/> */}
-					{/* <Route
+				/>
+					<Route
 						path="/accesories"
 						element={<Accessories />}
-					/> */}
+					/>
 				</Routes>
 			) : (
 				<Routes>
@@ -227,7 +227,7 @@ function App() {
 						path="/"
 						element={<Home />}
 					/>
-					{/* <Route path="/product/:id" element={<Detail />} /> */}
+					<Route path="/product/:id" element={<Detail />} />
 					<Route
 						path="/"
 						element={<NavBar />}
@@ -248,7 +248,7 @@ function App() {
 						path="/register"
 						element={<Register />}
 					/>
-					{/* <Route path="/cart" element={<Cart />} /> */}
+					<Route path="/cart" element={<Cart />} />
 					<Route
 						path="/favorites"
 						element={<Favorites />}
@@ -277,7 +277,7 @@ function App() {
 						path="/admin"
 						element={<CreateAdmin />}
 					/>
-					{/* <Route path="/admin/create" element={<CreateAdmin />} /> */}
+					<Route path="/admin/create" element={<CreateAdmin />} />
 					<Route
 						path="/admin/accounts"
 						element={<AdminList />}

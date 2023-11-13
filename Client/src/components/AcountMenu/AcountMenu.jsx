@@ -28,7 +28,7 @@ export default function AccountMenu() {
 	const handleClose = () => {
 		setAnchorEl(null);
 		// localStorage.removeItem('user');
-		localStorage.setItem('user', JSON.stringify(''));
+		// localStorage.setItem('user', JSON.stringify(''));
 		
 	};
 
