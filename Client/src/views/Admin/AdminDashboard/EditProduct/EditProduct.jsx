@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import style from './EditProduct.module.css';
 import axios from 'axios';
-import ImageUploader from '../../../components/ImageUploader/ImageUploader';
+import ImageUploader from '../../../../components/ImageUploader/ImageUploader';
 import {
 	createCategory,
 	categoryOptions,
 	addProducts,
 	deleteCategory,
-} from '../../../components/Categories/Categories';
-import validate from '../../../utils/validators/validators';
+} from '../../../../components/Categories/Categories';
+import validate from '../../../../utils/validators/validators';
 
 const presentationOptions = [
 	{ value: 'Tableta' },
