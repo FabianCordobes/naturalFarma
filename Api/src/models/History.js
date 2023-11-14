@@ -8,7 +8,7 @@ module.exports = (sequelize) =>{
             primaryKey: true,
         },
         payment_id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
          },
         status: {
@@ -16,7 +16,7 @@ module.exports = (sequelize) =>{
             allowNull: false,
         },
         merchant_order_id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
          },
         payment_type: {

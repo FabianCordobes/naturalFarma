@@ -61,8 +61,18 @@ const Success = () => {
 		fetchData(); // Llama a la función de solicitud cuando el componente se monta
 	}, [parsedID, location.href]);
 
-	orderData;
-
+	useEffect(() => {
+		const sendData = async (orderData) => {
+			try {
+				const response = await axios.post('/history', orderData);
+				console.log(response);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		sendData(orderData);
+	});
+	// console.log(orderData);
 
 	return <div>{storedCart}</div>;
 };

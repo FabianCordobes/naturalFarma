@@ -4,6 +4,6 @@ const { createHistorytHandler, getHistoryByIdUserHandler } = require ("../handle
 const historyRouter = Router();
 
 historyRouter.post("/", createHistorytHandler);
-historyRouter.get("/", getHistoryByIdUserHandler); 
+historyRouter.get("/:id", getHistoryByIdUserHandler); 
 
 module.exports = historyRouter;

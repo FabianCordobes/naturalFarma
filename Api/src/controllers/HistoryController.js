@@ -1,40 +1,48 @@
-const axios = require ("axios");
-const {History} = require ("../db");
+const axios = require('axios');
+const { History } = require('../db');
 
-const createHistoryController = async (items) => {
+const createHistoryController = async (products, orderDetail, user) => {
+	console.log(
+		'--------------------',
+		products,
+		'aaaaaaaaaaaaaaaaaa',
+		orderDetail,
+		'.........................',
+		user
+	);
 
-    for (const item of items) {
-		await History.create(
-		  {
-			// Mapea los campos del elemento al modelo de Sequelize
-			
-			payment_id: item.payment_id,
-			status: item.status,
-			merchant_order_id: item.merchant_order_id,
-			payment_type: item.payment_type,
-			preference_id: item.preference_id,
-			brand: item.brand,
-			product_id: item.product_id,
-			price: item.price,
-			quantity: item.quantity,
-			userId: item.adminId,
+	for (const product of products) {
+		try {
+			const response = await History.create({
+				// Mapea los campos del elemento al modelo de Sequelize
+				payment_id: orderDetail.payment_id,
+				status: orderDetail.status,
+				merchant_order_id: orderDetail.merchant_order_id,
+				payment_type: orderDetail.payment_type,
+				preference_id: orderDetail.preference_id,
+				brand: product.brand,
+				product_id: product.id,
+				price: product.price,
+				quantity: product.quantity,
+				UserId: user.id,
+			});
+			return response;
 
-		  },
-		);
-	  }
-}
+		} catch (error) {
+			console.log('HAY UN ERROR ACA', error);
+		}
+	}
+};
 
-const getHistoriByIdController = async (idUser) => {
+const getHistoryByIdController = async (idUser) => {
+	const productFilter = await History.findAll({
+		where: { userId: idUser }, // Corregido de idUser a userId
+	});
 
-
-    const historyFilter = await History.findAll({
-      where: { idUser },
-    });
-  
-    return productFilter;
+	return productFilter;
 };
 
 module.exports = {
-  createHistoryController,
-  getHistoriByIdController
-}
+	createHistoryController,
+	getHistoryByIdController,
+};
