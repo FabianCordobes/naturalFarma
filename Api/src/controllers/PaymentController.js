@@ -1,5 +1,6 @@
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 const { ACCESS_TOKEN } = process.env;
+const {History} = require ("../db");
 
 const client = new MercadoPagoConfig({
 	accessToken: ACCESS_TOKEN,
@@ -40,9 +41,9 @@ const createOrder = async (items) => {
 	return response;
 };
 
-const getSuccesfulPurchase = async (payment_id) => {
-	//comunicarme a la DB buscar al usuario y asociarle el id de pago
-	await User.addProduct(payment_id);
+const getSuccesfulPurchase = async (items) => {
+
+	// rutas mail
 };
 
 module.exports = {
