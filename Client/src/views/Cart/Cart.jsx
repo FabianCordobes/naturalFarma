@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, delFromCart, setCart } from '../../redux/actions/searchActions';
+import { addToCart, clearCart, delFromCart, setCart } from '../../redux/actions/searchActions';
 import style from './Cart.module.css';
 import { useEffect, useState } from 'react';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
@@ -118,10 +118,12 @@ const Cart = () => {
 			<div>
 				<button onClick={handleBuy}>FINALIZAR COMPRA</button>
 				{preferenceId && (
-					<Wallet
-						initialization={{ preferenceId }}
-						target="blank_"
-					/>
+					<div onClick={() => dispatch(clearCart())}>
+						<Wallet
+							initialization={{ preferenceId }}
+							target="blank_"
+						/>
+					</div>
 				)}
 			</div>
 		</div>

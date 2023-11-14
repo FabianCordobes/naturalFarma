@@ -30,19 +30,18 @@ export default function EditModal({
 	const handleClose = () => setOpen(false);
 	// console.log(userData[0].name);
 	if (userData) {
-		console.log(userData[0].password);
+		// console.log(userData[0].password);
 		// const [editedName, setEditedName] = React.useState(userData.name);
 	}
-	// const [editedEmail, setEditedEmail] = React.useState(userData[0].email);
-	// const [editedPassword, setEditedPassword] = React.useState(userData[0].password);
-
-	// const [originalName, setOriginalName] = React.useState(userData[0].name);
-	// const [originalEmail, setOriginalEmail] = React.useState(userData[0].email);
-	// const [originalPassword, setOriginalPassword] = React.useState(userData[0].password);
 
 	return (
 		<div>
-			<Button onClick={handleOpen}>{buttonText}</Button>
+			<Button
+				variant="outlined"
+				sx={{ backgroundColor: '#3d7bcd', color: '#fff', ':hover': { color: '#000' } }}
+				onClick={handleOpen}>
+				{buttonText}
+			</Button>
 			<Modal
 				open={open}
 				onClose={handleClose}

@@ -30,18 +30,6 @@ export default function Home() {
 		{ name: 'Editar/crear usuario', path: '/userAdmin' },
 	];
 
-	// const isAdmin = () => {
-		// const admin = localStorage.getItem('admin');
-		// const spl = admin.split('"').join('');
-		// if (spl && spl === 'Panel Administracion') {
-			// setAdminPanel(true);
-		// }
-	// };
-
-	// useEffect(() => {
-	// 	isAdmin();
-	// });
-
 	const secciones = [
 		{ name: 'medicinales', path: '/medicinal' },
 		{ name: 'perfumeria', path: '/perfumery' },
@@ -57,9 +45,7 @@ export default function Home() {
 		const swiper = new Swiper('.swiper-container', {
 			slidesPerView: 1, // Show only one slide per view
 			loop: true,
-			// autoplay: {
-			// delay: 3000, // Change slide every 3 seconds
-			// },
+
 			pagination: {
 				el: '.swiper-pagination',
 				clickable: true,
@@ -90,51 +76,18 @@ export default function Home() {
 										className={style.link}>
 										<button className={style.btn}>{category.name}</button>
 									</Link>
-
-									{/* <div className={style.subcategoriasCont}>
-									{activeCategory != 'Editar Stock' && activeCategory === category.name && (
-										<div
-											className={style.subcategorias}
-											onMouseLeave={handleCategoryLeave}>
-											{subcategorias[category.name].map((subCat) => (
-												<span
-													key={subCat}
-													className={style.subcategoria}>
-													{subCat}
-												</span>
-											))}
-										</div>
-									)}
-								</div> */}
 								</div>
 							))}
 						</div>
 						<div className={style.botones2}>
 							{secciones.map((category) => (
-								<div
-									key={category.name}>
+								<div key={category.name}>
 									<Link
 										to={category.path}
 										onClick={() => dispatch(filterByCategory(category.name))}
 										className={style.link}>
 										<button className={style.btn}>{category.name}</button>
 									</Link>
-
-									{/* <div className={style.subcategoriasCont}>
-									{activeCategory != 'Editar Stock' && activeCategory === category.name && (
-										<div
-											className={style.subcategorias}
-											onMouseLeave={handleCategoryLeave}>
-											{subcategorias[category.name].map((subCat) => (
-												<span
-													key={subCat}
-													className={style.subcategoria}>
-													{subCat}
-												</span>
-											))}
-										</div>
-									)}
-								</div> */}
 								</div>
 							))}
 						</div>
@@ -142,30 +95,13 @@ export default function Home() {
 				) : (
 					<div className={style.botones}>
 						{secciones.map((category) => (
-							<div
-								key={category.name}>
+							<div key={category.name}>
 								<Link
 									to={'productList'}
 									onClick={() => dispatch(filterByCategory(category.name))}
 									className={style.link}>
 									<button className={style.btn}>{category.name}</button>
 								</Link>
-
-								{/* <div className={style.subcategoriasCont}>
-								{activeCategory != 'Editar Stock' && activeCategory === category.name && (
-									<div
-										className={style.subcategorias}
-										onMouseLeave={handleCategoryLeave}>
-										{subcategorias[category.name].map((subCat) => (
-											<span
-												key={subCat}
-												className={style.subcategoria}>
-												{subCat}
-											</span>
-										))}
-									</div>
-								)}
-							</div> */}
 							</div>
 						))}
 					</div>

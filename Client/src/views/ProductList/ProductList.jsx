@@ -13,6 +13,7 @@ import {
 	showErrorAlert,
 } from '../../redux/actions/searchActions';
 import Alerts from '../../components/Alerts/Alerts';
+import SimpleBackdrop from '../../components/SimpleBackdrop/SimpleBackdrop';
 
 const ProductList = () => {
 	const allProducts = useSelector((state) => state.search.products); // Accede a la lista de perros desde el estado global de Redux.
@@ -67,43 +68,49 @@ const ProductList = () => {
 
 	return (
 		<div className={style.productListContainer}>
-			<div className={style.sort}>
-				<SortComponent />
-			</div>
-			<div className={style.content}>
-				{showSuccessAlert && (
-					<Alerts
-						typeSeverity="success"
-						title="Añadido"
-						description="Producto agregado al carrito con éxito."></Alerts>
-				)}
-				{showErrorAlert && (
-					<Alerts
-						typeSeverity="error"
-						title="Ocurrió un problema"
-						description="El producto no ha sido agregado al carrito."></Alerts>
-				)}
+			{!currentProducts ? (
+				<SimpleBackdrop />
+			) : (
+				<>
+					<div className={style.sort}>
+						<SortComponent />
+					</div>
+					<div className={style.content}>
+						{showSuccessAlert && (
+							<Alerts
+								typeSeverity="success"
+								title="Añadido"
+								description="Producto agregado al carrito con éxito."></Alerts>
+						)}
+						{showErrorAlert && (
+							<Alerts
+								typeSeverity="error"
+								title="Ocurrió un problema"
+								description="El producto no ha sido agregado al carrito."></Alerts>
+						)}
 
-				<Pagination
-					productsPerPage={productsPerPage}
-					allProducts={allProducts.length}
-					pagination={pagination}
-					currentPage={currentPage}
-				/>
-				<ul className={style.products}>
-					{currentProducts &&
-						currentProducts.map((product) => {
-							return (
-								<li
-									className={style.productContainer}
-									key={product.id}>
-									<Product product={product} />
-									{/* Renderiza el componente Product con el producto */}
-								</li>
-							);
-						})}
-				</ul>
-			</div>
+						<Pagination
+							productsPerPage={productsPerPage}
+							allProducts={allProducts.length}
+							pagination={pagination}
+							currentPage={currentPage}
+						/>
+						<ul className={style.products}>
+							{currentProducts &&
+								currentProducts.map((product) => {
+									return (
+										<li
+											className={style.productContainer}
+											key={product.id}>
+											<Product product={product} />
+											{/* Renderiza el componente Product con el producto */}
+										</li>
+									);
+								})}
+						</ul>
+					</div>
+				</>
+			)}
 		</div>
 	);
 };
