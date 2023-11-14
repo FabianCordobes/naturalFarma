@@ -112,8 +112,7 @@ export default function Home() {
 						<div className={style.botones2}>
 							{secciones.map((category) => (
 								<div
-									key={category.name}
-									onMouseEnter={() => handleCategoryHover(category.name)}>
+									key={category.name}>
 									<Link
 										to={category.path}
 										onClick={() => dispatch(filterByCategory(category.name))}
@@ -144,8 +143,7 @@ export default function Home() {
 					<div className={style.botones}>
 						{secciones.map((category) => (
 							<div
-								key={category.name}
-								onMouseEnter={() => handleCategoryHover(category.name)}>
+								key={category.name}>
 								<Link
 									to={'productList'}
 									onClick={() => dispatch(filterByCategory(category.name))}

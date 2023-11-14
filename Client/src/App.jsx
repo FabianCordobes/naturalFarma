@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react';
 import {
 	clearProducts,
 	searchProducts,
+	setCart,
 	setFavorites,
 } from './redux/actions/searchActions';
 import BadLogin from './views/BadLogin/BadLogin';
@@ -32,11 +33,14 @@ import { setUserData } from './redux/actions/userActions';
 import AdminDashboard from './views/Admin/AdminDashboard/AdminDashboard';
 import axios from 'axios';
 import ProductList from './views/ProductList/ProductList';
+import { setCartCount } from './redux/actions/countActions';
 
 function App() {
 	const location = useLocation();
 	const route = location.pathname.slice(1);
 	const dispatch = useDispatch();
+	// const cartCount = localStorage.getItem('cartCount');
+	// console.log(cartCount);
 
 	useEffect(() => {
 		dispatch(searchProducts(''));
@@ -45,6 +49,9 @@ function App() {
 		// 	const parsedFav = JSON.parse(storedFav);
 		// 	dispatch(setUserData(parsedFav));
 		// }
+
+		// dispatch(setCartCount(cartCount));
+
 		return () => {
 			dispatch(clearProducts());
 		};
@@ -230,7 +237,10 @@ function App() {
 						path="/"
 						element={<Home />}
 					/>
-					{/* <Route path="/product/:id" element={<Detail />} /> */}
+					<Route
+						path="/product/:id"
+						element={<Detail />}
+					/>
 					<Route
 						path="/"
 						element={<NavBar />}

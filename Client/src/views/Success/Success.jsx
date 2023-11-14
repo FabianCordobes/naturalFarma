@@ -50,9 +50,17 @@ const Success = () => {
 	};
 
 	useEffect(() => {
+		// const response = axios.get('/order', orderData)
+		// console.log(paramsObject);
+		const idGoogle = localStorage.getItem('idGoogle');
+
+		if (idGoogle) {
+			console.log(idGoogle);
+		}
+
 		fetchData(); // Llama a la función de solicitud cuando el componente se monta
 		console.log(orderData);
-	}, [parsedID]); // Añade las dependencias al array de dependencias
+	}, [parsedID, location.href]);
 
 	return <div>{storedCart}</div>;
 };
