@@ -34,6 +34,7 @@ import AdminDashboard from './views/Admin/AdminDashboard/AdminDashboard';
 import axios from 'axios';
 import ProductList from './views/ProductList/ProductList';
 import { setCartCount } from './redux/actions/countActions';
+import History from './views/History/History';
 
 function App() {
 	const location = useLocation();
@@ -253,6 +254,11 @@ function App() {
 						path="/productList"
 						element={<ProductList />}
 					/>
+					<Route
+						path="/history"
+						element={<History />}
+					/>
+
 					<Route
 						path="/login"
 						element={<Login />}

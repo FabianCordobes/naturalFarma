@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react'; // Importa useState
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Success = () => {
 	const location = useLocation();
@@ -73,8 +73,12 @@ const Success = () => {
 		sendData(orderData);
 	});
 	// console.log(orderData);
-
-	return <div>{storedCart}</div>;
+	const navigate = useNavigate();
+	return (
+		<div>
+			<button onClick={() => navigate('/history')}>IR AL HISTORIAL</button>
+		</div>
+	);
 };
 
 export default Success;

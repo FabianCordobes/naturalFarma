@@ -2,14 +2,14 @@ const axios = require('axios');
 const { History } = require('../db');
 
 const createHistoryController = async (products, orderDetail, user) => {
-	console.log(
-		'--------------------',
-		products,
-		'aaaaaaaaaaaaaaaaaa',
-		orderDetail,
-		'.........................',
-		user
-	);
+	// console.log(
+	// 	'--------------------',
+	// 	products,
+	// 	'aaaaaaaaaaaaaaaaaa',
+	// 	orderDetail,
+	// 	'.........................',
+	// 	user
+	// );
 
 	for (const product of products) {
 		try {
@@ -36,8 +36,9 @@ const createHistoryController = async (products, orderDetail, user) => {
 
 const getHistoryByIdController = async (idUser) => {
 	const productFilter = await History.findAll({
-		where: { userId: idUser }, // Corregido de idUser a userId
+		where: { UserId: idUser }, // Corregido de idUser a userId
 	});
+	
 
 	return productFilter;
 };

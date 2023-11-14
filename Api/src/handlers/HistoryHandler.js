@@ -9,6 +9,7 @@ const createHistorytHandler = async (req, res) => {
 		const { products, orderDetail, user } = req.body;
 		const response = await createHistoryController(products, orderDetail, user);
 		res.status(200).json(response);
+
 		// console.log(response);
 	} catch (error) {
 		res.status(400).json({ error });
@@ -22,7 +23,10 @@ const getHistoryByIdUserHandler = async (req, res) => {
 		if (idUser) {
 			const historyId = await getHistoryByIdController(idUser);
 			if (!historyId.length) throw Error('El historial no existe.');
-			else return res.status(200).json(historyId);
+			else {
+                console.log(historyId);
+				return res.status(200).json(historyId);
+			}
 		}
 	} catch (error) {
 		res.status(500).json({ error: error.message });
