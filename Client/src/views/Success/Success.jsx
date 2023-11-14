@@ -44,6 +44,7 @@ const Success = () => {
 				orderDetail: orderDetail,
 				user: userData[0], // Agrega la propiedad user al objeto
 			});
+			console.log(orderData);
 		} catch (error) {
 			console.error('Error fetching user data:', error.message);
 		}
