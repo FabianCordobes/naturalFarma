@@ -68,6 +68,10 @@ export default function AccountMenu() {
 		navigate('/userDetail');
 	};
 
+	const toHistory = () => {
+		navigate('/history');
+	};
+
 	const toRegister = () => {
 		navigate('/register');
 	};
@@ -235,7 +239,7 @@ export default function AccountMenu() {
 						Mi cuenta
 					</MenuItem>
 					<Divider />
-					<MenuItem onClick={handleClose}>
+					<MenuItem onClick={(handleClose, toHistory)}>
 						<ListItemIcon>
 							<ManageSearchIcon fontSize="small" />
 						</ListItemIcon>
