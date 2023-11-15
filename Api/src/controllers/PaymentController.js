@@ -1,6 +1,7 @@
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 const { ACCESS_TOKEN } = process.env;
 const {History} = require ("../db");
+const  {enviarCorreo}  = require ("../../config/nodemaler")
 
 const client = new MercadoPagoConfig({
 	accessToken: ACCESS_TOKEN,
@@ -42,8 +43,8 @@ const createOrder = async (items) => {
 };
 
 const getSuccesfulPurchase = async (items) => {
-
-	// rutas mail
+		await History.create({ items, status: 'successful' });
+		 await enviarCorreo(items);
 };
 
 module.exports = {
