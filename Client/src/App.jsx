@@ -199,7 +199,7 @@ function App() {
 					path="/admin"
 					element={<CreateAdmin />}
 				/>
-				<Route
+				{<Route
 					path="/admin/create"
 					element={<CreateAdmin />}
 				/>

@@ -1,6 +1,7 @@
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 const { ACCESS_TOKEN } = process.env;
 const {History} = require ("../db");
+const  {enviarCorreo}  = require ("../../config/nodemaler")
 
 const client = new MercadoPagoConfig({
 	accessToken: ACCESS_TOKEN,
@@ -29,21 +30,21 @@ const createOrder = async (items) => {
 			items: products,
 
 			back_urls: {
-				failure: 'https://natural-farma.onrender.com/cart',
+				failure: 'https://natural-farma.vercel.app/',
 				pending: '',
-				success: 'http://localhost:5173/success',
+				success: 'https://natural-farma.vercel.app/success',
 			},
 			auto_return: 'approved',
 		},
 	};
 
+	console.log(items);
 	const response = await payment.create(preference);
 	return response;
 };
-
 const getSuccesfulPurchase = async (items) => {
-
-	// rutas mail
+		await History.create({ items, status: 'successful' });
+		await enviarCorreo(items[0].email, items[0].name);
 };
 
 module.exports = {

@@ -8,7 +8,7 @@ import App from './App.jsx';
 import axios from 'axios';
 
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://natural-farma.onrender.com/';
 
 const root = createRoot(document.getElementById('root'));
 

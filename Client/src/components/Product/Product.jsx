@@ -144,6 +144,20 @@ const Product = ({ product }) => {
 								value={editedStock}
 								onChange={(e) => setEditedStock(e.target.value)}
 							/>
+							<div style={{display: 'flex', gap:'15px', marginTop:'10px'}}>
+								<button
+									onClick={handleConfirmEdit}
+									style={{backgroundColor: '#2e5bbd', color: '#fff', border:'none'}}
+									className={style.botoncitos}>
+									Confirmar
+								</button>
+
+								<button
+									onClick={handleCancelEdit}
+									className={style.botoncitos}>
+									Cancelar
+								</button>
+							</div>
 						</>
 					) : (
 						<>

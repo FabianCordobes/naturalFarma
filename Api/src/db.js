@@ -3,9 +3,9 @@ const { Sequelize } = require('sequelize');
 
 const fs = require('fs');
 const path = require('path');
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_URL } = process.env;
-// 
-const sequelize = new Sequelize(`${DB_URL}`, {  
+const { DB_URL } = process.env;
+
+const sequelize = new Sequelize(`${DB_URL}`, {
 	logging: false,
 	native: false,
 });
@@ -59,7 +59,7 @@ Admin.hasOne(Login);
 Login.belongsTo(Admin);
 
 User.hasOne(Login);
-Login.belongsTo(Admin);
+Login.belongsTo(User);
 
 module.exports = {
 	...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
