@@ -12,6 +12,7 @@ import React, { useState, useEffect } from 'react';
 import Logo from '../../assets/OIG.jpeg';
 import { handleLogout } from '../../components/UserAuthentications/UserAuthentications';
 import AccountMenu from '../AcountMenu/AcountMenu';
+import { useSelector } from 'react-redux';
 
 const app = initializeApp(firebaseConfig);
 
@@ -19,70 +20,23 @@ export default function NavBar(props) {
 	const { searchByName } = props;
 	const navigate = useNavigate();
 	const location = useLocation();
+
+	const cart = useSelector((state) => state.search.cart);
+  const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
+
+  useEffect(() => {
+    localStorage.setItem('cartCount', cartCount);
+  }, [cartCount]);
+	// console.log(cartCount);
+
+	// console.log(parsedCart.map(item) => {item.quantity * 1});
+	// console.log(parsedCart);
+	// let count = ;
+
 	const route = location.pathname;
-
-	// const auth = getAuth();
-	// const provider = new GoogleAuthProvider();
-
-	// useEffect(() => {
-	// 	isAuthenticated(); // Llama a la función para verificar la autenticación
-	// }, []);
 
 	const [showUserMenu, setShowUserMenu] = useState(false);
 	const [adminPanel, setAdminPanel] = useState(false);
-
-	// const handleSignOut = () => {
-
-	// 	console.log('esta es la route:' + route);
-
-	// 	window.alert('Sesión cerrada con éxito');
-
-	// 	handleLogout();
-	// 	signOut(auth, provider)
-	// 		.then(() => {
-	// 			// Eliminar el token del localStorage al cerrar sesión
-	// 			localStorage.removeItem('token');
-	// 			// Puedes realizar otras acciones después de cerrar sesión si es necesario
-	// 			window.location.reload();
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error(error);
-	// 		});
-
-	// 	if (route === '/badlogin') {
-	// 		navigate('/login');
-	// 	}
-	// };
-
-	// const toLogin = () => {
-	// 	navigate('/login');
-	// };
-
-	// const toRegister = () => {
-	// 	navigate('/register');
-	// };
-
-	// const showMenuDisplay = () => {
-	// 	if (showMenu) {
-	// 		setShowMenu(false);
-	// 	} else {
-	// 		setShowMenu(true);
-	// 	}
-	// };
-
-	// const isAuthenticated = () => {
-	// 	const user = localStorage.getItem('user');
-	// 	const token = localStorage.getItem('token');
-	// 	if (user && user != null) {
-	// 		setAdminPanel(true);
-	// 	}
-	// 	if (token && token != null) {
-	// 		setShowUserMenu(true);
-	// 	} else {
-	// 		// No se encontró un token, muestra el menú por defecto
-	// 		setShowUserMenu(false);
-	// 	}
-	// };
 
 	const updateMenu = () => {
 		handleLogout();
@@ -132,93 +86,12 @@ export default function NavBar(props) {
 						to={'/cart'}
 						className={style.userIcon}>
 						<FontAwesomeIcon icon={faShoppingCart} />
+						<span>{cartCount}</span>
 					</Link>
-
-					{/* <Link
-						onClick={() => showMenuDisplay()}
-						className={style.userIcon}>
-						<FontAwesomeIcon icon={faUser} />
-					</Link> */}
 				</div>
 
 				<AccountMenu />
-				{
-					// <div className={`${style.sideMenu} ${showMenu ? style.active : ''}`}>
-					// 	{adminPanel ? (
-					// 		<ul className={style.itemList}>
-					// 			{showUserMenu ? (
-					// 				<>
-					// 					<button className={style.item}>Historial</button>
-					// 					<button className={style.item}>Administrador de usuarios</button>
-					// 					<button className={style.item}>Ajustes de cuenta</button>
-					// 					<button
-					// 						className={style.item}
-					// 						onClick={() => {
-					// 							handleSignOut();
-					// 						}}>
-					// 						Cerrar sesión
-					// 					</button>
-					// 				</>
-					// 			) : (
-					// 				<>
-					// 					<button
-					// 						className={style.item}
-					// 						onClick={() => {
-					// 							toLogin();
-					// 						}}>
-					// 						Iniciar sesión
-					// 					</button>
-					// 					<button
-					// 						className={style.item}
-					// 						onClick={toRegister}>
-					// 						Registrarse
-					// 					</button>
-					// 				</>
-					// 			)}
-					// 		</ul>
-					// 	) : (
-					// 		<ul className={style.itemList}>
-					// 			{showUserMenu ? (
-					// 				<>
-					// 					<button className={style.item}>Historial</button>
-					// 					<button className={style.item}>Ajustes de cuenta</button>
-					// 					<button
-					// 						className={style.item}
-					// 						onClick={() => {
-					// 							handleSignOut();
-					// 						}}>
-					// 						Cerrar sesión
-					// 					</button>
-					// 				</>
-					// 			) : (
-					// 				<>
-					// 					<button
-					// 						className={style.item}
-					// 						onClick={() => {
-					// 							toLogin();
-					// 						}}>
-					// 						Iniciar sesión
-					// 					</button>
-					// 					<button
-					// 						className={style.item}
-					// 						onClick={toRegister}>
-					// 						Registrarse
-					// 					</button>
-					// 				</>
-					// 			)}
-					// 		</ul>
-					// 	)}
-					// </div>
-				}
 			</div>
-
-			{/* <div
-				className={style.toggleClasses}
-				onClick={() => setShowMenu(!showMenu)}>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div> */}
 		</nav>
 	);
 }

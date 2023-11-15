@@ -1,5 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, delFromCart, setCart } from '../../redux/actions/searchActions';
+import {
+	addToCart,
+	clearCart,
+	delFromCart,
+	setCart,
+} from '../../redux/actions/searchActions';
 import style from './Cart.module.css';
 import { useEffect, useState } from 'react';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
@@ -49,32 +54,18 @@ const Cart = () => {
 	let finalPrice = 0;
 
 	useEffect(() => {
+		// Actualiza el estado de Redux con los productos almacenados en el localStorage
 		const storedCart = localStorage.getItem('cart');
 		if (storedCart) {
 			const parsedCart = JSON.parse(storedCart);
-			// Actualiza el estado de Redux con los favoritos almacenados
 			dispatch(setCart(parsedCart));
 		}
 	}, []);
 
-	// Función para guardar el carrito en el localStorage cuando cambia
 	useEffect(() => {
+		// Guarda el carrito en el localStorage cuando cambia
 		localStorage.setItem('cart', JSON.stringify(items));
 	}, [items]);
-
-	// const handleIncrement = () => {
-	// dispatch(addToCart(item.id));
-	// dispatch(incrementCartCount());
-	// };
-
-	// const handleDecrement = () => {
-	// dispatch(delFromCart(item.id));
-	// dispatch(decrementCartCount());
-	// };
-
-	// const handleDecrementAll = () => {
-	// dispatch(decrementAll());
-	// };
 
 	return (
 		<div className={style.cartContainer}>
@@ -97,9 +88,25 @@ const Cart = () => {
 								<p>Precio por unidad: ${item.price}</p>
 								<p>Precio total: ${item.price * item.quantity}</p>
 							</div>
-							<button onClick={() => dispatch(addToCart(item.id))}>Agregar uno</button>
-							<button onClick={() => dispatch(delFromCart(item.id))}>Eliminar uno</button>
-							<button onClick={() => dispatch(delFromCart(item.id, true))}>
+							<button
+								onClick={() => {
+									dispatch(addToCart(item.id));
+									dispatch(incrementCartCount());
+								}}>
+								Agregar uno
+							</button>
+							<button
+								onClick={() => {
+									dispatch(delFromCart(item.id));
+									dispatch(decrementCartCount());
+								}}>
+								Eliminar uno
+							</button>
+							<button
+								onClick={() => {
+									dispatch(delFromCart(item.id, true));
+									dispatch(decrementAll());
+								}}>
 								Eliminar todos
 							</button>
 						</li>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './Product.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { FiShoppingCart } from 'react-icons/fi';
 import AlertDialog from '../AlertDialog/AlertDialog';
+import { incrementCartCount } from '../../redux/actions/countActions';
 
 const Product = ({ product }) => {
 	const dispatch = useDispatch();
@@ -25,6 +26,8 @@ const Product = ({ product }) => {
 	const [editedStock, setEditedStock] = useState(product.stocks);
 	const [originalPrice, setOriginalPrice] = useState(product.price);
 	const [originalStock, setOriginalStock] = useState(product.stocks);
+
+	const [isAdmin, setIsAdmin] = useState(false);
 
 	const cart = useSelector((state) => state.search.cart);
 	const isCartItem = cart.some((item) => item.id === product.id);
@@ -47,6 +50,7 @@ const Product = ({ product }) => {
 		try {
 			dispatch(addToCart(product.id));
 			dispatch(showSuccessAlert());
+			dispatch(incrementCartCount());
 		} catch (error) {
 			dispatch(showErrorAlert());
 		}
@@ -84,6 +88,27 @@ const Product = ({ product }) => {
 		setEditedStock(originalStock);
 		setIsEditing(false);
 	};
+
+	const isAuthenticated = () => {
+		const admin = localStorage.getItem('admin');
+		if (admin) {
+			const spl = admin.split('"').join('');
+			if (spl && spl === 'Panel Administracion') {
+				setIsAdmin(true);
+			}
+		}
+
+		// const token = localStorage.getItem('token');
+		// if (token && token != null) {
+		// 	setShowUserMenu(true);
+		// } else {
+		// 	setShowUserMenu(false);
+		// }
+	};
+
+	useEffect(() => {
+		isAuthenticated();
+	}, []);
 
 	return (
 		!isDeleting && (
@@ -133,43 +158,61 @@ const Product = ({ product }) => {
 									Stock: <span>{product?.stocks}</span>
 								</p>
 							</Link>
+
+							{isAdmin ? (
+								<>
+									<div className={style.btn}>
+										{isEditing ? (
+											<>
+												<Link
+													onClick={handleConfirmEdit}
+													className={style.links}>
+													Confirmar
+												</Link>
+											</>
+										) : (
+											<>
+												<Link
+													onClick={handleAddToCart}
+													className={style.links}>
+													Agregar
+												</Link>
+												<span>
+													<FiShoppingCart />
+												</span>
+											</>
+										)}
+									</div>
+									<div className={style.buttons}>
+										<AlertDialog
+											handleAccept={handleErase}
+											buttonText={'Eliminar'}
+											title={'¿Seguro que desea eliminar el producto?'}
+											description={'Tenga en cuenta que esta acción es irreversible'}
+										/>
+										<button
+											onClick={isEditing ? handleCancelEdit : handleEdit}
+											className={`${style.botoncitos} ${style.editButton}`}>
+											{isEditing ? 'Cancelar' : 'Editar'}
+										</button>
+									</div>
+								</>
+							) : (
+								<>
+									<div className={style.btn}>
+										<Link
+											onClick={handleAddToCart}
+											className={style.links}>
+											Agregar
+										</Link>
+										<span>
+											<FiShoppingCart />
+										</span>
+									</div>
+								</>
+							)}
 						</>
 					)}
-					<div className={style.btn}>
-						{isEditing ? (
-							<>
-								<Link
-									onClick={handleConfirmEdit}
-									className={style.links}>
-									Confirmar
-								</Link>
-							</>
-						) : (
-							<>
-								<Link
-									onClick={handleAddToCart}
-									className={style.links}>
-									Agregar
-								</Link>
-								<span>
-									<FiShoppingCart />
-								</span>
-							</>
-						)}
-					</div>
-				</div>
-				<div className={style.buttons}>
-					<AlertDialog
-						handleAccept={handleErase}
-						buttonText={'Eliminar'}
-						title={'¿Seguro que desea eliminar el producto?'}
-						description={'Tenga en cuenta que esta acción es irreversible'}
-					/>
-					<button
-						onClick={isEditing ? handleCancelEdit : handleEdit}
-						className={`${style.botoncitos} ${style.editButton}`}>
-						{isEditing ? 'Cancelar' : 'Editar'}
-					</button>
 				</div>
 			</div>
 		)

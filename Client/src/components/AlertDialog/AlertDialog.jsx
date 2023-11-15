@@ -30,7 +30,7 @@ export default function AlertDialog({ buttonText, title, description, handleAcce
 			{buttonText === 'Eliminar' ? (
 				<Button
 					style={{background:'#ec3030', color:'#fff', fontWeight:'400', fontSize:'14px', height:'31px', marginTop:'2px'}}
-					variant="fill"
+					variant="filled"
 					onClick={handleClickOpen}>
 					{buttonText}
 				</Button>

@@ -49,16 +49,15 @@ Product.belongsTo(Admin);
 Product.hasMany(Review);
 Review.belongsTo(Product);
 
+User.hasMany(History);
+History.belongsTo(User);
+
 // 1:1
 Admin.hasOne(Login);
 Login.belongsTo(Admin);
 
 User.hasOne(Login);
 Login.belongsTo(Admin);
-
-User.hasOne(History);
-History.belongsTo(User);
-
 
 module.exports = {
     ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
