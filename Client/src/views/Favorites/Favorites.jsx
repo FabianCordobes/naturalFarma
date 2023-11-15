@@ -12,8 +12,6 @@ import {
 const Favorites = () => {
 	const items = useSelector((state) => state.search.favorites); // Accede a la lista de perros desde el estado global de Redux.
 
-
-
 	const allProducts = items;
 
 	const [currentPage, setCurrentPage] = useState(1); // Define el estado local para la página actual.
@@ -33,27 +31,26 @@ const Favorites = () => {
 
 	const dispatch = useDispatch();
 
-   useEffect(() => {
-      const storedFav = localStorage.getItem('favorites');
-      if (storedFav) {
-        const parsedFav = JSON.parse(storedFav);
-        dispatch(setFavorites(parsedFav));
-      }
-    }, []);
-    
+	useEffect(() => {
+		const storedFav = localStorage.getItem('favorites');
+		if (storedFav) {
+			const parsedFav = JSON.parse(storedFav);
+			dispatch(setFavorites(parsedFav));
+		}
+	}, []);
 
 	// Función para guardar los favoritos en el localStorage cuando cambia
 	useEffect(() => {
-      localStorage.setItem('favorites', JSON.stringify(allProducts));
-    }, [allProducts]);
+		localStorage.setItem('favorites', JSON.stringify(allProducts));
+	}, [allProducts]);
 
-   if(items.length < 1) {
-      return (
-         <div>
-            <h3>NO HAY PRODUCTOS EN FAVORITOS</h3>
-         </div>
-      )
-   }
+	if (items.length < 1) {
+		return (
+			<div>
+				<h3>NO HAY PRODUCTOS EN FAVORITOS</h3>
+			</div>
+		);
+	}
 
 	return (
 		<div className={style.productListContainer}>

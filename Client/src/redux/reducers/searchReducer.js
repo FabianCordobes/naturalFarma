@@ -15,6 +15,14 @@ import {
 	ADD_TO_FAVORITES,
 	REMOVE_TO_FAVORITES,
 	SET_FAVORITES,
+	SHOW_SUCCESS_ALERT,
+	HIDE_SUCCESS_ALERT,
+	SHOW_ERROR_ALERT,
+	HIDE_ERROR_ALERT,
+	INCREMENT_CART_COUNT,
+	DECREMENT_CART_COUNT,
+	PRODUCTS_EDIT_SUCCESS,
+	PRODUCTS_EDIT_FAILURE,
 } from '../actionTypes';
 
 const initialState = {
@@ -25,10 +33,41 @@ const initialState = {
 	error: null,
 	cart: [],
 	favorites: [],
+	showSuccessAlert: false,
+	showErrorAlert: false,
 };
 
 const searchReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case PRODUCTS_EDIT_SUCCESS:
+			return {
+				...state,
+				error: null,
+			};
+		case PRODUCTS_EDIT_FAILURE:
+			return {
+				...state,
+				error: action.payload,
+			};
+
+		case SHOW_SUCCESS_ALERT:
+			return { ...state, showSuccessAlert: true };
+
+		case HIDE_SUCCESS_ALERT:
+			return { ...state, showSuccessAlert: false };
+
+		case SHOW_ERROR_ALERT:
+			return {
+				...state,
+				showErrorAlert: true,
+			};
+
+		case HIDE_ERROR_ALERT:
+			return {
+				...state,
+				showErrorAlert: false,
+			};
+
 		case CLEAR_PRODUCTS:
 			return {
 				...state,

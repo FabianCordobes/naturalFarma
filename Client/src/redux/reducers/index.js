@@ -5,15 +5,27 @@ import { combineReducers } from 'redux';
 import searchReducer from './searchReducer';
 import detailReducer from './detailReducer';
 import userReducer from './userReducer';
+import adminReducer from './adminReducer';
+import countReducer from './countReducer';
+import categoryReducer from './categoryReducer';
+import productReducer from './productReducer';
 
 
 const rootReducer = combineReducers({
 	
 	search: searchReducer,
 
+	count: countReducer,
+
 	detail: detailReducer,
 
-	user: userReducer
+	user: userReducer,
+
+	admin: adminReducer,
+
+	category: categoryReducer,
+
+	product: productReducer,
 });
 
 export default rootReducer;

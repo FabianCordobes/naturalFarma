@@ -1,71 +1,52 @@
 import { Link } from 'react-router-dom';
 import style from './NavBar.module.css';
 import SearchBar from '../SearchBar/SearchBar';
-import { useNavigate } from 'react-router-dom';
-import { FaShoppingCart, FaUser } from 'react-icons/fa';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../../firebaseConfig';
+import { GoogleAuthProvider, getAuth, signOut } from 'firebase/auth';
 import KJUR from 'jsrsasign';
 import React, { useState, useEffect } from 'react';
 import Logo from '../../assets/OIG.jpeg';
-import {handleLogout } from '../../components/UserAuthentications/UserAuthentications';
-import { useAuth0 } from "@auth0/auth0-react";
+import { handleLogout } from '../../components/UserAuthentications/UserAuthentications';
+import AccountMenu from '../AcountMenu/AcountMenu';
+import { useSelector } from 'react-redux';
+
+const app = initializeApp(firebaseConfig);
 
 export default function NavBar(props) {
 	const { searchByName } = props;
 	const navigate = useNavigate();
-	const { logout } = useAuth0();
-	const { loginWithRedirect} = useAuth0();
-	const {isAuthenticated, user} = useAuth0()
-	// useEffect(() => {
-	// 	isAuthenticated(); // Llama a la función para verificar la autenticación
-	// }, []);
+	const location = useLocation();
 
+	const cart = useSelector((state) => state.search.cart);
+  const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
 
-	const [showMenu, setShowMenu] = useState(false);
-	// const [showUserMenu, setShowUserMenu] = useState(false);
+  useEffect(() => {
+    localStorage.setItem('cartCount', cartCount);
+  }, [cartCount]);
+	// console.log(cartCount);
 
-	const toRegister = () => {
-		navigate('/register');
+	// console.log(parsedCart.map(item) => {item.quantity * 1});
+	// console.log(parsedCart);
+	// let count = ;
+
+	const route = location.pathname;
+
+	const [showUserMenu, setShowUserMenu] = useState(false);
+	const [adminPanel, setAdminPanel] = useState(false);
+
+	const updateMenu = () => {
+		handleLogout();
+		setShowUserMenu(false);
 	};
 
-	// const isAuthenticated = () => {
-	// 	const token = localStorage.getItem('token');
-	// 	console.log(token)
-	
-	// 	if (token && token != null) {
-	// 		console.log("entramos papu")
-	// 	  // Reemplaza 'clave_secreta' con tu clave secreta real
-	// 	  const secret = '1234';
-	
-	// 	  try {
-	// 		const isValid = KJUR.jws.JWS.verifyJWT(token, secret, {
-	// 		  alg: ['HS256']
-	// 		});
+	const UserDetail = () => {
+		navigate('/userDetail');
+	};
 
-	// 		console.log("sera valido ?:"+isValid)
-	
-	// 		if (isValid) {
-	// 			// El usuario está autenticado, muestra el menú correspondiente
-	// 			setShowUserMenu(true);
-	// 		} else {
-	// 		  // El token no es válido, muestra el menú por defecto
-	// 		  setShowUserMenu(false);
-	// 		}
-	// 	  } catch (error) {
-	// 		console.error('Error al verificar el token');
-	// 		setShowUserMenu(false);
-	// 	  }
-	// 	} else {
-	// 		// No se encontró un token, muestra el menú por defecto
-	// 		setShowUserMenu(false);
-	// 	}
-	//   };
-
-	//   const updateMenu = () => {
-	// 	handleLogout()
-	// 	setShowUserMenu(false);
-	//   };
-      
 	return (
 		<nav className={style.navBar}>
 			<div className={style.leftSide}>
@@ -87,55 +68,30 @@ export default function NavBar(props) {
 
 			<div className={style.rightSide}>
 				<div>
-					<Link to={'/about'} style={{textDecoration: 'none'}}>
+					<Link
+						to={'/about'}
+						style={{ textDecoration: 'none' }}>
 						<div className={style.about}>
 							<h3>About</h3>
 						</div>
 					</Link>
 				</div>
 				<div className={style.iconsContainer}>
-					<Link to={'/favorites'}>
-						<AiOutlineHeart className={style.userIcon} />
+					<Link
+						to={'/favorites'}
+						className={style.userIcon}>
+						<FontAwesomeIcon icon={faHeart} />
 					</Link>
-
-					<Link to={'/cart'}>
-						<FaShoppingCart className={style.userIcon} />
+					<Link
+						to={'/cart'}
+						className={style.userIcon}>
+						<FontAwesomeIcon icon={faShoppingCart} />
+						<span>{cartCount}</span>
 					</Link>
+				</div>
 
-					<div
-						className={style.navToggle}
-						onClick={() => setShowMenu(!showMenu)}>
-						<FaUser className={style.userIcon} />
-					</div>
-				</div>
-				
-				{showMenu && (
-				<div className={`${style.sideMenu} ${showMenu ? 'active' : ''}`}>
-					<ul className={style.itemList}>
-						{isAuthenticated ? (
-							<>
-								<img src={user.picture}></img>
-								<button className={style.item}>Historial</button>
-								<button className={style.item}>Ajustes de cuenta</button>
-								<button className={style.item} onClick={() => { logout({ returnTo: window.origin });}}>Cerrar sesión</button>
-							</>
-						) : (
-							<>
-								<button className={style.item} onClick={() => { loginWithRedirect()}}>Iniciar sesión</button>
-								<button className={style.item} onClick={toRegister}>Registrarse</button>
-								</>)}
-					</ul>
-				</div>
-			)}
+				<AccountMenu />
 			</div>
-
-			{/* <div
-				className={toggleClasses}
-				onClick={() => setShowMenu(!showMenu)}>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div> */}
 		</nav>
 	);
 }

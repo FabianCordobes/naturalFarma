@@ -5,6 +5,7 @@ import getDetail from '../../redux/actions/detailActions';
 import { GET_DETAIL } from '../../redux/actionTypes';
 import style from './Detail.module.css';
 import { FiShoppingCart } from 'react-icons/fi';
+import Reviews from '../../components/Reviews/Reviews';
 
 const Detail = () => {
 	let { id } = useParams();
@@ -15,6 +16,7 @@ const Detail = () => {
 
 	useEffect(() => {
 		dispatch(getDetail(id));
+		
 		console.log(detailProducts[0]);
 		return () => {
 			dispatch({
@@ -27,6 +29,8 @@ const Detail = () => {
 	if (!detailProducts) {
 		return <p>Loading...</p>;
 	}
+
+	const productId = detailProducts[0]?.id; // Obtén el productId desde el detalle del producto
 
 	return (
 		<div className={style.detailContainer}>
@@ -74,6 +78,9 @@ const Detail = () => {
 					<p>...Loading</p>
 				</div>
 			)}
+			<br />
+			<Reviews productId={productId}/>
+
 		</div>
 	);
 };

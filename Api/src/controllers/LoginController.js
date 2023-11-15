@@ -1,25 +1,3 @@
-// const { Login } = require(".././db")
-// const jwt = require("jsonwebtoken")
-
-// async function crearAdmin(req, res){
-//     // console.log('req', JSON.stringify(req.body));
-    
-//     try{
-//         const { email, password } = req.body
-//         const user = await Login.create({
-//             email,
-//             password,
-//             isAdmin: true,
-//         })
-//         const token = jwt.sign({ userId: user.id, isAdmin: true }, "1234", { expiresIn: "1h" })
-//         res.json({token, response: 'success'})
-//     } catch(error){
-//         console.log(error)
-//         res.status(500).send("Error al crear administrador " + error)
-//     }
-// }
-
-// module.exports = { crearAdmin }
 
 const { User, Admin } = require(".././db");
 const KJUR = require('jsrsasign');
@@ -37,9 +15,10 @@ async function login(req, res) {
     });
 
     if (user) {
+      console.log('------------------------------------------------USUARIO--------------------',user.dataValues);
       // Si el usuario existe en la tabla "Users", genera un token de usuario común
       const token = KJUR.jws.JWS.sign(null, { alg: "HS256" }, { userId: user.id, isAdmin: false }, "1234");
-      res.json({ token, response: 'success' });
+      res.json({ token, response: 'success', user: user.dataValues.id });
     } else {
       // Si el usuario no existe en la tabla "Users", verifica si existe en la tabla "Admin"
       const admin = await Admin.findOne({
@@ -54,7 +33,7 @@ async function login(req, res) {
         const token = KJUR.jws.JWS.sign(null, { alg: "HS256" }, { userId: admin.id, isAdmin: true }, "1234");
         res.json({ token, response: 'success' });
       } else {
-        res.status(401).send("Credenciales inválidas");
+        res.status(201).send("Credenciales inválidas");
       }
     }
   } catch (error) {

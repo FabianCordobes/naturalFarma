@@ -17,6 +17,10 @@ import {
 	ADD_TO_FAVORITES,
 	REMOVE_TO_FAVORITES,
 	SET_FAVORITES,
+	HIDE_SUCCESS_ALERT,
+	SHOW_SUCCESS_ALERT,
+	SHOW_ERROR_ALERT,
+	HIDE_ERROR_ALERT,
 } from '../actionTypes';
 import axios from 'axios';
 
@@ -37,7 +41,7 @@ export const searchProductFailure = (error) => {
 // action para realizar la busqueda
 
 export const searchProducts = (brand) => {
-	const endpoint = `http://localhost:3001/product?brand=${brand}`;
+	const endpoint = `/product?brand=${brand}`;
 	return async (dispatch) => {
 		try {
 			const response = await axios.get(endpoint);
@@ -58,7 +62,7 @@ export const searchProducts = (brand) => {
 export const deleteProduct = (payload) => {
 	return async function (dispatch) {
 		try {
-			const response = await axios.delete(`http://localHost:3001/product/${payload}`);
+			const response = await axios.delete(`/product/${payload}`);
 			console.log(response);
 			dispatch({
 				type: DELETE_PRODUCT,
@@ -82,21 +86,23 @@ export const editProductFailure = (error) => ({
 	payload: error,
 });
 
-export const editProduct = (productId, updatedProductData) => {
+export const editProduct = (productId, editedData) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.put(
-				`http://localhost:3001/products/${productId}`,
-				updatedProductData
-			);
+			console.log('Sending edit request for product ID:', productId);
+			const response = await axios.put(`/product/${productId}`, editedData);
+
+			console.log('Server response:', response);
 
 			if (response.status === 200) {
 				const updatedProduct = response.data;
+				console.log('Updated product:', updatedProduct);
 				dispatch(editProductSuccess(updatedProduct));
 			} else {
 				dispatch(editProductFailure('No se pudo editar el producto'));
 			}
 		} catch (error) {
+			console.error('Error editing product:', error);
 			dispatch(editProductFailure('Ocurrió un error al editar el producto'));
 		}
 	};
@@ -214,3 +220,22 @@ export const setFavorites = (favorites) => {
 		});
 	};
 };
+
+// ALERTAS
+
+// alertActions.js
+export const showSuccessAlert = () => {
+	return { type: SHOW_SUCCESS_ALERT };
+};
+
+export const hideSuccessAlert = () => {
+	return { type: HIDE_SUCCESS_ALERT };
+};
+
+export const showErrorAlert = () => ({
+	type: SHOW_ERROR_ALERT,
+});
+
+export const hideErrorAlert = () => ({
+	type: HIDE_ERROR_ALERT,
+});

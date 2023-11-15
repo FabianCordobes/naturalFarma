@@ -1,0 +1,35 @@
+.product-list-table {
+    width: 1635px;
+    height: 600px;
+  }
+  
+  .product-list-table th,
+  .product-list-table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .product-list-table th {
+    background-color: #f0f0f0;
+  }
+  
+  .product-list-table th:first-child,
+  .product-list-table td:first-child {
+    width: 30%;
+  }
+  
+  .product-list-table th:last-child,
+  .product-list-table td:last-child {
+    width: 20%;
+  }
+  
+  .product-list-table td {
+    font-size: 14px;
+  }
+  
+  .product-list-table tbody tr {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  

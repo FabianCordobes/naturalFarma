@@ -1,38 +1,36 @@
-.sort{width: 15%;}
+.sort {
+	width: 15%;
+}
 
 .productListContainer {
 	display: flex;
 	flex-direction: row;
-	min-height: 80vh;
+	min-height: 100vh !important;
 }
 
 .products {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 5%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
 	margin: 16px;
 	list-style: none;
 }
 
 .productContainer {
-	max-width: 25%;
-	width: 100%;
 	margin: 0 1%;
 	padding: 10px;
 	box-sizing: border-box;
-  }
+}
 
-  @media (max-width: 800px) {
+@media (max-width: 800px) {
 	.productListContainer {
 		display: flex;
 		flex-direction: column;
 		width: 100%;
 	}
-	.sort{
-		width: 100%;}
-		
+	.sort {
+		width: 100%;
+	}
+
 	.products {
 		display: flex;
 		flex-direction: column;
@@ -42,5 +40,4 @@
 		width: 100%;
 		list-style: none;
 	}
-		
-	  }
+}

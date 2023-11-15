@@ -43,11 +43,32 @@
 	height: 35%;
 	width: 100%;
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: row;
 	gap: 5%;
 	align-items: center;
 	justify-content: center;
 }
+
+.botonesActive {
+	height: 35%;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.botones2{display: flex;
+	flex-wrap: wrap;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+width: 100%;
+height: 100%;
+margin-bottom: 2rem;
+gap: 5%;}
 
 .btn {
 	font-size: 1.2rem;

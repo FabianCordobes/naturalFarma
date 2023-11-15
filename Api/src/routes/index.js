@@ -8,7 +8,8 @@ const loginRouter = require ("../routes/LoginRouter")
 
 const admin = require("../routes/adminRoutes")
 const paymentRouter = require("../routes/PaymentRoutes")
-
+const reviewRouter= require("../routes/ReviewRouter")
+const historyRouter= require("../routes/HistoyRouter") 
 
 
 const router = Router();
@@ -21,7 +22,7 @@ router.use("/admin", admin)
 
 router.use("/login", loginRouter)
 router.use("/order", paymentRouter)
-
-
+router.use("/review", reviewRouter)
+router.use("/history", historyRouter)
 
 module.exports = router;

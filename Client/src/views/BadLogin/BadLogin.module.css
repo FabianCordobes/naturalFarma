@@ -1,0 +1,17 @@
+.BadLogin{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    color: black;
+    min-height: 53vh;
+    justify-content:center;
+
+}
+
+.Titulo{color: red;
+margin-bottom: 2rem;}
+
+.parrafo{
+    font-size: 150%;
+}

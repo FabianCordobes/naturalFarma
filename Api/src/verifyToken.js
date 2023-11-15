@@ -2,6 +2,7 @@ const KJUR = require("jsrsasign");
 
 function verifyToken(req, res, next) {
     const userHeader = req.headers["authorization"]; // "Bearer JWT"
+    console.log("LOCO"+ req.headers["authorization"]);
     if (typeof userHeader !== undefined) {
         const authString = userHeader.split(" "); // ["BEARER", "JWT"]
         const token = authString[1];
@@ -27,7 +28,7 @@ function verifyToken(req, res, next) {
                     req.userId = payload.userId;
                     next();
                 } else {
-                    res.status(403).send("No tienes permisos");
+                    res.status(202).send("No tienes permisos");
                 }
             } else {
                 res.status(401).send("Token Invalido");

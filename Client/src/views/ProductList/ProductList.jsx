@@ -5,15 +5,26 @@ import SortComponent from '../../components/Sorts/SortComponent';
 import { useEffect, useState } from 'react';
 import Pagination from '../../components/Pagination/Pagination';
 import { Link } from 'react-router-dom';
-import { clearProducts, searchProducts, setFavorites } from '../../redux/actions/searchActions';
+import {
+	clearProducts,
+	searchProducts,
+	setCart,
+	setFavorites,
+	showErrorAlert,
+} from '../../redux/actions/searchActions';
+import Alerts from '../../components/Alerts/Alerts';
+import SimpleBackdrop from '../../components/SimpleBackdrop/SimpleBackdrop';
 
 const ProductList = () => {
 	const allProducts = useSelector((state) => state.search.products); // Accede a la lista de perros desde el estado global de Redux.
 	const searchQuery = useSelector((state) => state.search.searchQuery);
 
+	const showSuccessAlert = useSelector((state) => state.search.showSuccessAlert);
+	const showErrorAlert = useSelector((state) => state.search.showErrorAlert);
+
 	const [currentPage, setCurrentPage] = useState(1); // Define el estado local para la página actual.
 
-	const productsPerPage = 4; // Define la cantidad de perros a mostrar por página.
+	const productsPerPage = 8; // Define la cantidad de perros a mostrar por página.
 
 	const lastProductOfPage = currentPage * productsPerPage; // Calcula el último perro de la página actual.
 
@@ -37,8 +48,7 @@ const ProductList = () => {
 		};
 	}, []);
 
-
-		useEffect(() => {
+	useEffect(() => {
 		const storedFavorites = localStorage.getItem('favorites');
 		if (storedFavorites) {
 			const parsedFavorites = JSON.parse(storedFavorites);
@@ -47,32 +57,60 @@ const ProductList = () => {
 		}
 	}, []);
 
+	useEffect(() => {
+		const storedCart = localStorage.getItem('cart');
+		if (storedCart) {
+			const parsedCart = JSON.parse(storedCart);
+			// Actualiza el estado de Redux con los favoritos almacenados
+			dispatch(setCart(parsedCart));
+		}
+	}, []);
+
 	return (
 		<div className={style.productListContainer}>
-			<div className={style.sort}>
-			<SortComponent />
-			</div>
-			<div className={style.content}>
-			<Pagination
-				productsPerPage={productsPerPage}
-				allProducts={allProducts.length}
-				pagination={pagination}
-				currentPage={currentPage}
-			/>
-			<ul className={style.products}>
-				{currentProducts &&
-					currentProducts.map((product) => {
-						return (
-							<li
-								className={style.productContainer}
-								key={product.id}>
-								<Product product={product} />
-								{/* Renderiza el componente Product con el producto */}
-							</li>
-						);
-					})}
-			</ul>
-			</div>
+			{!currentProducts ? (
+				<SimpleBackdrop />
+			) : (
+				<>
+					<div className={style.sort}>
+						<SortComponent />
+					</div>
+					<div className={style.content}>
+						{showSuccessAlert && (
+							<Alerts
+								typeSeverity="success"
+								title="Añadido"
+								description="Producto agregado al carrito con éxito."></Alerts>
+						)}
+						{showErrorAlert && (
+							<Alerts
+								typeSeverity="error"
+								title="Ocurrió un problema"
+								description="El producto no ha sido agregado al carrito."></Alerts>
+						)}
+
+						<Pagination
+							productsPerPage={productsPerPage}
+							allProducts={allProducts.length}
+							pagination={pagination}
+							currentPage={currentPage}
+						/>
+						<ul className={style.products}>
+							{currentProducts &&
+								currentProducts.map((product) => {
+									return (
+										<li
+											className={style.productContainer}
+											key={product.id}>
+											<Product product={product} />
+											{/* Renderiza el componente Product con el producto */}
+										</li>
+									);
+								})}
+						</ul>
+					</div>
+				</>
+			)}
 		</div>
 	);
 };
