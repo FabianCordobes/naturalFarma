@@ -1,6 +1,6 @@
 const {
 	createHistoryController,
-	getHistoriByIdController,
+	getHistoryByIdController,
 } = require('../controllers/HistoryController');
 const { User, History } = require('../db');
 
@@ -17,18 +17,19 @@ const createHistorytHandler = async (req, res) => {
 };
 
 const getHistoryByIdUserHandler = async (req, res) => {
-	const { idUser } = req.params;
+	const { id } = req.params;
 
 	try {
-		if (idUser) {
-			const historyId = await getHistoryByIdController(idUser);
-			if (!historyId.length) throw Error('El historial no existe.');
-			else {
-                console.log(historyId);
-				return res.status(200).json(historyId);
-			}
+		console.log('ID USER EN HANDLER', id);
+		const historyId = await getHistoryByIdController(id);
+		if (!historyId.length) {
+			return res.status(404).json({ error: 'El historial no existe.' });
+		} else {
+			console.log(historyId);
+			return res.status(200).json(historyId);
 		}
 	} catch (error) {
+		console.error('Error al obtener historial por ID de usuario:', error);
 		res.status(500).json({ error: error.message });
 	}
 };

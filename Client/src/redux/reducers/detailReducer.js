@@ -23,6 +23,7 @@ const detailReducer = (state = initialState, action) => {
             case CREATE_REVIEW_ERROR:
                 return {
                     ...state,
+                    reviews: null,
                     createReviewError: action.payload,
                 };
     
@@ -36,10 +37,11 @@ const detailReducer = (state = initialState, action) => {
             case GET_PRODUCT_REVIEWS_ERROR:
                 return {
                     ...state,
+                    reviews: null,
                     getProductReviewsError: action.payload,
                 };
         default:
-            return { ...state }
+            return state
     }
 }
 

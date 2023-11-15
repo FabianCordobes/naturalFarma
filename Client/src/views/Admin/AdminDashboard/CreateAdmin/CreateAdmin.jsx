@@ -7,7 +7,7 @@ import {
 	isPasswordValid,
 } from '../../../../utils/registerValidations';
 import { addAdminUser } from '../../../../redux/actions/adminActions';
-import './CreateAdmin.css'
+import './CreateAdmin.css';
 
 export default function CreateAdmin() {
 	const dispatch = useDispatch();
@@ -85,15 +85,14 @@ export default function CreateAdmin() {
 				email: formData.email,
 				isAdmin: formData.isAdmin, // Incluir el valor del checkbox
 			};
-            console.log(userData);
+			console.log(userData);
 			dispatch(addAdminUser(userData));
-
 		}
 	};
 
 	return (
 		<div className="register-container">
-			<h1>Registro de Usuario</h1>
+			<h1>Registro de Admin</h1>
 			<form onSubmit={handleSubmit}>
 				<div className="form-group">
 					<label>Nombre:</label>
@@ -185,7 +184,7 @@ export default function CreateAdmin() {
 					/>
 				</div>
 				<div className="form-group">
-					<button type="submit" className={Style.buttonAdmin}>Registrarse</button>
+					<button type="submit">Registrarse</button>
 				</div>
 			</form>
 		</div>

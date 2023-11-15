@@ -34,7 +34,7 @@ const Cart = () => {
 			console.log(id); //recibe un id, que viene de response.data(del servidor)
 			return id; //retorna ese id para utilizarlo dsp
 		} catch (error) {
-			// console.log(error);
+			console.log(error);
 		}
 	};
 
