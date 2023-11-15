@@ -38,13 +38,13 @@ const createOrder = async (items) => {
 		},
 	};
 
+	console.log(items);
 	const response = await payment.create(preference);
 	return response;
 };
-
 const getSuccesfulPurchase = async (items) => {
 		await History.create({ items, status: 'successful' });
-		 await enviarCorreo(items);
+		await enviarCorreo(items[0].email, items[0].name);
 };
 
 module.exports = {
