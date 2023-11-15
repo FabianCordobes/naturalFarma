@@ -30,9 +30,9 @@ const createOrder = async (items) => {
 			items: products,
 
 			back_urls: {
-				failure: 'https://natural-farma.onrender.com/cart',
+				failure: 'https://natural-farma.vercel.app/',
 				pending: '',
-				success: 'http://localhost:5173/success',
+				success: 'https://natural-farma.vercel.app/success',
 			},
 			auto_return: 'approved',
 		},
