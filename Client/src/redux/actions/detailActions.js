@@ -40,7 +40,7 @@ export const getProductReviews = (productId) => {
     return async (dispatch) => {
         try {
             // Hago la solicitud GET al servidor para obtener las revisiones/reviews del producto
-            const response = await axios.get(`/${productId}`);
+            const response = await axios.get(`/product/${productId}`);
 
             // Despachar una acción con las revisiones obtenidas, con los datos
             dispatch({

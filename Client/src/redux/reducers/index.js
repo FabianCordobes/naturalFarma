@@ -7,6 +7,8 @@ import detailReducer from './detailReducer';
 import userReducer from './userReducer';
 import adminReducer from './adminReducer';
 import countReducer from './countReducer';
+import categoryReducer from './categoryReducer';
+import productReducer from './productReducer';
 
 
 const rootReducer = combineReducers({
@@ -20,6 +22,10 @@ const rootReducer = combineReducers({
 	user: userReducer,
 
 	admin: adminReducer,
+
+	category: categoryReducer,
+
+	product: productReducer,
 });
 
 export default rootReducer;

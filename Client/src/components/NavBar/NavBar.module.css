@@ -194,9 +194,19 @@ a::visited {
 }
 
 .userIcon {
+	cursor: pointer;
 	font-size: 40px;
 	color: var(--color-verde3);
 	margin-right: 2rem;
+	text-decoration: none;
+}
+
+.userIcon span {
+	color: #fff;
+	background: #000;
+	padding: 4px;
+	border-radius: 90px;
+	font-size: 20px;
 }
 
 .userIcon:hover {
@@ -226,13 +236,14 @@ a::visited {
 	height: 30rem;
 	background-color: var(--color-azul-oscuro);
 	top: 6rem;
-	right: -100%; /* Cambia esto a -100% para ocultar el menú inicialmente */
+	opacity: 0; /* Cambia esto a -100% para ocultar el menú inicialmente */
 	z-index: 99;
 	transition: right 0.6s ease; /* Agrega la propiedad de transición */
  }
  
 .sideMenu.active {
 	right: 0;
+	opacity: 1;
 	/* transition: 0.6s ease all; */
 	/* transform: translateX(0); */
 

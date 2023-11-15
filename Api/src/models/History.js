@@ -10,11 +10,11 @@ module.exports = (sequelize) =>{
         date: {
             type: DataTypes.DATEONLY,
             //fecha sin la hora.
-            allowNull: false,
+            // allowNull: false,
           },
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
+            // allowNull: false,
         },
         price: {
             type: DataTypes.INTEGER,

@@ -2,13 +2,47 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from './Login.module.css';
 import { handleLogin } from '../../components/UserAuthentications/UserAuthentications';
-import { useAuth0 } from '@auth0/auth0-react';
-import { useDispatch } from 'react-redux';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../../firebaseConfig';
+import { FaGoogle } from 'react-icons/fa';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { addUserData, setUserData } from '../../redux/actions/userActions';
 import axios from 'axios';
 
+const app = initializeApp(firebaseConfig);
+
 export default function Login() {
-	const { loginWithRedirect } = useAuth0();
+	const navigate = useNavigate();
+	const auth = getAuth();
+	const provider = new GoogleAuthProvider();
+
+	const handleGoogleSignIn = () => {
+		signInWithPopup(auth, provider)
+			.then((result) => {
+				// Manejar el resultado de inicio de sesión con Google
+				const user = result.user;
+				console.log('buscando el id' + JSON.stringify(user));
+
+				// Obtener el token de acceso desde el resultado
+				const token = result._tokenResponse?.idToken;
+				const idGoogle = user.uid;
+				if (token) {
+					// Guardar el token en localStorage
+					localStorage.setItem('token', token);
+					localStorage.setItem('idGoogle', idGoogle);
+				}
+
+				window.alert('Usuario autenticado:', user);
+
+				// Realizar la redirección después del inicio de sesión
+				navigate('/');
+			})
+			.catch((error) => {
+				// Manejar errores aquí
+				console.error(error);
+			});
+	};
+
 	const [dataUser, setDataUser] = useState({
 		user: '',
 		password: '',
@@ -21,42 +55,19 @@ export default function Login() {
 		});
 	};
 
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
-
 	const isAuthenticated = async () => {
 		// e.preventDefault();
 		const user = await handleLogin(dataUser);
-		console.log(user);
 		if (user.status === true) {
-			// dispatch(addUserData(user.userData));
-			localStorage.setItem('user', JSON.stringify(user.userData));
-
-			window.alert('Bienvenido');
 			navigate('/');
-		} else {
-			window.alert('Datos incorrectos');
 		}
-
-		const token = localStorage.getItem('token');
-		console.log(token);
-
-		const adminResponse = await axios.get('/login/admin-panel', {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		});
-		console.log('Datos del panel de administración:', adminResponse.data);
 	};
 
 	useEffect(() => {
-		return () => {
-			const storedFav = localStorage.getItem('user');
-			if (storedFav) {
-				const parsedFav = JSON.parse(storedFav);
-				dispatch(setUserData(parsedFav));
-			}
-		};
+		const storedToken = localStorage.getItem('token');
+		if (storedToken) {
+			navigate('/badlogin');
+		}
 	}, []);
 
 	return (
@@ -80,10 +91,16 @@ export default function Login() {
 				<button
 					type="button"
 					onClick={() => {
-						// loginWithRedirect();
 						isAuthenticated();
 					}}>
 					Iniciar Sesión
+				</button>
+				<button
+					type="button"
+					onClick={() => {
+						handleGoogleSignIn();
+					}}>
+					Iniciar Sesión con Google <FaGoogle />
 				</button>
 			</form>
 		</div>
