@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
+import axios from 'axios';
 
 const style = {
 	position: 'absolute',
@@ -28,11 +29,29 @@ export default function EditModal({
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-	// console.log(userData[0].name);
+
+	const [editedName, setEditedName] = React.useState(
+		`${userData[0].name} ${userData[0].lastName}`
+	);
+
+	const [originalName, setOriginalName] = React.useState(
+		`${userData[0].name} ${userData[0].lastName}`
+	);
+
+	
+	// console.log(userData[0]);
+	console.log(editedName);
 	if (userData) {
-		// console.log(userData[0].password);
 		// const [editedName, setEditedName] = React.useState(userData.name);
 	}
+	const userID = userData[0].id;
+	// console.log(userID);
+
+	const editName = () => {
+		try {
+			// const response = await axios.put(`/user/${userID}`, editedProduct)
+		} catch (error) {}
+	};
 
 	return (
 		<div>

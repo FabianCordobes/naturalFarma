@@ -15,7 +15,7 @@ const History = () => {
 		getHistoryItem();
 
 		if (historyItems) {
-			console.log(historyItems);
+			// console.log(historyItems);
 		}
 	});
 
