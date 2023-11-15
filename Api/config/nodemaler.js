@@ -1,17 +1,32 @@
 const nodemailer = require('nodemailer');
 
-// Configurar el transporte del correo
+
 const transporter = nodemailer.createTransport({
   host:"snpt.gmail.com",
   port: 465,
   secure: true,
   service: 'Gmail',
   auth: {
-    user: 'andreaochoaispuru@gmail.com', // Reemplaza con tu dirección de correo Gmail
-    pass: 'vwyb uzjh hwsy nets' // Reemplaza con tu contraseña
+    user: 'andreaochoaispuru@gmail.com', 
+    pass: 'vwyb uzjh hwsy nets'
   }
 });
 
 transporter.verify().then(()=> console.log("gmail enviado con exito!!")).catch((error) => console.log(error));
 
-module.exports = transporter;
+const enviarCorreo = async (toEmail, name) => {
+    try {
+      await transporter.sendMail({
+        from: 'andreaochoaispuru@gmail.com',
+        to: toEmail,
+        subject: 'Compra realizada en Mercado Pago',
+        text: 'Se ha realizado una compra en Mercado Pago.',
+        html: `<h1>${name} tu compra se realizó con éxito</h1>`
+      });
+      console.log('Correo enviado');
+    } catch (error) {
+      console.error('Error al enviar el correo:', error);
+    }
+  };
+
+module.exports = {transporter, enviarCorreo}
