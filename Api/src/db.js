@@ -57,7 +57,7 @@ Admin.hasOne(Login);
 Login.belongsTo(Admin);
 
 User.hasOne(Login);
-Login.belongsTo(Admin);
+Login.belongsTo(User);
 
 module.exports = {
     ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

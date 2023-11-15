@@ -22,11 +22,11 @@ export default function NavBar(props) {
 	const location = useLocation();
 
 	const cart = useSelector((state) => state.search.cart);
-  const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
+	const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
 
-  useEffect(() => {
-    localStorage.setItem('cartCount', cartCount);
-  }, [cartCount]);
+	useEffect(() => {
+		localStorage.setItem('cartCount', cartCount);
+	}, [cartCount]);
 	// console.log(cartCount);
 
 	// console.log(parsedCart.map(item) => {item.quantity * 1});

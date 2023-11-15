@@ -61,22 +61,21 @@ const Success = () => {
 		fetchData(); // Llama a la función de solicitud cuando el componente se monta
 	}, [parsedID, location.href]);
 
-	useEffect(() => {
-		const sendData = async (orderData) => {
-			try {
-				const response = await axios.post('/history', orderData);
-				console.log(response);
-			} catch (error) {
-				console.log(error);
-			}
-		};
-		sendData(orderData);
-	});
-	// console.log(orderData);
 	const navigate = useNavigate();
+
+	const sendData = async (orderData) => {
+		try {
+			const response = await axios.post('/history', orderData);
+			navigate('/history');
+			console.log(response);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	console.log(orderData);
 	return (
 		<div>
-			<button onClick={() => navigate('/history')}>IR AL HISTORIAL</button>
+			<button onClick={() => sendData(orderData)}>IR AL HISTORIAL</button>
 		</div>
 	);
 };
