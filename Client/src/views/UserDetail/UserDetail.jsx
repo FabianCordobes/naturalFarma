@@ -7,6 +7,7 @@ import { Avatar } from '@mui/material';
 import axios from 'axios';
 import EditModal from '../../components/Modal/EditModal';
 import SimpleBackdrop from '../../components/SimpleBackdrop/SimpleBackdrop';
+import { useNavigate } from 'react-router-dom';
 
 const UserDetail = () => {
 	const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
@@ -14,6 +15,31 @@ const UserDetail = () => {
 
 	const user = localStorage.getItem('user');
 	const userID = user.split('"').join('');
+	const navigate = useNavigate();
+
+	// const logout = () => {
+	// 	setAnchorEl(null);
+	// 	handleClose();
+	// 	// localStorage.setItem('user', JSON.stringify(''));
+	// 	window.alert('Sesión cerrada con éxito');
+
+	// 	handleLogout();
+	// 	signOut(auth, provider)
+	// 		.then(() => {
+	// 			// Eliminar el token del localStorage al cerrar sesión
+	// 			localStorage.removeItem('token');
+	// 			localStorage.removeItem('admin');
+	// 			// Puedes realizar otras acciones después de cerrar sesión si es necesario
+	// 			window.location.reload();
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error(error);
+	// 		});
+
+	// 	if (route === '/badlogin') {
+	// 		navigate('/login');
+	// 	}
+	// };
 
 	useEffect(() => {
 		const getUserData = async () => {
@@ -31,9 +57,16 @@ const UserDetail = () => {
 		getUserData();
 	}, [userID]);
 
-
-	const handleDeleteAccount = () => {
-		setShowConfirmationDialog(true);
+	const handleDeleteAccount = async () => {
+		try {
+			setShowConfirmationDialog(true);
+			const response = axios.delete(`/delete/${userID}`);
+			console.log(response);
+			navigate('/');
+		
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const handleDeleteAccountConfirm = () => {
@@ -137,6 +170,7 @@ const UserDetail = () => {
 							buttonText={'Eliminar cuenta'}
 							title={'¿Está seguro que desea eliminar su cuenta?'}
 							description={'Tenga en cuenta que esta acción es irreversible'}
+							handleAccept={handleDeleteAccount}
 						/>
 					</div>
 				</>
