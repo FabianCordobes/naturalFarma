@@ -1,0 +1,46 @@
+.reviews-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+  }
+  
+  .reviews-textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    resize: vertical;
+  }
+  
+  .reviews-stars {
+    margin-bottom: 10px;
+  }
+  
+  .reviews-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .reviews-table-container {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .reviews-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .reviews-list li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .reviews-list li:last-child {
+    border-bottom: none;
+  }
+  
