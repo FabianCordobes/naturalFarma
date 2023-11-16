@@ -4,24 +4,20 @@ import { createReview, getProductReviews } from '../../redux/actions/detailActio
 
 const Reviews = ({ productId }) => {
 	//recibe productId como propiedad
-	console.log('productId en Reviews:', productId);
 	const dispatch = useDispatch();
 	const [reviewText, setReviewText] = useState(''); //estado del texto de la reseña
 	const [rating, setRating] = useState(0); //estado de la puntuacion de la reseña
 
 	// Obtengo las reviews del producto desde el estado global de Redux
 	const productReviews = useSelector((state) => state.detail.reviews);
-	console.log('productReviewsAntesDelUseEffect:', productReviews);
 
 	useEffect(() => {
 		//cuando el componente se monta
 		if (productId) {
 			//si hay un productId se despacha la accion para obtener las reviews desde el estado global de redux
 			dispatch(getProductReviews(productId));
-			console.log('productReviews después de getProductReviews:', productReviews);
 		}
 	}, [dispatch, productId]);
-	//console.log("productReviews:", productReviews);
 
 	const handleReviewSubmit = (e) => {
 		e.preventDefault();
@@ -49,7 +45,6 @@ const Reviews = ({ productId }) => {
 		//limpio los campos de texto y puntuacion dsp de enviar la review
 		setReviewText('');
 		setRating(0);
-		console.log('productReviews al final del componente:', productReviews);
 	};
 	return (
 		<div>

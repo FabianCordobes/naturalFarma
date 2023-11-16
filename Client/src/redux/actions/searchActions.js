@@ -63,14 +63,12 @@ export const deleteProduct = (payload) => {
 	return async function (dispatch) {
 		try {
 			const response = await axios.delete(`/product/${payload}`);
-			console.log(response);
 			dispatch({
 				type: DELETE_PRODUCT,
 				payload,
 			});
 			alert('El producto se eliminó correctamente');
 		} catch (error) {
-			console.log(error);
 			alert('El producto no se pudo eliminar');
 		}
 	};
@@ -89,14 +87,11 @@ export const editProductFailure = (error) => ({
 export const editProduct = (productId, editedData) => {
 	return async (dispatch) => {
 		try {
-			console.log('Sending edit request for product ID:', productId);
 			const response = await axios.put(`/product/${productId}`, editedData);
 
-			console.log('Server response:', response);
 
 			if (response.status === 200) {
 				const updatedProduct = response.data;
-				console.log('Updated product:', updatedProduct);
 				dispatch(editProductSuccess(updatedProduct));
 			} else {
 				dispatch(editProductFailure('No se pudo editar el producto'));

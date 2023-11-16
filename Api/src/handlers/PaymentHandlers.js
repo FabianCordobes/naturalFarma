@@ -6,7 +6,6 @@ const placeOrder = async (req, res) => {
 
 		const response = await createOrder(items);
 
-		console.log('respuestaaa', response);
 
 		res.status(200).send(response);
 	} catch (error) {

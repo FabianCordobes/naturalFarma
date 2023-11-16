@@ -10,7 +10,6 @@ const createHistorytHandler = async (req, res) => {
 		const response = await createHistoryController(products, orderDetail, user);
 		res.status(200).json(response);
 
-		// console.log(response);
 	} catch (error) {
 		res.status(400).json({ error });
 	}
@@ -20,12 +19,10 @@ const getHistoryByIdUserHandler = async (req, res) => {
 	const { id } = req.params;
 
 	try {
-		console.log('ID USER EN HANDLER', id);
 		const historyId = await getHistoryByIdController(id);
 		if (!historyId.length) {
 			return res.status(404).json({ error: 'El historial no existe.' });
 		} else {
-			console.log(historyId);
 			return res.status(200).json(historyId);
 		}
 	} catch (error) {

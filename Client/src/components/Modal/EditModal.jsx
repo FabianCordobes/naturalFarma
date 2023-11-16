@@ -40,7 +40,6 @@ export default function EditModal({
 
 	
 	// console.log(userData[0]);
-	console.log(editedName);
 	if (userData) {
 		// const [editedName, setEditedName] = React.useState(userData.name);
 	}

@@ -81,7 +81,6 @@ function App() {
 				setIsAdmin(false); // Manejo de error, se asume que el usuario no es administrador
 			}
 		};
-		console.log(isAdmin);
 
 		checkAdminStatus();
 	}, []);
