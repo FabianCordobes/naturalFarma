@@ -44,6 +44,12 @@ const userReducer = (state = initialState, action) => {
 				clientUsers: [],
 				error: action.payload,
 			};
+
+			case 'DELETE_USER_SUCCESS': 
+			return {
+				...state,
+				user: action.payload,
+			}
 		default:
 			return state;
 	}

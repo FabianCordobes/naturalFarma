@@ -39,3 +39,15 @@ export const setUserData = (user) => {
 		});
 	};
 };
+
+export const deleteUserFromDb = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = axios.delete(`user/${userId}`)
+      dispatch({ type: 'DELETE_USER_SUCCESS', payload: response.data });
+    } catch (error) {
+      dispatch({ type: 'DELETE_USER_FAILURE', payload: error.message });
+    }
+
+  }
+}
