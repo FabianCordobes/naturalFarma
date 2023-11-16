@@ -44,6 +44,11 @@ const Product = ({ product }) => {
 		} else {
 			dispatch(addToFavorites(product.id));
 		}
+		// Actualiza el localStorage después de cambiar el estado de Redux
+		const updatedFavorites = isFavorite
+			? favorites.filter((favProduct) => favProduct.id !== product.id)
+			: [...favorites, product];
+		localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 	};
 
 	const handleAddToCart = () => {

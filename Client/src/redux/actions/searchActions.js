@@ -89,7 +89,6 @@ export const editProduct = (productId, editedData) => {
 		try {
 			const response = await axios.put(`/product/${productId}`, editedData);
 
-
 			if (response.status === 200) {
 				const updatedProduct = response.data;
 				dispatch(editProductSuccess(updatedProduct));
