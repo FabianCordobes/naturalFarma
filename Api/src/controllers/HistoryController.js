@@ -29,6 +29,7 @@ const createHistoryController = async (products, orderDetail, user) => {
 };
 
 const getHistoryByIdController = async (idUser) => {
+	console.log('Valor de idUser:', idUser);
 	const productFilter = await History.findAll({
 	  where: { UserId: idUser },
 	});

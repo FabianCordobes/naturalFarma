@@ -20,6 +20,7 @@ const History = () => {
 		getHistoryItem(idUser);
 	}, []);
 
+	console.log(historyItems);
 	return (
 		<div className={style.productListContainer}>
 			{/* Renderiza los elementos del historial */}
