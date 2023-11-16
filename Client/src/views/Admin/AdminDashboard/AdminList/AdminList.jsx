@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import axios from "axios";
 import { getAdminUsers } from '../../../../redux/actions/adminActions';
-import './AdminList.css';
+import style from './AdminList.module.css';
 
 const itemsPerPage = 7; 
 
@@ -16,6 +17,18 @@ export default function AdminList() {
     dispatch(getAdminUsers());
   }, [dispatch]);
 
+  const handleDeleteAdmin = async(id) => {
+    console.log('Eliminando admin:'+id);
+    const response = await axios.delete(`/admin/${id}`);
+		
+		if (response.status === 200) {
+			dispatch(getAdminUsers());
+		}
+		else{
+			window.alert('Error al eliminar administrador, comuniquese con soporte tecnico');
+		}
+  }
+
 
   const getCurrentPageUsers = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -24,39 +37,39 @@ export default function AdminList() {
   };
 
   return (
-    <div className="user-list-container">
-      <h1>Lista de Usuarios Administradores</h1>
-      <table className="user-list-table">
-        <thead>
+    <div className={style.userListContainer}>
+      <h1 className={style.titulo}>Lista de Usuarios Administradores</h1>
+      <table className={style.tabla}>
+        <thead >
           <tr>
             <th>Nombre:</th>
-            <th>Id:</th>
             <th>Apellido:</th>
             <th>Correo:</th>
             <th>Nacionalidad</th>
             <th>Birthday</th>
             <th>CreatedAt</th>
-            <th>IsAdmin</th>
+            <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={style.body}>
           {getCurrentPageUsers().map((admin, index) => (
-            <tr key={index}>
+            <tr key={index} className={style.admins}>
               <td>{admin.name}</td>
-              <td>{admin.id}</td>
               <td>{admin.lastName}</td>
               <td>{admin.email}</td>
               <td>{admin.nationality}</td>
               <td>{admin.birthdate}</td>
               <td>{admin.birthdate}</td>
-              <td>{admin.isAdmin}</td>
+              <td>
+                <button onClick={()=>handleDeleteAdmin(admin.id)}>Eliminar</button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
 
       
-      <div className="pagination">
+      <div className={style.pagination}>
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}

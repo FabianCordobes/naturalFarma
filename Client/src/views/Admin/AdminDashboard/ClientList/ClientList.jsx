@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getClientUsers } from '../../../../redux/actions/userActions';
@@ -14,6 +15,18 @@ export default function   ClientList() {
 	useEffect(() => {
 		dispatch(getClientUsers());
 	}, [dispatch]);
+
+	const handleDeleteUser = async (id) => {
+		console.log('Eliminar usuario'+id);
+		const response = await axios.delete(`/user/${id}`);
+		
+		if (response.status === 200) {
+			dispatch(getClientUsers());
+		}
+		else{
+			window.alert('Error al eliminar usuario');
+		}
+	}
 
 	const getCurrentPageUsers = () => {
 		const startIndex = (currentPage - 1) * itemsPerPage;
@@ -35,6 +48,7 @@ export default function   ClientList() {
 						<th>Birthday</th>
 						<th>CreatedAt</th>
 						<th>UpdatedAt</th>
+						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,6 +62,9 @@ export default function   ClientList() {
 							<td>{user.birthdate}</td>
 							<td>{user.birthdate}</td>
 							<td>{user.updatedAt}</td>
+							<td>
+								<button onClick={() => handleDeleteUser(user.id)}>Eliminar</button>
+							</td>
 						</tr>
 					))}
 				</tbody>

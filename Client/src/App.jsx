@@ -10,6 +10,7 @@ import { useLocation, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 //import ProductList from './views/ProductList/ProductList';
 import Medicinal from './views/Categories/Medicinal/Medicinal';
+import Error from './views/Error/Error';
 import Perfumery from './views/Categories/Perfumery/Perfumery';
 import Accessories from './views/Categories/Accessories/Accessories';
 import Esthetic from './views/Categories/Esthetic/Esthetic';
@@ -245,6 +246,10 @@ function App() {
 					<Route
 						path="/"
 						element={<NavBar />}
+					/>
+					<Route
+						path="*"
+						element={<Error />}
 					/>
 					{/* <Route
 						path="/editproduct"

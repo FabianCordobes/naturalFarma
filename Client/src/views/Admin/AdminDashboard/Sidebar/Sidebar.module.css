@@ -1,0 +1,6 @@
+.conteiner{
+    width: 20%;
+    height: 100%;
+    border-right: 5px solid #c2c4d4;
+    min-height: 70vh;
+}

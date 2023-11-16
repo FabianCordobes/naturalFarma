@@ -9,6 +9,8 @@ import {
 	BsFillPersonVcardFill,
 	BsGrid1X2Fill,
 } from 'react-icons/bs';
+import style from '../AdminDashboard.module.css';
+import styles from "./Sidebar.module.css"
 
 export default function Sidebar({ setActiveContent, openSidebar }) {
 	const handleButtonClick = (content) => {
@@ -18,57 +20,57 @@ export default function Sidebar({ setActiveContent, openSidebar }) {
 	return (
 		<aside
 			id="sidebar"
-			className={openSidebar ? 'sidebar-responsive' : ''}>
-			<div className="sidebar-title">
-				<div className="sidebar-brand">
-					<BsCart3 className="icon_header" /> Natural Farma
+			className={styles.conteiner}>
+			<div className={style.sidebarTitle}>
+				<div className={style.sidebarBrand}>
+					<BsCart3 className={style.iconHeader} /> Natural Farma
 				</div>
 				<span
-					className="icon close_icon"
+					className={`${style.icon} ${style.closeIcon}`}
 					onClick={() => setOpenSidebar(false)}>
 					X
 				</span>
 			</div>
-			<ul className="sidebar-list">
+			<ul className={style.sidebarList}>
 				<li
-					className="sidebar-list-item"
+					className={style.sidebarListItem}
 					onClick={() => handleButtonClick('dashboard')}>
-					<BsGrid1X2Fill className="icon" /> Dashboard
+					<BsGrid1X2Fill className={style.icon} /> Dashboard
 				</li>
 				<li
-					className="sidebar-list-item"
+					className={style.sidebarListItem}
 					onClick={() => handleButtonClick('productos')}>
-					<BsFillArchiveFill className="icon" /> Productos
+					<BsFillArchiveFill className={style.icon} /> Productos
 				</li>
 				<li
-					className="sidebar-list-item"
+					className={style.sidebarListItem}
 					onClick={() => handleButtonClick('categorias')}>
-					<BsFillGrid3X3GapFill className="icon" /> Categorías
+					<BsFillGrid3X3GapFill className={style.icon} /> Categorías
 				</li>
 				<li
-					className="sidebar-list-item"
+					className={style.sidebarListItem}
 					onClick={() => handleButtonClick('clientes')}>
-					<BsFillPersonLinesFill className="icon" /> Clientes
+					<BsFillPersonLinesFill className={style.icon} /> Clientes
 				</li>
 				<li
-					className="sidebar-list-item"
+					className={style.sidebarListItem}
 					onClick={() => handleButtonClick('usuariosEliminados')}>
-					<BsFillDatabaseFill className="icon" /> Usuarios eliminados
+					<BsFillDatabaseFill className={style.icon} /> Usuarios eliminados
 				</li>
 				<li
-					className="sidebar-list-item"
+					className={style.sidebarListItem}
 					onClick={() => handleButtonClick('administradores')}>
-					<BsFillPersonVcardFill className="icon" /> Administradores
+					<BsFillPersonVcardFill className={style.icon} /> Administradores
 				</li>
 				<li
-					className="sidebar-list-item"
+					className={style.sidebarListItem}
 					onClick={() => handleButtonClick('nuevoAdministrador')}>
-					<BsFillPersonPlusFill className="icon" /> Administradores +
+					<BsFillPersonPlusFill className={style.icon} /> Administradores +
 				</li>
 				<li
-					className="sidebar-list-item"
+					className={style.sidebarListItem}
 					onClick={() => handleButtonClick('stock')}>
-					<BsFillDatabaseFill className="icon" /> Stock
+					<BsFillDatabaseFill className={style.icon} /> Stock
 				</li>
 			</ul>
 		</aside>
