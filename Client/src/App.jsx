@@ -85,95 +85,6 @@ function App() {
 		checkAdminStatus();
 	}, []);
 
-	// 	return (
-	// 		<div className={`${style.App} ${style[route]}`}>
-	// 			{location.pathname !== '/login' && location.pathname !== '/register' && <NavBar />}
-	// 			<Routes>
-	// 				<Route
-	// 					path="/"
-	// 					element={<Home />}
-	// 				/>
-	// 				<Route
-	// 					path="/product/:id"
-	// 					element={<Detail />}
-	// 				/>
-	// 				<Route
-	// 					path="/"
-	// 					element={<NavBar />}
-	// 				/>
-	// 				<Route
-	// 					path="/stockform"
-	// 					element={<StockForm />}
-	// 				/>
-	// 				<Route
-	// 					path="/productList"
-	// 					element={<ProductList />}
-	// 				/>
-	// 				<Route
-	// 					path="/login"
-	// 					element={<Login />}
-	// 				/>
-	// 				<Route
-	// 					path="/register"
-	// 					element={<Register />}
-	// 				/>
-	// 				<Route
-	// 					path="/cart"
-	// 					element={<Cart />}
-	// 				/>
-	// 				<Route
-	// 					path="/favorites"
-	// 					element={<Favorites />}
-	// 				/>
-	// 				<Route
-	// 					path="/medicinal"
-	// 					element={<Medicinal />}
-	// 				/>
-	// 				<Route
-	// 					path="/perfumery"
-	// 					element={<Perfumery />}
-	// 				/>
-	// 				<Route
-	// 					path="/accesories"
-	// 					element={<Accessories />}
-	// 				/>
-	// 				<Route
-	// 					path="/esthetic"
-	// 					element={<Esthetic />}
-	// 				/>
-	// 				<Route
-	// 					path="/about"
-	// 					element={<About />}
-	// 				/>
-	// 				<Route
-	// 					path="/admin"
-	// 					element={<CreateAdmin />}
-	// 				/>
-	// 				<Route
-	// 					path="/admin/create"
-	// 					element={<CreateAdmin />}
-	// 				/>
-	// 				<Route
-	// 					path="/admin/accounts"
-	// 					element={<AdminList />}
-	// 				/>
-	// 				<Route
-	// 					path="/admin/clients"
-	// 					element={<ClientList />}
-	// 				/>
-	// 				<Route
-	// 					path="/success"
-	// 					element={<Success />}
-	// 				/>
-	// 				<Route
-	// 					path="/userDetail"
-	// 					element={<UserDetail />}
-	// 				/>
-	// 			</Routes>
-	// 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
-	// 		</div>
-	// 	);
-	// }
 	return (
 		<div className={`${style.App} ${style[route]}`}>
 			{location.pathname !== '/login' && location.pathname !== '/register' && <NavBar />}
@@ -186,50 +97,6 @@ function App() {
 							element={<Home />}
 						/> /* Agrega aquí las rutas y componentes para administradores */
 					}
-					{/* <Route
-					path="/accesories"
-					element={<Accessories />}
-				/>
-				<Route
-					path="/"
-					element={<Home />}
-				/>
-				<Route
-					path="/admin"
-					element={<CreateAdmin />}
-				/>
-				{<Route
-					path="/admin/create"
-					element={<CreateAdmin />}
-				/>
-				<Route
-					path="/admin/accounts"
-					element={<AdminList />}
-				/>
-				<Route
-					path="/admin/clients"
-					element={<ClientList />}
-				/>
-				<Route
-					path="/userDetail"
-					element={<UserDetail />}
-				/>
-				<Route
-					path="/favorites"
-					element={<Favorites />}
-				/>
-				<Route
-					path="/medicinal"
-					element={<Medicinal />}
-				/>
-				<Route
-					path="/perfumery"
-					element={<Perfumery />}
-				/> */}
-					{/* <Route
-						path="/accesories"
-						element={<Accessories />}
-					/> */}
 				</Routes>
 			) : (
 				<Routes>
@@ -245,10 +112,7 @@ function App() {
 						path="/"
 						element={<NavBar />}
 					/>
-					{/* <Route
-						path="/editproduct"
-						element={<EditProduct />}
-					/> */}
+
 					<Route
 						path="/productList"
 						element={<ProductList />}
@@ -298,15 +162,7 @@ function App() {
 						path="/admin"
 						element={<AdminDashboard />}
 					/>
-					{/* <Route path="/admin/create" element={<CreateAdmin />} /> */}
-					{/*<Route
-						path="/admin/accounts"
-						element={<AdminList />}
-					/>*/}
-					{/*<Route
-						path="/admin/clients"
-						element={<ClientList />}
-					/>*/}
+
 					<Route
 						path="/success"
 						element={<Success />}
