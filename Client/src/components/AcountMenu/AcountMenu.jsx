@@ -103,8 +103,6 @@ export default function AccountMenu() {
 
 	React.useEffect(() => {
 		isAuthenticated(); // Llama a la función para verificar la autenticación
-		console.log(adminPanel);
-		console.log(showUserMenu);
 	}, []);
 
 	return (

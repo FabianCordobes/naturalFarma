@@ -31,7 +31,6 @@ const UserDetail = () => {
 		getUserData();
 	}, [userID]);
 
-	console.log(userData);
 
 	const handleDeleteAccount = () => {
 		setShowConfirmationDialog(true);

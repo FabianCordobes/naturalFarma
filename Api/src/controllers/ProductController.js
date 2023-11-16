@@ -24,7 +24,6 @@ const createProductController = async (
 
         await newProduct.addCategories(findCategory);
 
-        console.log("esta es la categoria"+findCategory);
     
       const produc = await Product.findAll({include: {
         model: Category,

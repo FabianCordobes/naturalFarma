@@ -17,7 +17,6 @@ const Detail = () => {
 	useEffect(() => {
 		dispatch(getDetail(id));
 		
-		console.log(detailProducts[0]);
 		return () => {
 			dispatch({
 				type: GET_DETAIL,

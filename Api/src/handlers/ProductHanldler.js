@@ -68,12 +68,9 @@ const putProductsHandler = async (req, res) => {
     const editedData = req.body;
 
     try {
-        console.log('ID:', id);
-        console.log('Edited Data:', editedData);
 
         const editProduct = await putProducts(id, editedData);
 
-        console.log('Product Updated:', editProduct);
 
         return res.status(200).json(editProduct);
     } catch (error) {

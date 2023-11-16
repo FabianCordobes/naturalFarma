@@ -21,7 +21,6 @@ nodemailerRouter.post("/",async function (req, res){
           text: 'Natural Farma agradece tu compra, que tenga buen día',
         });
     
-        console.log({ result });
         res.status(200).json("Mensaje enviado con éxito");
       } catch (error) {
         console.error('Error al enviar el correo:', error);

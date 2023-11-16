@@ -67,15 +67,30 @@ const Success = () => {
 		try {
 			const response = await axios.post('/history', orderData);
 			navigate('/history');
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const sendEmail = async (email) => {
+		try {
+			const response = await axios.post('/email', {email});
 			console.log(response);
 		} catch (error) {
 			console.log(error);
 		}
 	};
-	console.log(orderData);
+
 	return (
 		<div>
-			<button onClick={() => sendData(orderData)}>IR AL HISTORIAL</button>
+			<button
+				onClick={() => {
+					sendData(orderData);
+					
+					sendEmail(orderData.user.email);
+				}}>
+				IR AL HISTORIAL
+			</button>
 		</div>
 	);
 };
