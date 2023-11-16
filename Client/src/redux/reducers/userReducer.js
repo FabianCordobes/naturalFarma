@@ -4,6 +4,7 @@ const initialState = {
 	user: null,
 	error: null,
 	clientUsers: [],
+	deleteUsers: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -38,6 +39,14 @@ const userReducer = (state = initialState, action) => {
 				clientUsers: action.payload,
 				error: null,
 			};
+
+		case 'GET_DELETE_USERS_SUCCESS':
+			return {
+				...state,
+				deleteUsers: action.payload,
+				error: null,
+			};
+
 		case 'GET_CLIENT_USERS_FAILURE':
 			return {
 				...state,
@@ -45,11 +54,12 @@ const userReducer = (state = initialState, action) => {
 				error: action.payload,
 			};
 
-			case 'DELETE_USER_SUCCESS': 
+		case 'GET_DELETE_USERS_FAILURE':
 			return {
 				...state,
-				user: action.payload,
-			}
+				deleteUsers: [],
+				error: action.payload,
+			};
 		default:
 			return state;
 	}

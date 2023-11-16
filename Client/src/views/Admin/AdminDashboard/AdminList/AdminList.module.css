@@ -1,0 +1,20 @@
+.userListContainer{
+  height: 100%;
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo{margin-bottom: 5%;
+  color: #3da4cd}
+
+.tabla {
+  height: 100%;
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+  .admins {
+    color: black;
+  }

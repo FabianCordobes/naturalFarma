@@ -9,7 +9,9 @@ import {
 import { getClientUsers } from '../../../../redux/actions/userActions'; 
 import { getAdminUsers } from '../../../../redux/actions/adminActions'; 
 import { getAllProducts } from '../../../../redux/actions/productActions'; 
-import { getAllCategories } from '../../../../redux/actions/categoryActions'; 
+import { getAllCategories } from '../../../../redux/actions/categoryActions';
+import { getDeleteUsers } from '../../../../redux/actions/userActions';
+import style from "../AdminDashboard.module.css" 
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -21,42 +23,43 @@ export default function Dashboard() {
 
   useEffect(() => {
     dispatch(getClientUsers());
+    dispatch(getDeleteUsers());
     dispatch(getAdminUsers());
     dispatch(getAllProducts());
     dispatch(getAllCategories());
   }, [dispatch]);
 
   return (
-      <main className="main-container">
-        <div className="main-title">
+    <main className={style.mainContainer}>
+        <div className={style.mainTitle}>
           <h3>PANEL DE ADMINISTRADOR</h3>
         </div>
-        <div className="main-cards">
-          <div className="card">
-            <div className="card-inner">
+        <div className={style.mainCards}>
+          <div className={style.card}>
+            <div className={style.cardInner}>
               <h3>PRODUCTOS</h3>
-              <BsFillArchiveFill className="card_iicon" />
+              <BsFillArchiveFill className={`${style.cardIcon} card_iicon`} />
             </div>
             <h1>{productCount}</h1>
           </div>
-          <div className="card">
-            <div className="card-inner">
+          <div className={style.card}>
+            <div className={style.cardInner}>
               <h3>CATEGORIAS</h3>
-              <BsFillGrid3X3GapFill className="card_iicon" />
+              <BsFillGrid3X3GapFill className={`${style.cardIcon} card_iicon`} />
             </div>
             <h1>{categoryCount}</h1>
           </div>
-          <div className="card">
-            <div className="card-inner">
+          <div className={style.card}>
+            <div className={style.cardInner}>
               <h3>CLIENTES</h3>
-              <BsPeopleFill className="card_iicon" />
+              <BsPeopleFill className={`${style.cardIcon} card_iicon`} />
             </div>
             <h1>{clientCount}</h1>
           </div>
-          <div className="card">
-            <div className="card-inner">
+          <div className={style.card}>
+            <div className={style.cardInner}>
               <h3>ADMINISTRADORES</h3>
-              <BsPersonPlusFill className="card_iicon" />
+              <BsPersonPlusFill className={`${style.cardIcon} card_iicon`} />
             </div>
             <h1>{adminCount}</h1>
           </div>
