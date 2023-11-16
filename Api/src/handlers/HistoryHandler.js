@@ -10,7 +10,6 @@ const createHistorytHandler = async (req, res) => {
 		const response = await createHistoryController(products, orderDetail, user);
 		res.status(200).json(response);
 
-		// console.log(response);
 	} catch (error) {
 		res.status(400).json({ error });
 	}
@@ -29,6 +28,7 @@ const getHistoryByIdUserHandler = async (req, res) => {
 			return res.status(200).json(historyId);
 		}
 	} catch (error) {
+		console.error('Error al obtener historial por ID de usuario:', error);
 		console.error('Error al obtener historial por ID de usuario:', error);
 		res.status(500).json({ error: error.message });
 	}

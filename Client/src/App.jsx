@@ -10,6 +10,7 @@ import { useLocation, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 //import ProductList from './views/ProductList/ProductList';
 import Medicinal from './views/Categories/Medicinal/Medicinal';
+import Error from './views/Error/Error';
 import Perfumery from './views/Categories/Perfumery/Perfumery';
 import Accessories from './views/Categories/Accessories/Accessories';
 import Esthetic from './views/Categories/Esthetic/Esthetic';
@@ -81,100 +82,10 @@ function App() {
 				setIsAdmin(false); // Manejo de error, se asume que el usuario no es administrador
 			}
 		};
-		console.log(isAdmin);
 
 		checkAdminStatus();
 	}, []);
 
-	// 	return (
-	// 		<div className={`${style.App} ${style[route]}`}>
-	// 			{location.pathname !== '/login' && location.pathname !== '/register' && <NavBar />}
-	// 			<Routes>
-	// 				<Route
-	// 					path="/"
-	// 					element={<Home />}
-	// 				/>
-	// 				<Route
-	// 					path="/product/:id"
-	// 					element={<Detail />}
-	// 				/>
-	// 				<Route
-	// 					path="/"
-	// 					element={<NavBar />}
-	// 				/>
-	// 				<Route
-	// 					path="/stockform"
-	// 					element={<StockForm />}
-	// 				/>
-	// 				<Route
-	// 					path="/productList"
-	// 					element={<ProductList />}
-	// 				/>
-	// 				<Route
-	// 					path="/login"
-	// 					element={<Login />}
-	// 				/>
-	// 				<Route
-	// 					path="/register"
-	// 					element={<Register />}
-	// 				/>
-	// 				<Route
-	// 					path="/cart"
-	// 					element={<Cart />}
-	// 				/>
-	// 				<Route
-	// 					path="/favorites"
-	// 					element={<Favorites />}
-	// 				/>
-	// 				<Route
-	// 					path="/medicinal"
-	// 					element={<Medicinal />}
-	// 				/>
-	// 				<Route
-	// 					path="/perfumery"
-	// 					element={<Perfumery />}
-	// 				/>
-	// 				<Route
-	// 					path="/accesories"
-	// 					element={<Accessories />}
-	// 				/>
-	// 				<Route
-	// 					path="/esthetic"
-	// 					element={<Esthetic />}
-	// 				/>
-	// 				<Route
-	// 					path="/about"
-	// 					element={<About />}
-	// 				/>
-	// 				<Route
-	// 					path="/admin"
-	// 					element={<CreateAdmin />}
-	// 				/>
-	// 				<Route
-	// 					path="/admin/create"
-	// 					element={<CreateAdmin />}
-	// 				/>
-	// 				<Route
-	// 					path="/admin/accounts"
-	// 					element={<AdminList />}
-	// 				/>
-	// 				<Route
-	// 					path="/admin/clients"
-	// 					element={<ClientList />}
-	// 				/>
-	// 				<Route
-	// 					path="/success"
-	// 					element={<Success />}
-	// 				/>
-	// 				<Route
-	// 					path="/userDetail"
-	// 					element={<UserDetail />}
-	// 				/>
-	// 			</Routes>
-	// 			{location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
-	// 		</div>
-	// 	);
-	// }
 	return (
 		<div className={`${style.App} ${style[route]}`}>
 			{location.pathname !== '/login' && location.pathname !== '/register' && <NavBar />}
@@ -187,50 +98,6 @@ function App() {
 							element={<Home />}
 						/> /* Agrega aquí las rutas y componentes para administradores */
 					}
-					{/* <Route
-					path="/accesories"
-					element={<Accessories />}
-				/>
-				<Route
-					path="/"
-					element={<Home />}
-				/>
-				<Route
-					path="/admin"
-					element={<CreateAdmin />}
-				/>
-				{<Route
-					path="/admin/create"
-					element={<CreateAdmin />}
-				/>
-				<Route
-					path="/admin/accounts"
-					element={<AdminList />}
-				/>
-				<Route
-					path="/admin/clients"
-					element={<ClientList />}
-				/>
-				<Route
-					path="/userDetail"
-					element={<UserDetail />}
-				/>
-				<Route
-					path="/favorites"
-					element={<Favorites />}
-				/>
-				<Route
-					path="/medicinal"
-					element={<Medicinal />}
-				/>
-				<Route
-					path="/perfumery"
-					element={<Perfumery />}
-				/> */}
-					{/* <Route
-						path="/accesories"
-						element={<Accessories />}
-					/> */}
 				</Routes>
 			) : (
 				<Routes>
@@ -245,6 +112,10 @@ function App() {
 					<Route
 						path="/"
 						element={<NavBar />}
+					/>
+					<Route
+						path="*"
+						element={<Error />}
 					/>
 					{/* <Route
 						path="/editproduct"
@@ -299,15 +170,7 @@ function App() {
 						path="/admin"
 						element={<AdminDashboard />}
 					/>
-					{/* <Route path="/admin/create" element={<CreateAdmin />} /> */}
-					{/*<Route
-						path="/admin/accounts"
-						element={<AdminList />}
-					/>*/}
-					{/*<Route
-						path="/admin/clients"
-						element={<ClientList />}
-					/>*/}
+
 					<Route
 						path="/success"
 						element={<Success />}

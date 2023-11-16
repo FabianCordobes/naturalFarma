@@ -27,20 +27,27 @@ export default function AlertDialog({ buttonText, title, description, handleAcce
 
 	return (
 		<React.Fragment>
-			{buttonText === 'Eliminar' ? (
+			{buttonText === 'Eliminar' && (
 				<Button
-					style={{background:'#ec3030', color:'#fff', fontWeight:'400', fontSize:'14px', height:'31px', marginTop:'2px'}}
+					style={{
+						background: '#ec3030',
+						color: '#fff',
+						fontWeight: '400',
+						fontSize: '14px',
+						height: '31px',
+						marginTop: '2px',
+					}}
 					variant="filled"
 					onClick={handleClickOpen}>
 					{buttonText}
 				</Button>
-			) : (
-				<Button
-					variant="outlined"
-					onClick={handleClickOpen}>
-					{buttonText}
-				</Button>
 			)}
+			<Button
+				variant="outlined"
+				onClick={handleClickOpen}>
+				{buttonText}
+			</Button>
+			
 			<Dialog
 				open={open}
 				onClose={handleCancelSubmit}

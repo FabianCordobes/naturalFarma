@@ -6,6 +6,8 @@ import CategoriesList from '../CategoryList/CategoryList';
 import ProductList from '../ProductList/ProductList';
 import StockForm from '../EditProduct/EditProduct';
 import CreateAdmin from '../CreateAdmin/CreateAdmin';
+import UsuariosEliminados from '../UsuariosEliminados/UsuariosEliminados';
+import style from './HomeAdmin.module.css';
 
 export default function HomeAdmin({ activeContent }) {
 	const renderContent = () => {
@@ -24,16 +26,16 @@ export default function HomeAdmin({ activeContent }) {
 				return <CreateAdmin />;
 			case 'stock':
 				return <StockForm />;
-			// case 'usuariosEliminados':
-				// return <UsuariosEliminados />;
+			case 'usuariosEliminados':
+				return <UsuariosEliminados />;
 			default:
 				return null;
 		}
 	};
 
 	return (
-		<div className="centered-content">
-			<div>{renderContent()}</div>
+		<div className={style.centeredContent}>
+			{renderContent()}
 		</div>
 	);
 }

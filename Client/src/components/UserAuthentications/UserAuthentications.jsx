@@ -15,10 +15,8 @@ export async function handleLogin(data) {
 			email: data.user,
 			password: data.password,
 		});
-		console.log(response);
 
 		if (response.data.response === 'success') {
-			console.log('el success');
 			// Almacena el token en el almacenamiento local (localStorage) para mantener la sesión iniciada
 			const token = response.data.token;
 			localStorage.setItem('token', token);
@@ -29,11 +27,9 @@ export async function handleLogin(data) {
 					Authorization: `Bearer ${token}`,
 				},
 			});
-			console.log('Datos del panel de administración:', adminResponse.data);
 
 			if (adminResponse.data === 'Panel Administracion') {
 				localStorage.setItem('admin', JSON.stringify(adminResponse.data));
-				console.log('Datos del panel de administración:', adminResponse.data);
 				window.alert('Bienvenido');
 				return {
 					status: true,

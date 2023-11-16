@@ -199,7 +199,6 @@ const searchReducer = (state = initialState, action) => {
 			// Invertir los valores si priceMin es mayor que priceMax
 
 			if (state.productsCategory.length != 0) {
-				console.log('probando' + state.productsCategory);
 
 				if (priceMin > priceMax && priceMax != '' && priceMax) {
 					const temp = priceMin;
@@ -307,7 +306,6 @@ const searchReducer = (state = initialState, action) => {
 				const filteredProducts = state.productsPrice.filter((product) =>
 					product.Categories.some((category) => category.description === action.payload)
 				);
-				console.log('que pedo wey:' + JSON.stringify(filteredProducts));
 				if (action.payload != 'all' && filteredProducts) {
 					return {
 						...state,
@@ -320,11 +318,9 @@ const searchReducer = (state = initialState, action) => {
 					};
 				}
 			} else {
-				console.log(action.payload);
 				const filteredProducts = state.productsAux.filter((product) =>
 					product.Categories.some((category) => category.description === action.payload)
 				);
-				console.log('que pedo wey:' + JSON.stringify(filteredProducts));
 				if (action.payload != 'all' && filteredProducts) {
 					return {
 						...state,

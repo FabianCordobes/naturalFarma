@@ -21,7 +21,6 @@ export default function Login() {
 			.then((result) => {
 				// Manejar el resultado de inicio de sesión con Google
 				const user = result.user;
-				console.log('buscando el id' + JSON.stringify(user));
 
 				// Obtener el token de acceso desde el resultado
 				const token = result._tokenResponse?.idToken;

@@ -1,7 +1,7 @@
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 const { ACCESS_TOKEN } = process.env;
-const {History} = require ("../db");
-const  {enviarCorreo}  = require ("../../config/nodemaler")
+const { History } = require('../db');
+const { enviarCorreo } = require('../../config/nodemaler');
 
 const client = new MercadoPagoConfig({
 	accessToken: ACCESS_TOKEN,
@@ -24,7 +24,6 @@ const createOrder = async (items) => {
 			currency_id: 'ARG',
 		})
 	);
-	console.log(products);
 	let preference = {
 		body: {
 			items: products,

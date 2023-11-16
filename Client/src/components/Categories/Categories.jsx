@@ -36,7 +36,6 @@ export const createCategory = async (category) => {
 };
 
 export const deleteCategory = async (id) => {
-	console.log('es el id:' + JSON.stringify(id));
 	try {
 		const response = await axios.delete(`/category/${id.id}`, {
 			id: id.id,
