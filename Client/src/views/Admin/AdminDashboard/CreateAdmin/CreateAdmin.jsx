@@ -85,7 +85,6 @@ export default function CreateAdmin() {
 				email: formData.email,
 				isAdmin: formData.isAdmin, // Incluir el valor del checkbox
 			};
-			console.log(userData);
 			dispatch(addAdminUser(userData));
 		}
 	};

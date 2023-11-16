@@ -2,7 +2,6 @@ const KJUR = require("jsrsasign");
 
 function verifyToken(req, res, next) {
     const userHeader = req.headers["authorization"]; // "Bearer JWT"
-    console.log("LOCO"+ req.headers["authorization"]);
     if (typeof userHeader !== undefined) {
         const authString = userHeader.split(" "); // ["BEARER", "JWT"]
         const token = authString[1];
@@ -11,14 +10,12 @@ function verifyToken(req, res, next) {
             return res.status(401).send("Token no escrito");
         }
 
-        console.log("Este es el token: " + token);
 
         try {
             const publicKey = "1234"; // Reemplaza con tu clave pública
             const isValid = KJUR.jws.JWS.verifyJWT(token, publicKey, {
                 alg: ["HS256"], // El algoritmo de firma utilizado
             });
-            console.log("Este es el isValid: " + isValid);
 
             if (isValid) {
                 const payload = KJUR.jws.JWS.readSafeJSONString(

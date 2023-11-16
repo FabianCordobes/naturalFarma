@@ -73,7 +73,6 @@ export default function StockForm() {
 	};
 
 	const changeHandler = (event) => {
-		console.log('este es el :' + event.target.value);
 		if (event.target.name === 'id') {
 			let newState3 = { ...deleteForCategory, [event.target.name]: event.target.value };
 			setDeleteForCategory(newState3);
@@ -93,12 +92,10 @@ export default function StockForm() {
 	};
 	const submitHandlerCategory = async (event) => {
 		event.preventDefault();
-		console.log(saveCategory);
 
 		try {
 			// Lógica para agregar la categoría
 			await createCategory(saveCategory);
-			console.log('Categoría agregada con éxito');
 
 			// Recargar la página
 			window.location.reload();
@@ -109,12 +106,10 @@ export default function StockForm() {
 
 	const submitHandlerDeleteCategory = async (event) => {
 		event.preventDefault();
-		console.log(deleteForCategory);
 
 		try {
 			// Lógica para eliminar la categoría
 			await deleteCategory(deleteForCategory);
-			console.log('Categoría eliminada con éxito');
 
 			// Recargar la página
 			window.location.reload();
@@ -125,8 +120,6 @@ export default function StockForm() {
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		console.log('este es el form:' + JSON.stringify(form));
-		// console.log(category);
 		addProducts(form);
 		window.alert('Producto creado exitosamente !');
 		window.location.reload();

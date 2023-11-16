@@ -31,7 +31,6 @@ const Cart = () => {
 			);
 			// console.log('la response del front:', response);
 			const { id } = response.data;
-			console.log(id); //recibe un id, que viene de response.data(del servidor)
 			return id; //retorna ese id para utilizarlo dsp
 		} catch (error) {
 			console.log(error);
@@ -40,11 +39,9 @@ const Cart = () => {
 
 	const handleBuy = async () => {
 		const id = await createPreference();
-		console.log('id del handlebuy: ', id);
 
 		if (id) {
 			setPreferenceId(id);
-			console.log('setpreferenceId:', id);
 		} else {
 			console.error('La preferencia no se generó correctamente.');
 		}

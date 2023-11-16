@@ -49,7 +49,6 @@ const SortComponent = () => {
 
 	const handleFilterPrice = (event) => {
 		event.preventDefault();
-		console.log('este es el price' + priceMin);
 		if (priceMin != '' || priceMax != '') {
 			setPriceClear(true);
 		}
