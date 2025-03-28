@@ -77,9 +77,6 @@ const putUserHandler = async (req, res) => {
 	const { id } = req.params;
 	const { name, lastName, birthdate, nationality, password, email } = req.body;
 	try {
-		// if (!name || !lastName || !birthdate || !nationality || !password || !email) {
-		// 	throw new Error('Falta información para modificar el Usuario.');
-		// }
 
 		const editUser = await putUserController(
 			id,
